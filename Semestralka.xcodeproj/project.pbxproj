@@ -7,13 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B327D2F15DAF8FC42BCEF51 /* Pods_Semestralka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94F0485C88CC59A9446EE4F /* Pods_Semestralka.framework */; };
+		F11E1F6F1C95968C00440277 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F6E1C95968C00440277 /* MenuVC.swift */; };
+		F11E1F731C98842300440277 /* DashboardOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F721C98842300440277 /* DashboardOldVC.swift */; };
+		F11E1F761C9893C400440277 /* ENSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F741C9893C400440277 /* ENSideMenu.swift */; };
+		F11E1F771C9893C400440277 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */; };
+		F11E1F7B1C993A8D00440277 /* MenuTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */; };
+		F11E1F7D1C99400100440277 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F7C1C99400100440277 /* TasksVC.swift */; };
+		F11E1F7F1C994C7A00440277 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F7E1C994C7A00440277 /* AccountsVC.swift */; };
+		F11E1F851C9CA46400440277 /* AccountDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F841C9CA46400440277 /* AccountDetailVC.swift */; };
+		F11E1F871CA09C6200440277 /* NewAccountOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */; };
+		F11E1F891CA0A36B00440277 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F881CA0A36B00440277 /* ContactsVC.swift */; };
 		F11FAF251C903A86008E6ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF241C903A86008E6ABD /* AppDelegate.swift */; };
-		F11FAF271C903A86008E6ABD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF261C903A86008E6ABD /* ViewController.swift */; };
-		F11FAF2A1C903A86008E6ABD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F11FAF281C903A86008E6ABD /* Main.storyboard */; };
-		F11FAF2C1C903A86008E6ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F11FAF2B1C903A86008E6ABD /* Assets.xcassets */; };
+		F11FAF271C903A86008E6ABD /* EnterURLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF261C903A86008E6ABD /* EnterURLController.swift */; };
 		F11FAF2F1C903A86008E6ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F11FAF2D1C903A86008E6ABD /* LaunchScreen.storyboard */; };
 		F11FAF3A1C903A87008E6ABD /* SemestralkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF391C903A87008E6ABD /* SemestralkaTests.swift */; };
 		F11FAF451C903A87008E6ABD /* SemestralkaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF441C903A87008E6ABD /* SemestralkaUITests.swift */; };
+		F11FAF571C9058D6008E6ABD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF561C9058D6008E6ABD /* LoginVC.swift */; };
+		F12A3C891CA2C5CF0060D426 /* FormsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A3C881CA2C5CF0060D426 /* FormsVC.swift */; };
+		F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */; };
+		F16D5E801CA688C600D928B6 /* menu20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = F16D5E7F1CA688C600D928B6 /* menu20x20.png */; };
+		F16D5E841CA6896800D928B6 /* menu32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = F16D5E831CA6896800D928B6 /* menu32x32.png */; };
+		F16D5E861CA68F5E00D928B6 /* LeadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */; };
+		F18E4FAD1CA6AB5800B0A766 /* NewLeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */; };
+		F18E4FAF1CA6B92200B0A766 /* LeadDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FAE1CA6B92200B0A766 /* LeadDetailVC.swift */; };
+		F18E4FB11CA6CB9800B0A766 /* EditAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */; };
+		F18E4FB61CA6D02200B0A766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18E4FB41CA6D02200B0A766 /* Main.storyboard */; };
+		F18E4FB81CA7022D00B0A766 /* EditContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */; };
+		F18E4FBA1CA7061D00B0A766 /* EditLeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FB91CA7061D00B0A766 /* EditLeadVC.swift */; };
+		F18E4FBC1CA7093500B0A766 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E4FBB1CA7093500B0A766 /* Logo.png */; };
+		F18E4FBE1CA741FB00B0A766 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */; };
+		F1A8446A1CA49F58006BB447 /* NewContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A844691CA49F58006BB447 /* NewContactVC.swift */; };
+		F1A8446C1CA4A3D5006BB447 /* ContactsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */; };
+		F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */; };
+		F1F0C9DA1CA12EFC000727A9 /* ContactsDetailOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */; };
+		F1F0C9DC1CA278BF000727A9 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,11 +62,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A94F0485C88CC59A9446EE4F /* Pods_Semestralka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Semestralka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B25A82636E4865FC57FBBB1A /* Pods-Semestralka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Semestralka.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Semestralka/Pods-Semestralka.debug.xcconfig"; sourceTree = "<group>"; };
+		BFB051B86B084FEBC22AE947 /* Pods-Semestralka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Semestralka.release.xcconfig"; path = "Pods/Target Support Files/Pods-Semestralka/Pods-Semestralka.release.xcconfig"; sourceTree = "<group>"; };
+		F11E1F6E1C95968C00440277 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		F11E1F721C98842300440277 /* DashboardOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardOldVC.swift; path = Semestralka/DashboardOldVC.swift; sourceTree = "<group>"; };
+		F11E1F741C9893C400440277 /* ENSideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ENSideMenu.swift; path = Pods/ENSwiftSideMenu/Library/ENSideMenu.swift; sourceTree = SOURCE_ROOT; };
+		F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ENSideMenuNavigationController.swift; path = Pods/ENSwiftSideMenu/Library/ENSideMenuNavigationController.swift; sourceTree = SOURCE_ROOT; };
+		F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableVC.swift; sourceTree = "<group>"; };
+		F11E1F7C1C99400100440277 /* TasksVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksVC.swift; path = Semestralka/TasksVC.swift; sourceTree = "<group>"; };
+		F11E1F7E1C994C7A00440277 /* AccountsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsVC.swift; path = Semestralka/AccountsVC.swift; sourceTree = "<group>"; };
+		F11E1F841C9CA46400440277 /* AccountDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetailVC.swift; path = Semestralka/AccountDetailVC.swift; sourceTree = "<group>"; };
+		F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAccountOldVC.swift; path = Semestralka/NewAccountOldVC.swift; sourceTree = "<group>"; };
+		F11E1F881CA0A36B00440277 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Semestralka/ContactsVC.swift; sourceTree = "<group>"; };
 		F11FAF211C903A86008E6ABD /* Semestralka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Semestralka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11FAF241C903A86008E6ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F11FAF261C903A86008E6ABD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F11FAF291C903A86008E6ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F11FAF2B1C903A86008E6ABD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F11FAF261C903A86008E6ABD /* EnterURLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EnterURLController.swift; path = Semestralka/EnterURLController.swift; sourceTree = "<group>"; };
 		F11FAF2E1C903A86008E6ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F11FAF301C903A86008E6ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11FAF351C903A87008E6ABD /* SemestralkaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SemestralkaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +86,25 @@
 		F11FAF401C903A87008E6ABD /* SemestralkaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SemestralkaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11FAF441C903A87008E6ABD /* SemestralkaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestralkaUITests.swift; sourceTree = "<group>"; };
 		F11FAF461C903A87008E6ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F11FAF561C9058D6008E6ABD /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Semestralka/LoginVC.swift; sourceTree = "<group>"; };
+		F12A3C881CA2C5CF0060D426 /* FormsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsVC.swift; path = Semestralka/FormsVC.swift; sourceTree = "<group>"; };
+		F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAccountVC.swift; path = Semestralka/NewAccountVC.swift; sourceTree = "<group>"; };
+		F16D5E7F1CA688C600D928B6 /* menu20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu20x20.png; sourceTree = "<group>"; };
+		F16D5E831CA6896800D928B6 /* menu32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu32x32.png; sourceTree = "<group>"; };
+		F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsVC.swift; sourceTree = "<group>"; };
+		F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLeadVC.swift; sourceTree = "<group>"; };
+		F18E4FAE1CA6B92200B0A766 /* LeadDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadDetailVC.swift; sourceTree = "<group>"; };
+		F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountVC.swift; sourceTree = "<group>"; };
+		F18E4FB51CA6D02200B0A766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactVC.swift; sourceTree = "<group>"; };
+		F18E4FB91CA7061D00B0A766 /* EditLeadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLeadVC.swift; sourceTree = "<group>"; };
+		F18E4FBB1CA7093500B0A766 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		F1A844691CA49F58006BB447 /* NewContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewContactVC.swift; path = Semestralka/NewContactVC.swift; sourceTree = "<group>"; };
+		F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailVC.swift; path = Semestralka/ContactsDetailVC.swift; sourceTree = "<group>"; };
+		F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailOldVC.swift; path = Semestralka/ContactsDetailOldVC.swift; sourceTree = "<group>"; };
+		F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomHeaderCell.swift; path = Semestralka/CustomHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B327D2F15DAF8FC42BCEF51 /* Pods_Semestralka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +133,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		149D666DE355A35413530C57 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B25A82636E4865FC57FBBB1A /* Pods-Semestralka.debug.xcconfig */,
+				BFB051B86B084FEBC22AE947 /* Pods-Semestralka.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E08A12EE9BFA242FB2485AC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A94F0485C88CC59A9446EE4F /* Pods_Semestralka.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F11FAF181C903A86008E6ABD = {
 			isa = PBXGroup;
 			children = (
+				F16D5E7F1CA688C600D928B6 /* menu20x20.png */,
+				F18E4FBB1CA7093500B0A766 /* Logo.png */,
+				F16D5E831CA6896800D928B6 /* menu32x32.png */,
+				F1A844711CA566B0006BB447 /* Old */,
 				F11FAF231C903A86008E6ABD /* Semestralka */,
 				F11FAF381C903A87008E6ABD /* SemestralkaTests */,
 				F11FAF431C903A87008E6ABD /* SemestralkaUITests */,
 				F11FAF221C903A86008E6ABD /* Products */,
+				149D666DE355A35413530C57 /* Pods */,
+				E08A12EE9BFA242FB2485AC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +179,20 @@
 		F11FAF231C903A86008E6ABD /* Semestralka */ = {
 			isa = PBXGroup;
 			children = (
+				F1A844751CA568FC006BB447 /* Login */,
+				F1A844741CA5679E006BB447 /* Leads */,
+				F1A844721CA56748006BB447 /* Accounts */,
+				F1A844731CA5677C006BB447 /* Contacts */,
+				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
+				F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */,
 				F11FAF241C903A86008E6ABD /* AppDelegate.swift */,
-				F11FAF261C903A86008E6ABD /* ViewController.swift */,
-				F11FAF281C903A86008E6ABD /* Main.storyboard */,
-				F11FAF2B1C903A86008E6ABD /* Assets.xcassets */,
+				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
 				F11FAF2D1C903A86008E6ABD /* LaunchScreen.storyboard */,
 				F11FAF301C903A86008E6ABD /* Info.plist */,
+				F11E1F6E1C95968C00440277 /* MenuVC.swift */,
+				F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */,
+				F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */,
+				F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */,
 			);
 			path = Semestralka;
 			sourceTree = "<group>";
@@ -125,6 +215,64 @@
 			path = SemestralkaUITests;
 			sourceTree = "<group>";
 		};
+		F1A844711CA566B0006BB447 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				F11E1F7C1C99400100440277 /* TasksVC.swift */,
+				F11E1F721C98842300440277 /* DashboardOldVC.swift */,
+				F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */,
+				F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */,
+				F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */,
+				F12A3C881CA2C5CF0060D426 /* FormsVC.swift */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		F1A844721CA56748006BB447 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */,
+				F11E1F7E1C994C7A00440277 /* AccountsVC.swift */,
+				F11E1F841C9CA46400440277 /* AccountDetailVC.swift */,
+				F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */,
+			);
+			name = Accounts;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		F1A844731CA5677C006BB447 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				F1A844691CA49F58006BB447 /* NewContactVC.swift */,
+				F11E1F881CA0A36B00440277 /* ContactsVC.swift */,
+				F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */,
+				F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */,
+			);
+			name = Contacts;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		F1A844741CA5679E006BB447 /* Leads */ = {
+			isa = PBXGroup;
+			children = (
+				F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */,
+				F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */,
+				F18E4FAE1CA6B92200B0A766 /* LeadDetailVC.swift */,
+				F18E4FB91CA7061D00B0A766 /* EditLeadVC.swift */,
+			);
+			name = Leads;
+			sourceTree = "<group>";
+		};
+		F1A844751CA568FC006BB447 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F11FAF561C9058D6008E6ABD /* LoginVC.swift */,
+				F11FAF261C903A86008E6ABD /* EnterURLController.swift */,
+			);
+			name = Login;
+			path = ..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F11FAF491C903A87008E6ABD /* Build configuration list for PBXNativeTarget "Semestralka" */;
 			buildPhases = (
+				2CA6315916EABB87077C9903 /* Check Pods Manifest.lock */,
 				F11FAF1D1C903A86008E6ABD /* Sources */,
 				F11FAF1E1C903A86008E6ABD /* Frameworks */,
 				F11FAF1F1C903A86008E6ABD /* Resources */,
+				50FC8EB95EA6E1B804B13091 /* Embed Pods Frameworks */,
+				817F4B941FD56CAA3F97FD17 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,8 +381,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11FAF2F1C903A86008E6ABD /* LaunchScreen.storyboard in Resources */,
-				F11FAF2C1C903A86008E6ABD /* Assets.xcassets in Resources */,
-				F11FAF2A1C903A86008E6ABD /* Main.storyboard in Resources */,
+				F16D5E801CA688C600D928B6 /* menu20x20.png in Resources */,
+				F18E4FBC1CA7093500B0A766 /* Logo.png in Resources */,
+				F16D5E841CA6896800D928B6 /* menu32x32.png in Resources */,
+				F18E4FB61CA6D02200B0A766 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +404,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2CA6315916EABB87077C9903 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		50FC8EB95EA6E1B804B13091 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Semestralka/Pods-Semestralka-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		817F4B941FD56CAA3F97FD17 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Semestralka/Pods-Semestralka-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F11FAF1D1C903A86008E6ABD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F11FAF271C903A86008E6ABD /* ViewController.swift in Sources */,
+				F1F0C9DC1CA278BF000727A9 /* CustomHeaderCell.swift in Sources */,
+				F18E4FAD1CA6AB5800B0A766 /* NewLeadVC.swift in Sources */,
+				F1A8446C1CA4A3D5006BB447 /* ContactsDetailVC.swift in Sources */,
+				F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */,
+				F11E1F771C9893C400440277 /* ENSideMenuNavigationController.swift in Sources */,
+				F18E4FB81CA7022D00B0A766 /* EditContactVC.swift in Sources */,
+				F12A3C891CA2C5CF0060D426 /* FormsVC.swift in Sources */,
+				F11FAF271C903A86008E6ABD /* EnterURLController.swift in Sources */,
+				F11E1F7F1C994C7A00440277 /* AccountsVC.swift in Sources */,
+				F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */,
+				F18E4FBA1CA7061D00B0A766 /* EditLeadVC.swift in Sources */,
+				F11E1F6F1C95968C00440277 /* MenuVC.swift in Sources */,
+				F18E4FB11CA6CB9800B0A766 /* EditAccountVC.swift in Sources */,
+				F11E1F851C9CA46400440277 /* AccountDetailVC.swift in Sources */,
+				F18E4FBE1CA741FB00B0A766 /* AboutVC.swift in Sources */,
+				F11E1F761C9893C400440277 /* ENSideMenu.swift in Sources */,
+				F11E1F731C98842300440277 /* DashboardOldVC.swift in Sources */,
+				F16D5E861CA68F5E00D928B6 /* LeadsVC.swift in Sources */,
+				F11FAF571C9058D6008E6ABD /* LoginVC.swift in Sources */,
 				F11FAF251C903A86008E6ABD /* AppDelegate.swift in Sources */,
+				F11E1F7B1C993A8D00440277 /* MenuTableVC.swift in Sources */,
+				F18E4FAF1CA6B92200B0A766 /* LeadDetailVC.swift in Sources */,
+				F11E1F7D1C99400100440277 /* TasksVC.swift in Sources */,
+				F1F0C9DA1CA12EFC000727A9 /* ContactsDetailOldVC.swift in Sources */,
+				F11E1F871CA09C6200440277 /* NewAccountOldVC.swift in Sources */,
+				F11E1F891CA0A36B00440277 /* ContactsVC.swift in Sources */,
+				F1A8446A1CA49F58006BB447 /* NewContactVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,20 +519,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F11FAF281C903A86008E6ABD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F11FAF291C903A86008E6ABD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F11FAF2D1C903A86008E6ABD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F11FAF2E1C903A86008E6ABD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F18E4FB41CA6D02200B0A766 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F18E4FB51CA6D02200B0A766 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -397,23 +623,27 @@
 		};
 		F11FAF4A1C903A87008E6ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B25A82636E4865FC57FBBB1A /* Pods-Semestralka.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Semestralka/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cyril.dev.Semestralka;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		F11FAF4B1C903A87008E6ABD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFB051B86B084FEBC22AE947 /* Pods-Semestralka.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Semestralka/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cyril.dev.Semestralka;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -484,6 +714,7 @@
 				F11FAF4B1C903A87008E6ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F11FAF4C1C903A87008E6ABD /* Build configuration list for PBXNativeTarget "SemestralkaTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +723,7 @@
 				F11FAF4E1C903A87008E6ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F11FAF4F1C903A87008E6ABD /* Build configuration list for PBXNativeTarget "SemestralkaUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +732,7 @@
 				F11FAF511C903A87008E6ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
