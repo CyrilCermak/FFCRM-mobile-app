@@ -12,7 +12,7 @@ import Eureka
 class NewContactVC: FormViewController {
     
     var titleRow: TextRow!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addContact(toForm: form)

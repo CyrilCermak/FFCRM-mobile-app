@@ -179,11 +179,10 @@
 		F11FAF231C903A86008E6ABD /* Semestralka */ = {
 			isa = PBXGroup;
 			children = (
+				F1A844721CA56748006BB447 /* Accounts */,
 				F1A844751CA568FC006BB447 /* Login */,
 				F1A844741CA5679E006BB447 /* Leads */,
-				F1A844721CA56748006BB447 /* Accounts */,
 				F1A844731CA5677C006BB447 /* Contacts */,
-				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
 				F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */,
 				F11FAF241C903A86008E6ABD /* AppDelegate.swift */,
 				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
@@ -235,6 +234,7 @@
 				F11E1F7E1C994C7A00440277 /* AccountsVC.swift */,
 				F11E1F841C9CA46400440277 /* AccountDetailVC.swift */,
 				F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */,
+				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
 			);
 			name = Accounts;
 			path = ..;

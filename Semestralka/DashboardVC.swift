@@ -26,7 +26,7 @@ class DashboardVC: FormViewController {
          self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         //COMENT LINE TO ENABLE USER LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //appDelegate.isLoggedIn = true
+        appDelegate.isLoggedIn = true
         if (appDelegate.isLoggedIn == false){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let login = storyboard.instantiateViewControllerWithIdentifier("loginNavigationController")
