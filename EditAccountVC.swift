@@ -26,6 +26,11 @@ class EditAccountVC: FormViewController {
         print(form.values())
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func buttonCancelClicked(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         rowName.cell?.becomeFirstResponder()
         rowName.cell?.textField.selectAll(rowName.cell)

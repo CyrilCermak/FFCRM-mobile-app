@@ -38,6 +38,9 @@ class EditContactVC: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func buttonCancelClicked(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     private func addContact(toForm form: Form){
         titleRow = TextRow { $0.value = "Title"; $0.tag = "title" }

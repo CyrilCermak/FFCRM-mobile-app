@@ -32,12 +32,17 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
         tableView.dataSource = self
         
         tableView.contentOffset = CGPoint.init(x: 0, y: 20)
-        
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
+        
+        // set style to navigation controller
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
+        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -106,18 +111,17 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AccountDetailVC") as! AccountDetailVC
         if (searchController.active) {
                 print(filtered[indexPath.row])
+            //self.showViewController(vc, sender: vc)
+            searchController.dismissViewControllerAnimated(true, completion: {
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
         }else {
             print(accountsArray[indexPath.section][indexPath.row])
-        }
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AccountDetailVC") as! AccountDetailVC
-        //self.showViewController(vc, sender: vc)
-        searchController.dismissViewControllerAnimated(true, completion: {
             self.navigationController?.pushViewController(vc, animated: true)
-        })
-        
-        //self.presentViewController(vc, animated: true, completion: nil)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -14,7 +14,7 @@
                         <barButtonItem key="backBarButtonItem" title="Server" id="KUI-hW-vOH"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="QLV-CU-gCL" kind="show" id="1JR-Ks-r0d"/>
+                        <segue destination="QLV-CU-gCL" kind="show" identifier="ConnectToLoginSegue" id="1JR-Ks-r0d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -72,8 +72,8 @@
                                     <constraint firstAttribute="height" constant="30" id="ozQ-9Z-FmL"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-iX-s0N">
-                                <rect key="frame" x="20" y="133" width="560" height="240"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-iX-s0N">
+                                <rect key="frame" x="20" y="133" width="560" height="205"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="8SK-ev-Pr2"/>
@@ -88,8 +88,8 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOs App Developed by Cyril." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHl-lN-rNL">
-                                <rect key="frame" x="20" y="559" width="214" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="iOS App Developed by Cyril." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHl-lN-rNL">
+                                <rect key="frame" x="18" y="559" width="216" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="214" id="HCI-YH-t7q"/>
                                     <constraint firstAttribute="height" constant="21" id="TEm-03-pXt"/>
@@ -316,20 +316,9 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LsZ-hW-9zA">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="rB6-AD-CDF">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <scopeButtonTitles>
-                                        <string>Title</string>
-                                    </scopeButtonTitles>
-                                    <connections>
-                                        <outlet property="delegate" destination="6Ny-Bn-eHl" id="WwV-yw-pfv"/>
-                                    </connections>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="t3E-lC-0z9" detailTextLabel="Dwv-vj-dZL" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="LPd-jt-D45">
-                                        <rect key="frame" x="0.0" y="72" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LPd-jt-D45" id="HxN-FP-xjY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -383,7 +372,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="searchBar" destination="rB6-AD-CDF" id="wTC-TZ-wlz"/>
                         <outlet property="tableView" destination="LsZ-hW-9zA" id="XAp-Ba-VYZ"/>
                     </connections>
                 </viewController>
@@ -397,26 +385,144 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1578" y="2056"/>
+            <point key="canvasLocation" x="2390" y="2056"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="z1f-qa-pdE">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="alo-HK-nPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="DashboardVC" id="rVX-Y6-eNb" customClass="DashboardVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BJi-qV-nfJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wSx-ze-4aV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xVW-9U-8at">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hbo-lo-n7d">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="9eB-wz-LU7" detailTextLabel="mok-Da-5s6" style="IBUITableViewCellStyleValue2" id="INe-Qz-Zft">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="INe-Qz-Zft" id="ovI-ZL-f1h">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9eB-wz-LU7">
+                                                    <rect key="frame" x="15" y="14" width="91" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mok-Da-5s6">
+                                                    <rect key="frame" x="112" y="14" width="33" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="65" id="46B-ZF-tFP" customClass="HeaderCellTVC" customModule="Semestralka" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="136" width="600" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="46B-ZF-tFP" id="pUm-PZ-1JF">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koc-L0-hx5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="koc-L0-hx5" firstAttribute="leading" secondItem="pUm-PZ-1JF" secondAttribute="leading" id="8Af-Ge-Exf"/>
+                                                <constraint firstAttribute="bottom" secondItem="koc-L0-hx5" secondAttribute="bottom" id="LdU-NQ-gw7"/>
+                                                <constraint firstAttribute="trailing" secondItem="koc-L0-hx5" secondAttribute="trailing" id="aVW-eu-PSs"/>
+                                                <constraint firstItem="koc-L0-hx5" firstAttribute="top" secondItem="pUm-PZ-1JF" secondAttribute="top" id="sfI-ss-qkY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="koc-L0-hx5" id="xCA-hO-Nvb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FooterCell" id="Ws9-M7-mnQ" customClass="FooterCellTVC" customModule="Semestralka" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="201" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ws9-M7-mnQ" id="CtA-1L-aCW">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yR4-FN-aIN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yR4-FN-aIN" firstAttribute="leading" secondItem="CtA-1L-aCW" secondAttribute="leading" id="LfY-dc-npO"/>
+                                                <constraint firstItem="yR4-FN-aIN" firstAttribute="top" secondItem="CtA-1L-aCW" secondAttribute="top" id="QsN-6a-Aso"/>
+                                                <constraint firstAttribute="trailing" secondItem="yR4-FN-aIN" secondAttribute="trailing" id="dFv-rS-vOG"/>
+                                                <constraint firstAttribute="bottom" secondItem="yR4-FN-aIN" secondAttribute="bottom" id="lbl-5Q-XOX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="buttonShow" destination="yR4-FN-aIN" id="RGV-Au-Ui5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="topRight" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyT-VE-C8D">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="6fg-Pa-hYE"/>
+                                    <constraint firstAttribute="height" constant="44" id="KHE-f5-Sea"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vdi-WH-ZPD"/>
+                                    <barButtonItem systemItem="add" id="LvB-qZ-Hqr">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="buttonAddClicked:" destination="rVX-Y6-eNb" id="KB9-I2-0RE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hbo-lo-n7d" secondAttribute="trailing" constant="-20" id="1PD-F3-6WM"/>
+                            <constraint firstItem="nyT-VE-C8D" firstAttribute="top" secondItem="hbo-lo-n7d" secondAttribute="bottom" id="P48-8D-Izv"/>
+                            <constraint firstItem="hbo-lo-n7d" firstAttribute="leading" secondItem="xVW-9U-8at" secondAttribute="leadingMargin" constant="-20" id="RHb-lQ-hGd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nyT-VE-C8D" secondAttribute="trailing" constant="-20" id="daX-Qz-ME0"/>
+                            <constraint firstItem="nyT-VE-C8D" firstAttribute="leading" secondItem="xVW-9U-8at" secondAttribute="leadingMargin" constant="-20" id="efR-jC-cpp"/>
+                            <constraint firstItem="nyT-VE-C8D" firstAttribute="bottom" secondItem="xVW-9U-8at" secondAttribute="bottomMargin" id="kLC-Tw-fss"/>
+                            <constraint firstItem="hbo-lo-n7d" firstAttribute="top" secondItem="BJi-qV-nfJ" secondAttribute="bottom" constant="-64" id="lts-sa-lHX"/>
+                        </constraints>
+                    </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Dashboard" id="jIP-FA-Qqn">
                         <barButtonItem key="leftBarButtonItem" image="menu32x32.png" id="ECd-q4-JL5">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="buttonMenuClicked:" destination="rVX-Y6-eNb" id="QpJ-EM-CR9"/>
+                                <action selector="buttonMenuClicked:" destination="rVX-Y6-eNb" id="IWi-pX-JYL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="hbo-lo-n7d" id="Kxy-VV-A9d"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="alo-HK-nPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="2075"/>
+            <point key="canvasLocation" x="82" y="2056"/>
         </scene>
         <!--New-->
         <scene sceneID="bzp-Sx-l2v">
@@ -441,7 +547,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPM-RQ-Kjo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="1800"/>
+            <point key="canvasLocation" x="3158" y="1800"/>
         </scene>
         <!--Leads-->
         <scene sceneID="CGZ-b1-2O0">
@@ -458,20 +564,12 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xf4-1c-Cte">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n5j-4p-UQq">
-                                <rect key="frame" x="0.0" y="64" width="600" height="547"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n5j-4p-UQq">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="KzJ-KZ-QDc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="hwh-Qo-NF2" id="Jna-QQ-Zqk"/>
-                                    </connections>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Wdf-vB-5WG" detailTextLabel="lZG-eC-J2f" style="IBUITableViewCellStyleValue2" id="KVW-6d-5Ic">
-                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KVW-6d-5Ic" id="mHx-4v-SFE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -493,9 +591,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="vE8-Gz-uaL" kind="show" id="Lts-sy-zH5"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -527,7 +622,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="searchBar" destination="KzJ-KZ-QDc" id="JD7-rX-c6P"/>
                         <outlet property="tableView" destination="n5j-4p-UQq" id="rOq-cc-hux"/>
                     </connections>
                 </viewController>
@@ -541,7 +635,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3502" y="1425"/>
+            <point key="canvasLocation" x="4314" y="1425"/>
         </scene>
         <!--Edit Contact-->
         <scene sceneID="4pU-Bt-oGr">
@@ -557,6 +651,11 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Contact" id="2eg-Av-GGM">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="z8l-7c-GGx">
+                            <connections>
+                                <action selector="buttonCancelClicked:" destination="uiU-b8-fLa" id="TJh-jG-bdI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Eul-JW-n1w">
                             <connections>
                                 <action selector="buttonSaveClicked:" destination="uiU-b8-fLa" id="C0B-D3-2gS"/>
@@ -566,12 +665,12 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5J3-Sv-iLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3938" y="2513"/>
+            <point key="canvasLocation" x="4750" y="2513"/>
         </scene>
         <!--New-->
         <scene sceneID="BHJ-BM-N2v">
             <objects>
-                <viewController id="jAC-M1-PEK" customClass="NewLeadVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewLeadVC" id="jAC-M1-PEK" customClass="NewLeadVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7ji-JS-ptr"/>
                         <viewControllerLayoutGuide type="bottom" id="3PW-nQ-CU2"/>
@@ -596,7 +695,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rlk-Tq-7oc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4226" y="1083"/>
+            <point key="canvasLocation" x="5038" y="1133"/>
         </scene>
         <!--Detail-->
         <scene sceneID="V2Y-rQ-xjz">
@@ -626,7 +725,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfx-hN-OMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4226" y="1779"/>
+            <point key="canvasLocation" x="5038" y="1779"/>
         </scene>
         <!--Edit Lead-->
         <scene sceneID="VRi-KF-1tu">
@@ -642,6 +741,11 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Lead" id="yiK-Vg-C3V">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Bin-VX-kdD">
+                            <connections>
+                                <action selector="buttonCancelClicked:" destination="0sg-Pp-gKa" id="0fx-e3-oWW"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Aaq-jg-G5Z">
                             <connections>
                                 <action selector="buttonSaveClicked:" destination="0sg-Pp-gKa" id="quG-ra-TDp"/>
@@ -651,7 +755,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dk6-9P-eIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5733" y="1779"/>
+            <point key="canvasLocation" x="6545" y="1779"/>
         </scene>
         <!--Detail-->
         <scene sceneID="3qY-Ed-llU">
@@ -676,7 +780,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4P-VT-1aA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="2513"/>
+            <point key="canvasLocation" x="3158" y="2513"/>
         </scene>
         <!--Contact Details-->
         <scene sceneID="vCy-79-Jt6">
@@ -1132,6 +1236,11 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Account" id="nIf-pc-Lzs">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4w9-97-YOY">
+                            <connections>
+                                <action selector="buttonCancelClicked:" destination="p9D-vz-OKl" id="zkF-BQ-zUa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="9gx-yW-tS0">
                             <connections>
                                 <action selector="buttonSaveClicked:" destination="p9D-vz-OKl" id="Do5-No-hho"/>
@@ -1155,7 +1264,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
         <!--MenuVC-->
         <scene sceneID="6Qi-ur-Xdl">
             <objects>
-                <navigationController storyboardIdentifier="menuVC" automaticallyAdjustsScrollViewInsets="NO" id="AzV-8c-jJx" customClass="MenuVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MenuVC" automaticallyAdjustsScrollViewInsets="NO" id="AzV-8c-jJx" customClass="MenuVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wdR-Na-MrC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1467,7 +1576,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igf-Wr-6DH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3126" y="2513"/>
+            <point key="canvasLocation" x="3938" y="2513"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IEB-VG-WXw">
@@ -1485,7 +1594,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W6-yV-2vs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4921" y="1779"/>
+            <point key="canvasLocation" x="5733" y="1779"/>
         </scene>
     </scenes>
     <resources>

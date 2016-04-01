@@ -35,6 +35,9 @@ class EditLeadVC: FormViewController {
     @IBAction func buttonSaveClicked(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    @IBAction func buttonCancelClicked(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func addSections(toForm form: Form) {
         nameRow = TextRow {$0.value = "Cyril Cermak"}

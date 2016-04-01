@@ -77,6 +77,18 @@ class MenuTableVC: FormViewController {
                 $0.title = "Log Out"
                 }.cellSetup({ (cell, row) in
                     cell.tintColor = UIColor.blackColor()
+                }).onCellSelection({ (cell, row) in
+                    let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { alert in
+                        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MenuVC") as! MenuVC
+                        let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
+                        appDelegate.isLoggedIn = false
+                        self.showViewController(vc, sender: nil)
+                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil ))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
                 })
     
     }

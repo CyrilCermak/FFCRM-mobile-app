@@ -16,6 +16,8 @@ class AccountDetailVC: FormViewController {
         addName(toForm: form)
         addCategories(toForm:form)
         self.tableView?.backgroundColor = UIColor.whiteColor()
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDel.menuShowed = false
     }
     
     

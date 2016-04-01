@@ -11,11 +11,11 @@ import UIKit
 class MenuVC : ENSideMenuNavigationController {
     
     override func viewDidLoad() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tvc = storyboard.instantiateViewControllerWithIdentifier("MenuTableVC") as! MenuTableVC
-        sideMenu = ENSideMenu(sourceView: self.view, menuViewController: tvc, menuPosition:.Left)
-        sideMenu?.menuWidth = 220
-        // show the navigation bar over the side menu view
-        view.bringSubviewToFront(navigationBar)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tvc = storyboard.instantiateViewControllerWithIdentifier("MenuTableVC") as! MenuTableVC
+            sideMenu = ENSideMenu(sourceView: self.view, menuViewController: tvc, menuPosition:.Left)
+            sideMenu?.menuWidth = 220
+            // show the navigation bar over the side menu view
+            view.bringSubviewToFront(navigationBar)
     }
 }

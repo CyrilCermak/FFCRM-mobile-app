@@ -17,12 +17,12 @@ struct Lead {
 
 
 
-class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
-    @IBOutlet var searchBar: UISearchBar!
- 
+    let searchController = UISearchController(searchResultsController: nil)
+    
     @IBOutlet var tableView: UITableView!
-    var activeSearch: Bool = false
+    
     var filtered = [Lead]()
     var sections = ["A","B","C","D","E"]
     var leadsArray = [[Lead(name: "Adam", status: "Customer")],
@@ -36,8 +36,14 @@ class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIS
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
-        searchBar.placeholder = "Search Leads"
+        
+        tableView.contentOffset = CGPoint.init(x: 0, y: 20)
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        self.tableView.tableHeaderView = searchController.searchBar
+        
         // Do any additional setup after loading the view.
     }
     
@@ -50,38 +56,6 @@ class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIS
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK SearchBar Implementation
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        activeSearch = false
-    }
-    
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        activeSearch = false
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        activeSearch = false
-    }
-    
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        activeSearch = true
-    }
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        filtered = leadsArray.flatten().filter({ (lead) -> Bool in
-            let tmp: NSString = lead.name
-            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-            return range.location != NSNotFound
-        })
-        if (filtered.count == 0){
-            activeSearch = false
-        } else {
-            activeSearch = true
-        }
-        self.tableView.reloadData()
-    }
-    
     // MARK TableView Implementation
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
@@ -89,7 +63,7 @@ class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if (activeSearch) {
+        if (searchController.active) {
             return nil
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
@@ -102,46 +76,66 @@ class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (activeSearch) {
-            return 1
+        if (searchController.active) {
+            return filtered.count
         }
         return sections.count
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (activeSearch) {
+        if(searchController.active) {
             return filtered.count
         }
         return leadsArray[section].count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (activeSearch) {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LeadDetailVC") as! LeadDetailVC
+        if (searchController.active) {
             print(filtered[indexPath.row])
-        } else {
+            searchController.dismissViewControllerAnimated(true, completion: {
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+        }else {
             print(leadsArray[indexPath.section][indexPath.row])
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (activeSearch) {
+    
+    func tableView(tableView: UITableView,  titleForHeaderInSection section: Int) -> String? {
+        if (searchController.active){
             return nil
         }
-        return sections[section]
+        return self.sections[section]
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell  = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        if (activeSearch){
+        if (searchController.active){
             cell.textLabel?.text = filtered[indexPath.row].status
             cell.detailTextLabel?.text = filtered[indexPath.row].name
         } else {
-        cell.textLabel?.text = leadsArray[indexPath.section][indexPath.row].status
-        cell.detailTextLabel?.text = leadsArray[indexPath.section][indexPath.row].name
-    }
+            cell.textLabel?.text = leadsArray[indexPath.section][indexPath.row].status
+            cell.detailTextLabel?.text = leadsArray[indexPath.section][indexPath.row].name
+        }
         cell.detailTextLabel?.font = UIFont(name: "Avenir-Light" , size: 20)
         return cell
     }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filtered.removeAll(keepCapacity: false)
+        filtered = leadsArray.flatten().filter({ (lead) -> Bool in
+            let tmp: NSString = lead.name
+            let range = tmp.rangeOfString(searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+        })
+        print(filtered)
+        self.tableView.reloadData()
+    }
+    
     
     
 }
