@@ -42,6 +42,7 @@
 		F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */; };
 		F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */; };
 		F1D963B11CAD43F6008B4414 /* FooterCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */; };
+		F1DCF6001CBB7F4000ECF287 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */; };
 		F1F0C9DA1CA12EFC000727A9 /* ContactsDetailOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */; };
 		F1F0C9DC1CA278BF000727A9 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */; };
 /* End PBXBuildFile section */
@@ -107,8 +108,10 @@
 		F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCellTVC.swift; sourceTree = "<group>"; };
 		F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCellTVC.swift; sourceTree = "<group>"; };
+		F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailOldVC.swift; path = Semestralka/ContactsDetailOldVC.swift; sourceTree = "<group>"; };
 		F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomHeaderCell.swift; path = Semestralka/CustomHeaderCell.swift; sourceTree = "<group>"; };
+		F1F497DB1CB438F3004FE86D /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,21 +186,15 @@
 		F11FAF231C903A86008E6ABD /* Semestralka */ = {
 			isa = PBXGroup;
 			children = (
-				F1A844721CA56748006BB447 /* Accounts */,
-				F1A844751CA568FC006BB447 /* Login */,
-				F1A844741CA5679E006BB447 /* Leads */,
-				F1A844731CA5677C006BB447 /* Contacts */,
-				F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */,
+				F1DCF5FE1CBB7D9100ECF287 /* Controllers */,
+				F1DCF5FD1CBB7D7700ECF287 /* Model */,
+				F1F497DB1CB438F3004FE86D /* Testing.playground */,
 				F11FAF241C903A86008E6ABD /* AppDelegate.swift */,
 				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
-				F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */,
 				F11FAF2D1C903A86008E6ABD /* LaunchScreen.storyboard */,
 				F11FAF301C903A86008E6ABD /* Info.plist */,
 				F11E1F6E1C95968C00440277 /* MenuVC.swift */,
-				F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */,
 				F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */,
-				F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */,
-				F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */,
 			);
 			path = Semestralka;
 			sourceTree = "<group>";
@@ -277,6 +274,30 @@
 			);
 			name = Login;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F1DCF5FD1CBB7D7700ECF287 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F1DCF5FE1CBB7D9100ECF287 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */,
+				F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */,
+				F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */,
+				F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */,
+				F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */,
+				F1A844721CA56748006BB447 /* Accounts */,
+				F1A844751CA568FC006BB447 /* Login */,
+				F1A844741CA5679E006BB447 /* Leads */,
+				F1A844731CA5677C006BB447 /* Contacts */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,6 +496,7 @@
 				F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */,
 				F11E1F7F1C994C7A00440277 /* AccountsVC.swift in Sources */,
 				F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */,
+				F1DCF6001CBB7F4000ECF287 /* Contacts.swift in Sources */,
 				F18E4FBA1CA7061D00B0A766 /* EditLeadVC.swift in Sources */,
 				F11E1F6F1C95968C00440277 /* MenuVC.swift in Sources */,
 				F18E4FB11CA6CB9800B0A766 /* EditAccountVC.swift in Sources */,

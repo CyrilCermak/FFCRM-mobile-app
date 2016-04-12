@@ -11,10 +11,12 @@ import Eureka
 
 class ContactsDetailVC: FormViewController {
     
+    var contact = Contact()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addContact(toForm: form)
-        addAddress(toForm: form)
+     //   addAddress(toForm: form)
         self.tableView?.backgroundColor = UIColor.whiteColor()
     }
     
@@ -29,43 +31,49 @@ class ContactsDetailVC: FormViewController {
     }
     
     private func addContact(toForm form: Form){
+        print("In Detail \(contact)")
+        
         form +++ Section("Contact Details")
-            <<< TextRow { $0.value = "Title"; $0.tag = "title" }.cellSetup({ (cell, row) in
+            <<< TextRow { $0.value = "\(contact.first_name) \(contact.last_name)"; $0.placeholder = "Title"; $0.tag = "title" }.cellSetup({ (cell, row) in
+                cell.userInteractionEnabled = false
+            })
+            
+            <<< PhoneRow { $0.value = "Mobile: \(contact.mobile!)"; $0.tag = "mobile" }.cellSetup({ (cell, row) in
+                cell.userInteractionEnabled = false
+            })
+            
+            <<< TextRow { $0.value = "Phone: \(contact.phone!)"; $0.tag = "phone" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
 
-            <<< TextRow { $0.value = "Name"; $0.tag = "name" }.cellSetup({ (cell, row) in
+            <<< TextRow { $0.value = "Email: \(contact.email!)"; $0.tag = "email" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
-
-            <<< TextRow { $0.value = "Phone"; $0.tag = "phone" }.cellSetup({ (cell, row) in
-                cell.userInteractionEnabled = false
-            })
-
-            <<< TextRow { $0.value = "Email"; $0.tag = "email" }.cellSetup({ (cell, row) in
+            
+            <<< TextRow { $0.value = "Department: \(contact.department!)"; $0.tag = "department" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
 
     }
     
-    private func addAddress(toForm form: Form){
-        form +++ Section("Address Details")
-            <<< TextRow { $0.value = "Street"; $0.tag = "street" }.cellSetup({ (cell, row) in
-                cell.userInteractionEnabled = false
-            })
-
-            <<< TextRow { $0.value = "City"; $0.tag = "city" }.cellSetup({ (cell, row) in
-                cell.userInteractionEnabled = false
-            })
-
-            <<< TextRow { $0.value = "State"; $0.tag = "state" }.cellSetup({ (cell, row) in
-                cell.userInteractionEnabled = false
-            })
-
-            <<< TextRow { $0.value = "Zip Code"; $0.tag = "zip" }.cellSetup({ (cell, row) in
-                cell.userInteractionEnabled = false
-            })
-        
-    }
+//    private func addAddress(toForm form: Form){
+//        form +++ Section("Address Details")
+//            <<< TextRow { $0.value = "Street"; $0.tag = "street" }.cellSetup({ (cell, row) in
+//                cell.userInteractionEnabled = false
+//            })
+//
+//            <<< TextRow { $0.value = "City"; $0.tag = "city" }.cellSetup({ (cell, row) in
+//                cell.userInteractionEnabled = false
+//            })
+//
+//            <<< TextRow { $0.value = "State"; $0.tag = "state" }.cellSetup({ (cell, row) in
+//                cell.userInteractionEnabled = false
+//            })
+//
+//            <<< TextRow { $0.value = "Zip Code"; $0.tag = "zip" }.cellSetup({ (cell, row) in
+//                cell.userInteractionEnabled = false
+//            })
+//        
+//    }
     
 }

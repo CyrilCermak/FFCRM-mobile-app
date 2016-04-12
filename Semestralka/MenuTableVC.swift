@@ -15,6 +15,8 @@ class MenuTableVC: FormViewController {
         super.viewDidLoad()
         self.tableView?.backgroundColor = UIColor.whiteColor()
         addButtons(toForm: form)
+        self.tableView?.showsHorizontalScrollIndicator = false
+        self.tableView?.showsVerticalScrollIndicator = false 
     }
     
     private func addButtons(toForm form: Form) {

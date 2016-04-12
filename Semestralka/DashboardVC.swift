@@ -15,7 +15,10 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     var accounts = [Account(name: "Bory", category: "Vendor"),Account(name: "Bory", category: "Vendor"),Account(name: "XXX", category: "Vendor")]
     
-    var contacts = [Contact(name: "Adam", position: "Driver"),Contact(name: "Bory", position: "Programmer"),Contact(name: "Borek", position: "Cleaner")]
+    var contacts = [Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1),
+                    Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1),
+                    Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1)]
+//    var contacts = [Contact(name: "Adam", position: "Driver"),Contact(name: "Bory", position: "Programmer"),Contact(name: "Borek", position: "Cleaner")]
     
     let sections = ["Accounts", "Contacts","Leads"]
     
@@ -30,7 +33,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         //COMENT LINE TO ENABLE USER LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //  appDelegate.isLoggedIn = true
+        appDelegate.isLoggedIn = true
         if (appDelegate.isLoggedIn == false){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let login = storyboard.instantiateViewControllerWithIdentifier("loginNavigationController")
@@ -73,8 +76,8 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
             cell.textLabel!.text = accounts[indexPath.row].category
             cell.detailTextLabel?.text = accounts[indexPath.row].name
         }else if (indexPath.section == 2) {
-            cell.textLabel?.text  = contacts[indexPath.row].position
-            cell.detailTextLabel?.text = contacts[indexPath.row].name
+            cell.textLabel?.text  = contacts[indexPath.row].department
+            cell.detailTextLabel?.text = contacts[indexPath.row].first_name
         }else {
             cell.textLabel?.text = leads[indexPath.row].status
             cell.detailTextLabel?.text = leads[indexPath.row].name
@@ -159,6 +162,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         print("Clicked")
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AccountsVC") as! AccountsVC
         showViewController(vc, sender: nil)
+
         
     }
     
