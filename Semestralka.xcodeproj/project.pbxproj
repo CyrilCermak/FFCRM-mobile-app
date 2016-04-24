@@ -40,6 +40,7 @@
 		F1A8446A1CA49F58006BB447 /* NewContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A844691CA49F58006BB447 /* NewContactVC.swift */; };
 		F1A8446C1CA4A3D5006BB447 /* ContactsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */; };
 		F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */; };
+		F1D480B51CC53AC90091CB52 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D480B41CC53AC90091CB52 /* Accounts.swift */; };
 		F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */; };
 		F1D963B11CAD43F6008B4414 /* FooterCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */; };
 		F1DCF6001CBB7F4000ECF287 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */; };
@@ -106,6 +107,7 @@
 		F1A844691CA49F58006BB447 /* NewContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewContactVC.swift; path = Semestralka/NewContactVC.swift; sourceTree = "<group>"; };
 		F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailVC.swift; path = Semestralka/ContactsDetailVC.swift; sourceTree = "<group>"; };
 		F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		F1D480B41CC53AC90091CB52 /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCellTVC.swift; sourceTree = "<group>"; };
 		F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCellTVC.swift; sourceTree = "<group>"; };
 		F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
@@ -187,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				F1DCF5FE1CBB7D9100ECF287 /* Controllers */,
-				F1DCF5FD1CBB7D7700ECF287 /* Model */,
 				F1F497DB1CB438F3004FE86D /* Testing.playground */,
 				F11FAF241C903A86008E6ABD /* AppDelegate.swift */,
 				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
@@ -223,7 +224,6 @@
 				F11E1F7C1C99400100440277 /* TasksVC.swift */,
 				F11E1F721C98842300440277 /* DashboardOldVC.swift */,
 				F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */,
-				F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */,
 				F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */,
 				F12A3C881CA2C5CF0060D426 /* FormsVC.swift */,
 			);
@@ -238,6 +238,7 @@
 				F11E1F841C9CA46400440277 /* AccountDetailVC.swift */,
 				F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */,
 				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
+				F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */,
 			);
 			name = Accounts;
 			path = ..;
@@ -250,6 +251,7 @@
 				F11E1F881CA0A36B00440277 /* ContactsVC.swift */,
 				F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */,
 				F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */,
+				F1DCF5FD1CBB7D7700ECF287 /* Model */,
 			);
 			name = Contacts;
 			path = ..;
@@ -280,8 +282,10 @@
 			isa = PBXGroup;
 			children = (
 				F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */,
+				F1D480B41CC53AC90091CB52 /* Accounts.swift */,
 			);
 			name = Model;
+			path = Semestralka;
 			sourceTree = "<group>";
 		};
 		F1DCF5FE1CBB7D9100ECF287 /* Controllers */ = {
@@ -501,6 +505,7 @@
 				F11E1F6F1C95968C00440277 /* MenuVC.swift in Sources */,
 				F18E4FB11CA6CB9800B0A766 /* EditAccountVC.swift in Sources */,
 				F11E1F851C9CA46400440277 /* AccountDetailVC.swift in Sources */,
+				F1D480B51CC53AC90091CB52 /* Accounts.swift in Sources */,
 				F18E4FBE1CA741FB00B0A766 /* AboutVC.swift in Sources */,
 				F11E1F761C9893C400440277 /* ENSideMenu.swift in Sources */,
 				F11E1F731C98842300440277 /* DashboardOldVC.swift in Sources */,

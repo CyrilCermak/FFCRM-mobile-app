@@ -275,7 +275,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/ContactsVC.swift"
-            timestampString = "482097088.906456"
+            timestampString = "482602056.82877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -291,11 +291,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/AccountsVC.swift"
-            timestampString = "481153820.507057"
+            timestampString = "483189698.02384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -371,11 +371,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/DashboardVC.swift"
-            timestampString = "482053075.197158"
+            timestampString = "482791891.222001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "tableView(_:heightForFooterInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -387,11 +387,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/DashboardVC.swift"
-            timestampString = "482053075.197158"
+            timestampString = "482791891.222001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "tableView(_:viewForHeaderInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -403,11 +403,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/DashboardVC.swift"
-            timestampString = "482053075.197158"
+            timestampString = "482791891.222001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "tableView(_:viewForFooterInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -451,11 +451,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/DashboardVC.swift"
-            timestampString = "482053075.197158"
+            timestampString = "482691336.506389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -547,11 +547,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/Contacts.swift"
-            timestampString = "482060605.314032"
+            timestampString = "482603893.919222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "loadContacts()"
             landmarkType = "5">
          </BreakpointContent>
@@ -563,11 +563,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/Contacts.swift"
-            timestampString = "482060605.314032"
+            timestampString = "482603893.919222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "loadContacts()"
             landmarkType = "5">
          </BreakpointContent>
@@ -579,12 +579,123 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semestralka/Contacts.swift"
-            timestampString = "482060605.314032"
+            timestampString = "482603893.919222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "loadContacts()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Semestralka/LoginVC.swift"
+            timestampString = "482606437.698813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "buttonConnectClicked(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Semestralka/AppDelegate.swift"
+            timestampString = "482606437.698813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "createCredentials()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Semestralka/ContactsDetailVC.swift"
+            timestampString = "482615135.817413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "addContact(toForm:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Semestralka.ContactsDetailVC.(addContact in _2F40A037F49D53A0029B2E6518BDEFF7) (toForm : Eureka.Form) -&gt; ()"
+                  moduleName = "Semestralka"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cyril/Library/Autosave%20Information/Semestralka/Semestralka/ContactsDetailVC.swift"
+                  timestampString = "482612837.814077"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "1180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Semestralka.ContactsDetailVC.((addContact in _2F40A037F49D53A0029B2E6518BDEFF7) (toForm : Eureka.Form) -&gt; ()).(closure #1)"
+                  moduleName = "Semestralka"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cyril/Library/Autosave%20Information/Semestralka/Semestralka/ContactsDetailVC.swift"
+                  timestampString = "482612837.814327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Semestralka.ContactsDetailVC.((addContact in _2F40A037F49D53A0029B2E6518BDEFF7) (toForm : Eureka.Form) -&gt; ()).(closure #2)"
+                  moduleName = "Semestralka"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cyril/Library/Autosave%20Information/Semestralka/Semestralka/ContactsDetailVC.swift"
+                  timestampString = "482612837.814459"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Semestralka/AccountDetailVC.swift"
+            timestampString = "483194139.937547"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "addCategories(toForm:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

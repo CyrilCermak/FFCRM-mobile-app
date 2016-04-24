@@ -24,10 +24,12 @@ class EnterURLController : FormViewController {
         urlRow.cell?.textField.selectAll(urlRow.cell)
     }
     
+    
     private func addForms(toForm form: Form) {
         
         urlRow = URLRow() {
             $0.placeholder = "http://myfatfreecrm.com"
+            $0.tag = "url"
             $0.cellSetup({ (cell, row) in
                 cell.becomeFirstResponder()
             }) }
@@ -39,11 +41,25 @@ class EnterURLController : FormViewController {
             <<< ButtonRow() {
                 $0.title = "Connect"
                 $0.onCellSelection({ (cell, row) in
-                    let vc = self.storyboard!.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-                    self.showViewController(vc, sender: vc)
+                    print(form.values())
+                    let urlPath: NSURL? = form.values()["url"] as? NSURL
+                    let url: String? = urlPath?.absoluteString
+                    if (url == nil) {
+                        let alertController = UIAlertController(title: "URL cannot be empty!", message: "Please fill the form correctly.", preferredStyle: .Alert)
+                        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                        }
+                        alertController.addAction(OKAction)
+                        self.presentViewController(alertController, animated: true){}
+                    } else {
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        defaults.setValue(url, forKeyPath: "url")
+                        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+                        self.showViewController(vc, sender: self)
+                    }
                 })
                 $0.cellSetup({ (cell, row) in
                 })
+                
         }
         
     }

@@ -10,6 +10,8 @@ import UIKit
 
 class CustomHeaderCell: UITableViewCell {
 
+    @IBOutlet var labelTwo: UILabel!
+    @IBOutlet var labelOne: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

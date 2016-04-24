@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 import Eureka
 class LoginVC : FormViewController {
     
     
     var nameRow: TextRow!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +29,58 @@ class LoginVC : FormViewController {
     }
     
     @IBAction func buttonConnectClicked(sender: AnyObject) {
-        print(form.values())
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        delegate.isLoggedIn = true
-        self.dismissViewControllerAnimated(true, completion: nil)
         
+        let name: String? = form.values()["name"] as? String
+        let password: String? = form.values()["password"] as? String
+        if (name == nil) || (password == nil) {
+            let alertController = UIAlertController(title: "Name and password cannot be empty!", message: "Please fill the form correctly.", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true){}
+        } else {
+            delegate.createCredentials()
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setValue(name, forKeyPath: "userName")
+            defaults.setValue(password, forKeyPath: "password")
+            checkConnection()
+             
+        }
     }
+    
+    
+    func checkConnection(){
+        print(defaults.stringForKey("userName"))
+        print(defaults.stringForKey("password"))
+        let url = defaults.stringForKey("url")!
+        print(url)
+        let base64: String = defaults.stringForKey("base64")!
+        print(base64)        
+        Alamofire.request(.GET, "\(url)/contacts.json", headers: ["Authorization": base64], encoding:.JSON)
+            .responseJSON { response in switch response.result{
+            case .Success( _): response
+                let alertController = UIAlertController(title: "Successfully connected!", message: "", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+            }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true){}
+//                self.dismissViewControllerAnimated(true, completion: nil)
+                let vc: DashboardVC = self.storyboard?.instantiateViewControllerWithIdentifier("DashboardVC") as! DashboardVC
+                self.presentViewController(vc, animated: true, completion: nil)
+                self.delegate.prepareData()
+                self.delegate.isLoggedIn = true
+                self.delegate.isLoggedIn = true
+            case .Failure(let Error):
+                let alertController = UIAlertController(title: "Could not connect to server!", message: "Please check your URL and credentials.", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true){}
+                print("Request faild with error \(Error)")
+                }
+        }
+    }
+    
     
     
     private func addForms(toForm form: Form) {

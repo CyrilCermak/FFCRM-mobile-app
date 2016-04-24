@@ -33,24 +33,51 @@ class ContactsDetailVC: FormViewController {
     private func addContact(toForm form: Form){
         print("In Detail \(contact)")
         
+        var mobile:String
+        var phone:String
+        var email:String
+        var department:String
+        
+        if (contact.mobile == nil) {
+            mobile = ""
+        }else {
+            mobile = contact.mobile!
+        }
+        if (contact.phone == nil) {
+            phone = ""
+        }else {
+            phone = contact.phone!
+        }
+        if (contact.email == nil){
+            email = ""
+        }else {
+            email = contact.email!
+        }
+        if (contact.department == nil) {
+            department = ""
+        }else {
+            department = contact.department!
+        }
+        
+        
         form +++ Section("Contact Details")
-            <<< TextRow { $0.value = "\(contact.first_name) \(contact.last_name)"; $0.placeholder = "Title"; $0.tag = "title" }.cellSetup({ (cell, row) in
+            <<< TextRow { $0.value = "Name: \(contact.first_name) \(contact.last_name)"; $0.placeholder = "Title"; $0.tag = "title" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
             
-            <<< PhoneRow { $0.value = "Mobile: \(contact.mobile!)"; $0.tag = "mobile" }.cellSetup({ (cell, row) in
+            <<< PhoneRow { $0.value = "Mobile: \(mobile)"; $0.tag = "mobile" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
             
-            <<< TextRow { $0.value = "Phone: \(contact.phone!)"; $0.tag = "phone" }.cellSetup({ (cell, row) in
+            <<< TextRow { $0.value = "Phone: \(phone)"; $0.tag = "phone" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
 
-            <<< TextRow { $0.value = "Email: \(contact.email!)"; $0.tag = "email" }.cellSetup({ (cell, row) in
+            <<< TextRow { $0.value = "Email: \(email)"; $0.tag = "email" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
             
-            <<< TextRow { $0.value = "Department: \(contact.department!)"; $0.tag = "department" }.cellSetup({ (cell, row) in
+            <<< TextRow { $0.value = "Department: \(department)"; $0.tag = "department" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
 

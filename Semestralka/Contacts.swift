@@ -23,26 +23,23 @@ struct Contact {
 
 class Contacts {
     
+
     var contacts = [Contact]()
-    
-    func loadContacts(){
-        
-        let user = "cyril"
-        let password = "a"
-        let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
+    var dictionary = [String:[Contact]]()
+    let defaults = NSUserDefaults.standardUserDefaults()
+    func loadContacts() -> [String:[Contact]] {
+        let base64Credentials = defaults.stringForKey("base64")!
         let headers = ["Authorization": "Basic \(base64Credentials)"]
-        
-        Alamofire.request(.GET, "http://localhost:3000/contacts.json", headers: headers, encoding:.JSON)
+        let url = defaults.stringForKey("url")!
+        Alamofire.request(.GET, "\(url)/contacts.json", headers: headers, encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success(let data):
+                self.contacts = [Contact]()
                 let response = JSON(data)
                 for (key, contactDetails):(String, JSON) in response {
                     print(key)
                     print(contactDetails)
-                    for(contact,details):(String, JSON) in contactDetails {
-                        print("asssigned_to")
-                        print(details["assigned_to"])
+                    for(_,details):(String, JSON) in contactDetails {
                         let id = Int.init(details["user_id"].int!)
                         let assignTo = details["assigned_to"].int
                         let first_name = details["first_name"].string
@@ -51,20 +48,23 @@ class Contacts {
                         let phone = details["phone"].string
                         let mobile = details["mobile"].string
                         let email = details["email"].string
-                        
                         let contact = Contact(id: id,first_name: first_name,last_name: last_name,department: department, phone: phone, mobile: mobile,email: email, assignTo: assignTo)
                         self.contacts.append(contact)
                     }
                 }
+                self.dictionary = self.contactsToDict(self.contacts)
+                let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.currentContacts = self.dictionary
             case .Failure(let Error):
                 print("Request faild with error \(Error)")
                 }
         }
+        return dictionary
     }
     
-    func contactsToDict() -> [String:[Contact]] {
+    func contactsToDict(contacts: [Contact]) -> [String:[Contact]] {
         var dict = [String:[Contact]]()
-        for contact in contacts {
+        for contact in self.contacts {
             let name: String = contact.first_name
             let letter = String(Array(name.capitalizedString.characters)[0])
             if dict[letter] != nil {
@@ -74,33 +74,8 @@ class Contacts {
                 dict[letter]?.append(contact)
             }
         }
-        print(dict)
         return dict
     }
+    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

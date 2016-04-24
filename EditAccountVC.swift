@@ -11,6 +11,7 @@ import Eureka
 class EditAccountVC: FormViewController {
     
     var rowName : TextRow!
+    var selectedAccount:Account = Account()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,14 @@ class EditAccountVC: FormViewController {
     
     @IBAction func buttonSaveClicked(sender: AnyObject) {
         print(form.values())
-        self.dismissViewControllerAnimated(true, completion: nil)
+        selectedAccount.assignTo = form.values()["assignTo"] as? String
+        selectedAccount.email = form.values()["email"] as? String
+        selectedAccount.phone = form.values()["phone"] as? String
+        selectedAccount.rating = form.values()["rating"] as? Int
+        selectedAccount.name = form.values()["name"] as? String
+        let accountModel = Accounts()
+        accountModel.updateAccount(selectedAccount)
+//        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func buttonCancelClicked(sender: AnyObject) {
@@ -42,27 +50,78 @@ class EditAccountVC: FormViewController {
     }
     
     private func addName(toForm form: Form){
-        rowName = TextRow {$0.value = "Name"; $0.tag = "name"}
+        var name: String
+        if  selectedAccount.name == nil {
+            name = ""
+        } else {
+            name = selectedAccount.name!
+        }
+        rowName = TextRow {$0.value = name; $0.tag = "name"}
         form +++ Section("Name")
             <<< rowName
     }
     
     private func addCategories(toForm form: Form){
-        form +++ Section("Assigned To")
+        var assignTo: String
+        var phone: String
+        if selectedAccount.assignTo == nil {
+            assignTo = ""
+        }else {
+            assignTo = selectedAccount.assignTo!
+        }
+        if selectedAccount.phone == nil {
+            phone = ""
+        }else {
+            phone = selectedAccount.phone!
+        }
+        form +++ Section("Assigned to")
             <<< TextRow(){
-                $0.value = "My Self"
-                $0.tag = "assignedTo"
-        }
-        form +++ Section("Category")
+                $0.value = assignTo
+                $0.tag = selectedAccount.assignTo
+                }.cellSetup({ (cell, row) in
+                    cell.userInteractionEnabled = false
+                })
+        form +++ Section("Phone")
             <<< TextRow() {
-                $0.value = "Affiliate"
-                $0.tag = "affiliate"
-                
-        }
-        form +++ Section("Rating")
+                $0.value = phone
+                $0.tag = "phone"
+                }.cellSetup({ (cell, row) in
+                    cell.userInteractionEnabled = false
+                })
+        form +++ Section("Ratings")
             <<< TextRow() {
-                $0.value = "*"
-                $0.tag = "rating"
+                $0.value = getStars()
+                $0.tag = "ratings"
+                }.cellSetup({ (cell, row) in
+                    cell.userInteractionEnabled = false
+                })
+    }
+    
+    func getStars() -> String {
+        let i: Int? = selectedAccount.rating
+        var x = 1
+        var stars = ""
+        if i != nil {
+            while x < i {
+                stars.appendContentsOf("*")
+                x = x + 1
+            }
+        }
+        return stars
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "DetailVCSegue" {
+            print("in segueeeeeeeeee")
+            selectedAccount.assignTo = form.values()["assignTo"] as? String
+            selectedAccount.email = form.values()["email"] as? String
+            selectedAccount.phone = form.values()["phone"] as? String
+            selectedAccount.rating = 1
+            selectedAccount.name = form.values()["name"] as? String
+            print(selectedAccount)
+                let vc = segue.destinationViewController as! AccountDetailVC
+            vc.selectedAccount = selectedAccount
+            
         }
     }
     
