@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import KeychainSwift
 
 class MenuTableVC: FormViewController {
     
@@ -16,7 +17,8 @@ class MenuTableVC: FormViewController {
         self.tableView?.backgroundColor = UIColor.whiteColor()
         addButtons(toForm: form)
         self.tableView?.showsHorizontalScrollIndicator = false
-        self.tableView?.showsVerticalScrollIndicator = false 
+        self.tableView?.showsVerticalScrollIndicator = false
+        
     }
     
     private func addButtons(toForm form: Form) {
@@ -27,6 +29,7 @@ class MenuTableVC: FormViewController {
                 }.cellSetup({ (cell, row) in
                     cell.tintColor = UIColor.blackColor()
                 }).onCellSelection({ (cell, row) in
+                    print("Showing Dashboard!")
                     let vc = self.storyboard!.instantiateViewControllerWithIdentifier("DashboardVC")
                     as! DashboardVC
                    self.sideMenuController()?.setContentViewController(vc)
@@ -85,6 +88,9 @@ class MenuTableVC: FormViewController {
                         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MenuVC") as! MenuVC
                         let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
                         appDelegate.isLoggedIn = false
+                        appDelegate.keyChain.delete("password")
+                        appDelegate.keyChain.delete("userName")
+                        appDelegate.keyChain.delete("base64")
                         self.showViewController(vc, sender: nil)
                     }))
                     

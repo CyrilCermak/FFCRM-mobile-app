@@ -28,16 +28,15 @@ class Accounts {
     let defaults = NSUserDefaults.standardUserDefaults()
     var headers: [String:String]
     var url: String = ""
+    let delegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     init() {
-        let base64Credentials = defaults.stringForKey("base64")!
+        let base64Credentials = delegate.keyChain.get("base64")!
         headers = ["Authorization": base64Credentials, "Accept": "application/json"]
         url = defaults.stringForKey("url")!
     }
     
     func loadContacts() -> [String:[Account]] {
-        
-        
         Alamofire.request(.GET, "\(url)/accounts.json", headers: headers, encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success(let data):
@@ -85,7 +84,7 @@ class Accounts {
     }
     
     func createAccount(account: Account) {
-        let base64 = defaults.stringForKey("base64")!
+        let base64 = delegate.keyChain.get("base64")!
         let headers = ["Authorization": base64, "accept":"application/json"]
         let url = defaults.stringForKey("url")!
         print("createing account \(account)")
@@ -126,7 +125,7 @@ class Accounts {
     
     func updateAccount(account: Account) {
         //Getting Token
-        let base64 = defaults.stringForKey("base64")!
+        let base64 = delegate.keyChain.get("base64")!
         let headers = ["Authorization": base64, "accept":"application/json"]
         let url = defaults.stringForKey("url")!
         //Getting token first
@@ -153,7 +152,7 @@ class Accounts {
     func patchAccount(token: String, account: Account) {
         print("patchin Account \(account)")
         let params = getParams(account, token: token)
-        Alamofire.request(.PATCH, "\(url)/accounts/\(account.id)", headers: headers, parameters: params)
+        Alamofire.request(.PATCH, "\(url)/accounts/\(account.id).json", headers: headers, parameters: params)
             .responseString { response in switch response.result {
             case .Success(let data):
                 print("success")
@@ -165,7 +164,7 @@ class Accounts {
     }
     
     func removeAccount(account: Account) {
-        let base64 = defaults.stringForKey("base64")!
+        let base64 = delegate.keyChain.get("base64")!
         let headers = ["Authorization": base64, "accept":"application/json"]
         let url = defaults.stringForKey("url")!
         print("removing \(account)")

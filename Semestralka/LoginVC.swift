@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import Eureka
+import KeychainSwift
+
 class LoginVC : FormViewController {
     
     
@@ -29,7 +31,6 @@ class LoginVC : FormViewController {
     }
     
     @IBAction func buttonConnectClicked(sender: AnyObject) {
-        
         let name: String? = form.values()["name"] as? String
         let password: String? = form.values()["password"] as? String
         if (name == nil) || (password == nil) {
@@ -39,12 +40,10 @@ class LoginVC : FormViewController {
             alertController.addAction(OKAction)
             self.presentViewController(alertController, animated: true){}
         } else {
+            delegate.keyChain.set(name!, forKey: "userName")
+            delegate.keyChain.set(password!, forKey: "password")
             delegate.createCredentials()
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setValue(name, forKeyPath: "userName")
-            defaults.setValue(password, forKeyPath: "password")
             checkConnection()
-             
         }
     }
     
@@ -54,8 +53,7 @@ class LoginVC : FormViewController {
         print(defaults.stringForKey("password"))
         let url = defaults.stringForKey("url")!
         print(url)
-        let base64: String = defaults.stringForKey("base64")!
-        print(base64)        
+        let base64: String = delegate.keyChain.get("base64")!
         Alamofire.request(.GET, "\(url)/contacts.json", headers: ["Authorization": base64], encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success( _): response

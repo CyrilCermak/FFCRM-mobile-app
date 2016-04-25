@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,35 +17,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var isLoggedIn = false
     var menuShowed = true
-    var contacts = Contacts()
-    var accounts = Accounts()
     var currentContacts = [String:[Contact]]()
     var currentAccounts = [String:[Account]]()
     var currentLeads = [String:[Lead]]()
     var contactsRefreshed = false
     let defaults = NSUserDefaults.standardUserDefaults()
+    var keyChain = KeychainSwift()
+    
     
     func createCredentials() {
-        let password = defaults.stringForKey("password")!
-        let userName = defaults.stringForKey("userName")!
+        let password = keyChain.get("password")!
+        let userName = keyChain.get("userName")!
+        print(password)
         let credentialData = "\(userName):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
         let base64Credentials = credentialData.base64EncodedStringWithOptions([])
         let pass = "Basic \(base64Credentials)"
-        defaults.setValue(pass, forKeyPath: "base64")
+        keyChain.set(pass, forKey: "base64")
+        isLoggedIn = true
+        let contacts = Contacts()
+        let accounts = Accounts()
+        contacts.loadContacts()
+        accounts.loadContacts()
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         if (isLoggedIn){
-            currentContacts = contacts.loadContacts()
-            currentAccounts = accounts.loadContacts()
+            let contacts = Contacts()
+            let accounts = Accounts()
+            contacts.loadContacts()
+            accounts.loadContacts()
         }
-        defaults.setValue("password", forKeyPath: "cyril")
-        defaults.setValue("userName", forKeyPath: "a")
-        defaults.setValue("url", forKeyPath: "http://localhost:3000")
+        keyChain.set("a",forKey: "password")
+        keyChain.set("cyril",forKey: "userName")
+        defaults.setValue("http://localhost:3000", forKey: "url")
+        createCredentials()
         return true
     }
     
     func prepareData() {
+        let contacts = Contacts()
+        let accounts = Accounts()
         currentContacts = contacts.loadContacts()
         currentAccounts = accounts.loadContacts()
     }

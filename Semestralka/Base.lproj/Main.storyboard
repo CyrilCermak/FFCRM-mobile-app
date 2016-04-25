@@ -746,7 +746,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lgv-RW-3hY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3158" y="3186"/>
+            <point key="canvasLocation" x="3216" y="3598"/>
         </scene>
         <!--Detail-->
         <scene sceneID="6z1-bZ-pdD">
@@ -764,7 +764,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     <navigationItem key="navigationItem" title="Detail" id="BoR-a5-pIv">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="UjT-me-Oie">
                             <connections>
-                                <segue destination="lrH-DP-tvT" kind="showDetail" identifier="editAccountSegue" id="AeS-PO-8yt"/>
+                                <segue destination="lrH-DP-tvT" kind="showDetail" identifier="editAccountSegue" id="Abn-4T-dve"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -772,7 +772,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZd-lJ-vWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576" y="4169"/>
+            <point key="canvasLocation" x="2729" y="4646"/>
         </scene>
         <!--Edit Account-->
         <scene sceneID="9Gc-H4-cM6">
@@ -796,7 +796,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                         <barButtonItem key="rightBarButtonItem" title="Save" id="9gx-yW-tS0">
                             <connections>
                                 <action selector="buttonSaveClicked:" destination="p9D-vz-OKl" id="Do5-No-hho"/>
-                                <segue destination="DHU-3M-9Cy" kind="presentation" identifier="DetailVCSegue" id="6NK-cT-pVo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -804,7 +803,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdg-F5-QG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4710" y="3393"/>
+            <point key="canvasLocation" x="4720" y="4796"/>
         </scene>
         <!--Menu TableVC-->
         <scene sceneID="Nhw-FQ-QFt">
@@ -852,12 +851,12 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="p9D-vz-OKl" kind="relationship" relationship="rootViewController" id="kGA-ys-42p"/>
+                        <segue destination="p9D-vz-OKl" kind="relationship" relationship="rootViewController" id="f2k-p7-rm7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAJ-sD-AqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4438" y="4202"/>
+            <point key="canvasLocation" x="3547" y="4790"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jka-pP-0qf">
@@ -895,11 +894,12 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
             </objects>
             <point key="canvasLocation" x="6545" y="1779"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--MenuVC-->
         <scene sceneID="Y7m-hz-Stq">
             <objects>
-                <navigationController storyboardIdentifier="AccountNavController" automaticallyAdjustsScrollViewInsets="NO" id="qn9-YG-pSe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AccountNavController" automaticallyAdjustsScrollViewInsets="NO" id="qn9-YG-pSe" customClass="MenuVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vRW-wE-dQc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pHD-q4-0d1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -911,7 +911,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTy-2C-Ds9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="3598"/>
+            <point key="canvasLocation" x="1608" y="3598"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CWA-Jt-cSh">
@@ -936,7 +936,4 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
         <image name="Logo.png" width="322" height="54"/>
         <image name="menu32x32.png" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="6NK-cT-pVo"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -18,4 +18,4 @@ class MenuVC : ENSideMenuNavigationController {
             // show the navigation bar over the side menu view
             view.bringSubviewToFront(navigationBar)
     }
-}
+  }

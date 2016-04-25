@@ -8,6 +8,8 @@
 
 import UIKit
 import Eureka
+import PKHUD
+
 class EditAccountVC: FormViewController {
     
     var rowName : TextRow!
@@ -32,7 +34,9 @@ class EditAccountVC: FormViewController {
         selectedAccount.name = form.values()["name"] as? String
         let accountModel = Accounts()
         accountModel.updateAccount(selectedAccount)
-//        self.dismissViewControllerAnimated(true, completion: nil)
+        PKHUD.sharedHUD.dimsBackground = true
+        HUD.flash(.Label("Saving account..."), delay: 4.0)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func buttonCancelClicked(sender: AnyObject) {
@@ -62,29 +66,49 @@ class EditAccountVC: FormViewController {
     }
     
     private func addCategories(toForm form: Form){
-        var assignTo: String
-        var phone: String
-        if selectedAccount.assignTo == nil {
-            assignTo = ""
-        }else {
-            assignTo = selectedAccount.assignTo!
+        var name: String {
+            if let name = selectedAccount.name {
+                return name
+            }
+            return ""
         }
-        if selectedAccount.phone == nil {
-            phone = ""
-        }else {
-            phone = selectedAccount.phone!
+        var phone: String {
+            if let phone = selectedAccount.phone {
+                return phone
+            }
+            return ""
         }
-        form +++ Section("Assigned to")
-            <<< TextRow(){
-                $0.value = assignTo
-                $0.tag = selectedAccount.assignTo
-                }.cellSetup({ (cell, row) in
-                    cell.userInteractionEnabled = false
-                })
+        var email: String {
+            if let email = selectedAccount.email {
+                return email
+            }
+            return ""
+        }
+        var assignTo: String {
+            if let aT = selectedAccount.assignTo {
+                return aT
+            }
+            return ""
+        }
+        
         form +++ Section("Phone")
             <<< TextRow() {
                 $0.value = phone
                 $0.tag = "phone"
+                }.cellSetup({ (cell, row) in
+                    cell.userInteractionEnabled = false
+                })
+        form +++ Section("Email")
+            <<< TextRow(){
+                $0.value = email
+                $0.tag = "email"
+                }.cellSetup({ (cell, row) in
+                    cell.userInteractionEnabled = false
+                })
+        form +++ Section("Assigned to")
+            <<< TextRow(){
+                $0.value = assignTo
+                $0.tag = "assignTo"
                 }.cellSetup({ (cell, row) in
                     cell.userInteractionEnabled = false
                 })
@@ -109,21 +133,5 @@ class EditAccountVC: FormViewController {
         }
         return stars
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "DetailVCSegue" {
-            print("in segueeeeeeeeee")
-            selectedAccount.assignTo = form.values()["assignTo"] as? String
-            selectedAccount.email = form.values()["email"] as? String
-            selectedAccount.phone = form.values()["phone"] as? String
-            selectedAccount.rating = 1
-            selectedAccount.name = form.values()["name"] as? String
-            print(selectedAccount)
-                let vc = segue.destinationViewController as! AccountDetailVC
-            vc.selectedAccount = selectedAccount
-            
-        }
-    }
-    
     
 }

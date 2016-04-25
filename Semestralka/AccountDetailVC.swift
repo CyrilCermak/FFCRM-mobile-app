@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class AccountDetailVC: FormViewController {
     
@@ -104,6 +105,7 @@ class AccountDetailVC: FormViewController {
                     let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { alert in
                         self.navigationController?.popViewControllerAnimated(true)
+                        HUD.flash(.Label("Deleting Account..."), delay: 4.0, completion: nil)
                     }))
                     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil ))
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -112,7 +114,8 @@ class AccountDetailVC: FormViewController {
     
     
     func getStars() -> String {
-        let i = selectedAccount.rating
+//        let i = selectedAccount.rating
+        let i = 1
         var x = 1
         var stars = ""
         while x < i {

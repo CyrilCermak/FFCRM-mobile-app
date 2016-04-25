@@ -189,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				F1DCF5FE1CBB7D9100ECF287 /* Controllers */,
+				F1DCF5FD1CBB7D7700ECF287 /* Model */,
 				F1F497DB1CB438F3004FE86D /* Testing.playground */,
 				F11FAF241C903A86008E6ABD /* AppDelegate.swift */,
 				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
@@ -237,7 +238,6 @@
 				F11E1F7E1C994C7A00440277 /* AccountsVC.swift */,
 				F11E1F841C9CA46400440277 /* AccountDetailVC.swift */,
 				F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */,
-				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
 				F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */,
 			);
 			name = Accounts;
@@ -251,7 +251,6 @@
 				F11E1F881CA0A36B00440277 /* ContactsVC.swift */,
 				F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */,
 				F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */,
-				F1DCF5FD1CBB7D7700ECF287 /* Model */,
 			);
 			name = Contacts;
 			path = ..;
@@ -285,7 +284,6 @@
 				F1D480B41CC53AC90091CB52 /* Accounts.swift */,
 			);
 			name = Model;
-			path = Semestralka;
 			sourceTree = "<group>";
 		};
 		F1DCF5FE1CBB7D9100ECF287 /* Controllers */ = {
@@ -296,6 +294,7 @@
 				F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */,
 				F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */,
 				F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */,
+				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
 				F1A844721CA56748006BB447 /* Accounts */,
 				F1A844751CA568FC006BB447 /* Login */,
 				F1A844741CA5679E006BB447 /* Leads */,

@@ -141,8 +141,9 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAccountSegue" {
             print("AccountDetailSEGUEEEE")
+//            let navController = segue.destinationViewController as! UINavigationController
             let accountDetailVC = segue.destinationViewController as! AccountDetailVC
-            //            let accountDetailVC = navController.topViewController as! AccountDetailVC
+//            let accountDetailVC = navController.topViewController as! AccountDetailVC
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if self.searchController.active && filtered.count != 0 {
                     accountDetailVC.selectedAccount = filtered[indexPath.row]
