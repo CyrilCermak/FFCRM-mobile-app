@@ -40,7 +40,8 @@ class Accounts {
         url = defaults.stringForKey("url")!
     }
     
-    func loadContacts() -> [String:[Account]] {
+    func loadAccounts() -> [String:[Account]] {
+        print("loading accounts")
         Alamofire.request(.GET, "\(url)/accounts.json", headers: headers, encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success(let data):
@@ -57,7 +58,7 @@ class Accounts {
                             let rating = Int32.init(details["rating"].int!)
                             let assignTo = details["asssignTo"].string
                             let category = details["category"].string
-                            let account = Account()
+                            let account = Account.MR_createEntityInContext(c)!
                             account.id = id
                             account.name = name
                             account.phone = phone
@@ -66,13 +67,13 @@ class Accounts {
                             account.category = category
                             account.assignTo = assignTo
                             account.onServer = true
-                            self.accounts.append(account)
                         }
                     }
                     }, completion: { (success:Bool, error:NSError?) in
-                        self.accounts = Account.MR_findAll() as! [Account]
-                        self.dictionary = self.accountsToDict(self.accounts)
-                        self.appDelegate.currentAccounts = self.dictionary
+                        let accounts = Account.MR_findAll() as! [Account]
+                        let dictionary = self.accountsToDict(accounts)
+                        print("dict \(dictionary)")
+                        self.appDelegate.currentAccounts = dictionary
                 })
             case .Failure(let Error):
                 self.dictionary = self.accountsToDict(Account.MR_findAll() as! [Account])
@@ -102,6 +103,8 @@ class Accounts {
         let base64 = appDelegate.keyChain.get("base64")!
         let headers = ["Authorization": base64, "accept":"application/json"]
         let url = defaults.stringForKey("url")!
+        let password = appDelegate.keyChain.get("password")!
+        let userName = appDelegate.keyChain.get("userName")!
         print("createing account \(account)")
         var params = getParams(account, token: "")
         //Getting token first
@@ -109,11 +112,14 @@ class Accounts {
             print("getting token: \(token)")
             if token != nil {
                 HUD.flash(.Label("Creating Account..."), delay: 8.0, completion: { completed in
-                    accountsVC!.refreshTable()
+                    if completed {
+                        HUD.flash(.Success, delay: 2.0)
+                        accountsVC!.refreshTable()
+                    }
                 })
                 params["authenticity_token"] = token
                 Alamofire.request(.POST, "\(url)/accounts", headers: headers, parameters: params).authenticate(user:
-                    "cyril", password: "a")
+                    userName, password: password)
                     .responseString { response in switch response.result{
                     case .Success( _):
                         print("success")

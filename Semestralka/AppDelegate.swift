@@ -35,10 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pass = "Basic \(base64Credentials)"
         keyChain.set(pass, forKey: "base64")
         isLoggedIn = true
-        //        accounts.loadContacts()
-//        let accounts = Accounts()
-        let contacts = Contacts()
-        contacts.loadContacts()
+        Accounts().loadAccounts()
+        Contacts().loadContacts()
     }
     
     func setupMagicalRecord() -> Void {
@@ -46,28 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setupAutoMigratingCoreDataStack();
     }
     
-    func persistAccounts(accounts: [Account]) {
-        MagicalRecord.saveWithBlock({ (c) in
-            
-            for account in accounts {
-//                let a = Account.MR_createEntityInContext(c)
-//                a?.name =  account.name
-//                a?.email = account.email
-//                a?.id = account.id
-//                a?.phone = account.phone
-            }
-            }, completion: { (success:Bool, error:NSError?) in
-//                print(Account.MR_findAll())
-        })
-    }
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        keyChain.set("a",forKey: "password")
-        keyChain.set("cyril",forKey: "userName")
-        defaults.setValue("http://localhost:3000", forKey: "url")
-        createCredentials()
-        let contacts = Contacts()
-        contacts.loadContacts()
+//        keyChain.set("a",forKey: "password")
+//        keyChain.set("cyril",forKey: "userName")
+//        defaults.setValue("http://localhost:3000", forKey: "url")
         setupMagicalRecord()
         return true
     }
@@ -75,21 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func persistContext() {
         NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
     }
-
-    func prepareData() {
-        let contacts = Contacts()
-        let accounts = Accounts()
-        currentContacts = contacts.loadContacts()
-        currentAccounts = accounts.loadContacts()
-    }
     
     func getAccounts() -> [String:[Account]] {
-        print("currentAccounts \(currentAccounts)")
-        return currentAccounts
+        let acc = Accounts().accountsToDict(Account.MR_findAll() as! [Account])
+        print("Getting \(acc)")
+        return acc
     }
     
     func getContacts() -> [String:[Contact]] {
-        print("getting contacts \(currentContacts)")
         return currentContacts
     }
     

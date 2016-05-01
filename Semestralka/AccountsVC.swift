@@ -46,6 +46,7 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         //loading data
         accounts = appDelegate.getAccounts()
+        print(accounts)
         sections = Array(accounts.keys).sort()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountsVC.refreshTable),
                                                          name: "refreshAccounts",object: nil)
@@ -188,7 +189,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         return stars
     }
     
-    //
     func refreshTable() {
         print("refreshing table")
         let base64 = appDelegate.keyChain.get("base64")!
@@ -198,7 +198,7 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         var dictionary = [String:[Account]]()
         Alamofire.request(.GET, "\(url)/accounts.json", headers: headers, encoding:.JSON)
             .responseJSON { response in switch response.result{
-            case .Success(let data):
+            case .Success( _):
                 self.syncWithDatabase() { completed in
                     if completed {
                         Alamofire.request(.GET, "\(url)/accounts.json", headers: headers, encoding:.JSON)
@@ -290,7 +290,9 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             PKHUD.sharedHUD.hide(afterDelay: 7.0) { success in
                 if success {
                     print("completed")
+                    HUD.flash(.Success, delay: 2.0)
                     completion(result: true)
+                    
                 }
             }
         }else {

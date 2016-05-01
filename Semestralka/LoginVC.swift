@@ -47,7 +47,6 @@ class LoginVC : FormViewController {
         }
     }
     
-    
     func checkConnection(){
         print(defaults.stringForKey("userName"))
         print(defaults.stringForKey("password"))
@@ -57,18 +56,18 @@ class LoginVC : FormViewController {
         Alamofire.request(.GET, "\(url)/contacts.json", headers: ["Authorization": base64], encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success( _): response
-                let alertController = UIAlertController(title: "Successfully connected!", message: "", preferredStyle: .Alert)
-                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                    self.dismissViewControllerAnimated(true, completion: nil)
+            
+            let alertController = UIAlertController(title: "Successfully connected!", message: "", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
-                alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true){}
-//                self.dismissViewControllerAnimated(true, completion: nil)
-                let vc: DashboardVC = self.storyboard?.instantiateViewControllerWithIdentifier("DashboardVC") as! DashboardVC
-                self.presentViewController(vc, animated: true, completion: nil)
-                self.delegate.prepareData()
-                self.delegate.isLoggedIn = true
-                self.delegate.isLoggedIn = true
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true){}
+            //                self.dismissViewControllerAnimated(true, completion: nil)
+            let vc: DashboardVC = self.storyboard?.instantiateViewControllerWithIdentifier("DashboardVC") as! DashboardVC
+            self.presentViewController(vc, animated: true, completion: nil)
+            self.delegate.isLoggedIn = true
+                
             case .Failure(let Error):
                 let alertController = UIAlertController(title: "Could not connect to server!", message: "Please check your URL and credentials.", preferredStyle: .Alert)
                 let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
