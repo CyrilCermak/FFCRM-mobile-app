@@ -42,6 +42,7 @@ class LoginVC : FormViewController {
         } else {
             delegate.keyChain.set(name!, forKey: "userName")
             delegate.keyChain.set(password!, forKey: "password")
+            Account.MR_truncateAll()
             delegate.createCredentials()
             checkConnection()
         }

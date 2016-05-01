@@ -22,13 +22,30 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(animated: Bool) {
         if appDelegate.isLoggedIn {
             createAccounts()
-                       leads = [Lead(name: "Adam", status: "Customer"),
+            createContacts()
+            leads = [Lead(name: "Adam", status: "Customer"),
                      Lead(name: "Adam", status: "Customer"),
                      Lead(name: "Adam", status: "Customer")]
             
         }
         self.tableView.reloadData()
         print(accounts)
+    }
+    
+    
+    private func createContacts(){
+        contacts = [Contact]()
+        let contactsArrays = appDelegate.getContacts().values
+        var i = 0
+        for contactsArray in contactsArrays {
+            for contact in contactsArray {
+                if i == 3 {
+                 break
+                }
+                i = i + 1
+                contacts?.append(contact)
+            }
+        }
     }
     
     private func createAccounts() {
@@ -46,8 +63,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         }
 
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +100,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         print(indexPath.section)
         if (indexPath.section == 1){
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ContactsDetailVC") as! ContactsDetailVC
+            vc.contact = contacts![indexPath.row]
             showViewController(vc, sender: self)
         }else if (indexPath.section == 2) {
             print(2)
@@ -105,8 +121,21 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIColor.blackColor()
         cell.textLabel?.center
         if (indexPath.section == 1){
-            cell.textLabel!.text = contacts?[indexPath.row].department
-            cell.detailTextLabel?.text = contacts?[indexPath.row].first_name
+            let contact = contacts?[indexPath.row]
+            var firstName: String {
+                if let contact = contact?.first_name {
+                    return contact
+                }
+                return ""
+            }
+            var lastName: String {
+                if let contact = contact?.last_name {
+                    return contact
+                }
+                return ""
+            }
+            cell.textLabel!.text = contacts?[indexPath.row].email!
+            cell.detailTextLabel?.text = "\(firstName) \(lastName)"
         }else if (indexPath.section == 2) {
             cell.textLabel?.text  = leads?[indexPath.row].status
             cell.detailTextLabel?.text = leads?[indexPath.row].name
