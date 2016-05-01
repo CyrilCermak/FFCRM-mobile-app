@@ -11,34 +11,43 @@ import Eureka
 
 class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
-    var leads = [Lead(name: "Adam", status: "Customer"),
-                 Lead(name: "Adam", status: "Customer"),
-                 Lead(name: "Adam", status: "Customer")]
-    var accounts = [Account]()
-    var contacts = [Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1),
-                    Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1),
-                    Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1)]
-    let sections = ["Accounts", "Contacts","Leads"]
+    var leads: [Lead]?
+    var accounts: [Account]?
+    var contacts: [Contact]?
+    var sections = ["Accounts", "Contacts","Leads"]
     let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
     @IBOutlet var tableView: UITableView!
     
     
     override func viewWillAppear(animated: Bool) {
         if appDelegate.isLoggedIn {
-            let accountArrays = appDelegate.getAccounts().values
-            var i = 0
-            for accountArray in accountArrays {
-                for account in accountArray {
-                    if i == 3 {
-                        break
-                    }
-                    self.accounts.append(account)
-                    i = i + 1
-                }
-            }
+            createAccounts()
+                       leads = [Lead(name: "Adam", status: "Customer"),
+                     Lead(name: "Adam", status: "Customer"),
+                     Lead(name: "Adam", status: "Customer")]
+            
         }
+        self.tableView.reloadData()
         print(accounts)
     }
+    
+    private func createAccounts() {
+        accounts = [Account]()
+        let accountArrays = appDelegate.getAccounts().values
+        var i = 0
+        for accountArray in accountArrays {
+            for account in accountArray {
+                if i == 3 {
+                    break
+                }
+                self.accounts!.append(account)
+                i = i + 1
+            }
+        }
+
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +60,19 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         //COMENT LINE TO ENABLE USER LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //        appDelegate.isLoggedIn = true
         if (appDelegate.isLoggedIn == false){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let login = storyboard.instantiateViewControllerWithIdentifier("loginNavigationController")
-            login.modalTransitionStyle = .CoverVertical
-            presentViewController(login, animated: true, completion: nil)
+            appearLogin() { (completed) in
+            }
         }
     }
+    
+    func appearLogin(completion: (completed: Bool) -> Void) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let login = storyboard.instantiateViewControllerWithIdentifier("loginNavigationController")
+        login.modalTransitionStyle = .CoverVertical
+        presentViewController(login, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func buttonMenuClicked(sender: AnyObject) {
         toggleSideMenuView()
     }
@@ -78,7 +94,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         }else {
             print(3)
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AccountDetailVC") as! AccountDetailVC
-            vc.selectedAccount = accounts[indexPath.row]
+            vc.selectedAccount = accounts![indexPath.row]
             showViewController(vc, sender: self)
         }
     }
@@ -89,14 +105,14 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIColor.blackColor()
         cell.textLabel?.center
         if (indexPath.section == 1){
-            cell.textLabel!.text = contacts[indexPath.row].department
-            cell.detailTextLabel?.text = contacts[indexPath.row].first_name
+            cell.textLabel!.text = contacts?[indexPath.row].department
+            cell.detailTextLabel?.text = contacts?[indexPath.row].first_name
         }else if (indexPath.section == 2) {
-            cell.textLabel?.text  = leads[indexPath.row].status
-            cell.detailTextLabel?.text = leads[indexPath.row].name
+            cell.textLabel?.text  = leads?[indexPath.row].status
+            cell.detailTextLabel?.text = leads?[indexPath.row].name
         }else {
-            cell.textLabel?.text = accounts[indexPath.row].category
-            cell.detailTextLabel?.text = accounts[indexPath.row].name
+            cell.textLabel?.text = accounts?[indexPath.row].category
+            cell.detailTextLabel?.text = accounts?[indexPath.row].name
         }
         cell.backgroundColor = UIColor.whiteColor()
         cell.detailTextLabel?.font = UIFont(name: "Avenir-Light" , size: 20)
