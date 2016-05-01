@@ -33,6 +33,14 @@ class NewContactVC: FormViewController {
     
     @IBAction func createButtonClicked(sender: AnyObject) {
         print(form.values())
+        let contactsModel = Contacts()
+        var contact = Contact()
+        contact.first_name = self.form.values()["first_name"] as! String?
+        contact.last_name = self.form.values()["last_name"] as! String?
+        contact.email = self.form.values()["email"] as! String?
+        contact.mobile = self.form.values()["mobile"] as! String?
+        contact.phone = self.form.values()["phone"] as! String?
+        contactsModel.createContact(contact)
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -40,11 +48,19 @@ class NewContactVC: FormViewController {
         titleRow = TextRow() {
             $0.placeholder = "Title"
             $0.tag = "title" }
+        
         form +++ Section("Contact Details")
             <<< titleRow
-            <<< TextRow { $0.placeholder = "Name"; $0.tag = "name" }
-            <<< TextRow { $0.placeholder = "Phone"; $0.tag = "phone" }
-            <<< TextRow { $0.placeholder = "Email"; $0.tag = "email" }
+        form +++ Section("First name")
+            <<< TextRow { $0.value = ""; $0.tag = "first_name"; $0.placeholder = "First name"}
+        form +++ Section("Last name")
+            <<< TextRow { $0.value = ""; $0.tag = "last_name"; $0.placeholder = "Last name" }
+        form +++ Section("Phone")
+            <<< TextRow { $0.value = ""; $0.tag = "phone"; $0.placeholder = "Phone" }
+        form +++ Section("Mobile")
+            <<< TextRow { $0.value = ""; $0.tag = "mobile"; $0.placeholder = "Mobile" }
+        form +++ Section("Email")
+            <<< TextRow { $0.value = ""; $0.tag = "email"; $0.placeholder = "Email" }
     }
     
     private func addAddress(toForm form: Form){

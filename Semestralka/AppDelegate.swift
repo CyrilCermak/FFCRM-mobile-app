@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import KeychainSwift
+import MagicalRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var isLoggedIn = false
     var menuShowed = true
+    
     var currentContacts = [String:[Contact]]()
     var currentAccounts = [String:[Account]]()
     var currentLeads = [String:[Lead]]()
     var contactsRefreshed = false
     let defaults = NSUserDefaults.standardUserDefaults()
     var keyChain = KeychainSwift()
-    
     
     func createCredentials() {
         let password = keyChain.get("password")!
@@ -34,26 +35,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pass = "Basic \(base64Credentials)"
         keyChain.set(pass, forKey: "base64")
         isLoggedIn = true
+        //        accounts.loadContacts()
+//        let accounts = Accounts()
         let contacts = Contacts()
-        let accounts = Accounts()
         contacts.loadContacts()
-        accounts.loadContacts()
+    }
+    
+    func setupMagicalRecord() -> Void {
+        MagicalRecord.enableShorthandMethods()
+        MagicalRecord.setupAutoMigratingCoreDataStack();
+    }
+    
+    func persistAccounts(accounts: [Account]) {
+        MagicalRecord.saveWithBlock({ (c) in
+            
+            for account in accounts {
+//                let a = Account.MR_createEntityInContext(c)
+//                a?.name =  account.name
+//                a?.email = account.email
+//                a?.id = account.id
+//                a?.phone = account.phone
+            }
+            }, completion: { (success:Bool, error:NSError?) in
+//                print(Account.MR_findAll())
+        })
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if (isLoggedIn){
-            let contacts = Contacts()
-            let accounts = Accounts()
-            contacts.loadContacts()
-            accounts.loadContacts()
-        }
         keyChain.set("a",forKey: "password")
         keyChain.set("cyril",forKey: "userName")
         defaults.setValue("http://localhost:3000", forKey: "url")
         createCredentials()
+        let contacts = Contacts()
+        contacts.loadContacts()
+        setupMagicalRecord()
         return true
     }
     
+    func persistContext() {
+        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+    }
+
     func prepareData() {
         let contacts = Contacts()
         let accounts = Accounts()
@@ -62,10 +84,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getAccounts() -> [String:[Account]] {
+        print("currentAccounts \(currentAccounts)")
         return currentAccounts
     }
     
     func getContacts() -> [String:[Contact]] {
+        print("getting contacts \(currentContacts)")
         return currentContacts
     }
     
@@ -90,6 +114,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
 }
+
 

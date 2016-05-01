@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		0B327D2F15DAF8FC42BCEF51 /* Pods_Semestralka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94F0485C88CC59A9446EE4F /* Pods_Semestralka.framework */; };
 		F11E1F6F1C95968C00440277 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F6E1C95968C00440277 /* MenuVC.swift */; };
-		F11E1F731C98842300440277 /* DashboardOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F721C98842300440277 /* DashboardOldVC.swift */; };
 		F11E1F761C9893C400440277 /* ENSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F741C9893C400440277 /* ENSideMenu.swift */; };
 		F11E1F771C9893C400440277 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */; };
 		F11E1F7B1C993A8D00440277 /* MenuTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */; };
-		F11E1F7D1C99400100440277 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F7C1C99400100440277 /* TasksVC.swift */; };
 		F11E1F7F1C994C7A00440277 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F7E1C994C7A00440277 /* AccountsVC.swift */; };
 		F11E1F851C9CA46400440277 /* AccountDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F841C9CA46400440277 /* AccountDetailVC.swift */; };
-		F11E1F871CA09C6200440277 /* NewAccountOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */; };
 		F11E1F891CA0A36B00440277 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1F881CA0A36B00440277 /* ContactsVC.swift */; };
 		F11FAF251C903A86008E6ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF241C903A86008E6ABD /* AppDelegate.swift */; };
 		F11FAF271C903A86008E6ABD /* EnterURLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF261C903A86008E6ABD /* EnterURLController.swift */; };
@@ -24,8 +21,9 @@
 		F11FAF3A1C903A87008E6ABD /* SemestralkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF391C903A87008E6ABD /* SemestralkaTests.swift */; };
 		F11FAF451C903A87008E6ABD /* SemestralkaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF441C903A87008E6ABD /* SemestralkaUITests.swift */; };
 		F11FAF571C9058D6008E6ABD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FAF561C9058D6008E6ABD /* LoginVC.swift */; };
-		F12A3C891CA2C5CF0060D426 /* FormsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A3C881CA2C5CF0060D426 /* FormsVC.swift */; };
 		F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */; };
+		F1401E8F1CCEA67A00BC25CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1401E8D1CCEA67A00BC25CD /* Model.xcdatamodeld */; };
+		F1401ED41CCFBEF400BC25CD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1401ED31CCFBEF400BC25CD /* Media.xcassets */; };
 		F16D5E801CA688C600D928B6 /* menu20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = F16D5E7F1CA688C600D928B6 /* menu20x20.png */; };
 		F16D5E841CA6896800D928B6 /* menu32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = F16D5E831CA6896800D928B6 /* menu32x32.png */; };
 		F16D5E861CA68F5E00D928B6 /* LeadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */; };
@@ -35,7 +33,6 @@
 		F18E4FB61CA6D02200B0A766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18E4FB41CA6D02200B0A766 /* Main.storyboard */; };
 		F18E4FB81CA7022D00B0A766 /* EditContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */; };
 		F18E4FBA1CA7061D00B0A766 /* EditLeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FB91CA7061D00B0A766 /* EditLeadVC.swift */; };
-		F18E4FBC1CA7093500B0A766 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E4FBB1CA7093500B0A766 /* Logo.png */; };
 		F18E4FBE1CA741FB00B0A766 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */; };
 		F1A8446A1CA49F58006BB447 /* NewContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A844691CA49F58006BB447 /* NewContactVC.swift */; };
 		F1A8446C1CA4A3D5006BB447 /* ContactsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */; };
@@ -44,7 +41,6 @@
 		F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */; };
 		F1D963B11CAD43F6008B4414 /* FooterCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */; };
 		F1DCF6001CBB7F4000ECF287 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */; };
-		F1F0C9DA1CA12EFC000727A9 /* ContactsDetailOldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */; };
 		F1F0C9DC1CA278BF000727A9 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,14 +66,11 @@
 		B25A82636E4865FC57FBBB1A /* Pods-Semestralka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Semestralka.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Semestralka/Pods-Semestralka.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB051B86B084FEBC22AE947 /* Pods-Semestralka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Semestralka.release.xcconfig"; path = "Pods/Target Support Files/Pods-Semestralka/Pods-Semestralka.release.xcconfig"; sourceTree = "<group>"; };
 		F11E1F6E1C95968C00440277 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
-		F11E1F721C98842300440277 /* DashboardOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardOldVC.swift; path = Semestralka/DashboardOldVC.swift; sourceTree = "<group>"; };
 		F11E1F741C9893C400440277 /* ENSideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ENSideMenu.swift; path = Pods/ENSwiftSideMenu/Library/ENSideMenu.swift; sourceTree = SOURCE_ROOT; };
 		F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ENSideMenuNavigationController.swift; path = Pods/ENSwiftSideMenu/Library/ENSideMenuNavigationController.swift; sourceTree = SOURCE_ROOT; };
 		F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableVC.swift; sourceTree = "<group>"; };
-		F11E1F7C1C99400100440277 /* TasksVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksVC.swift; path = Semestralka/TasksVC.swift; sourceTree = "<group>"; };
 		F11E1F7E1C994C7A00440277 /* AccountsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsVC.swift; path = Semestralka/AccountsVC.swift; sourceTree = "<group>"; };
 		F11E1F841C9CA46400440277 /* AccountDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetailVC.swift; path = Semestralka/AccountDetailVC.swift; sourceTree = "<group>"; };
-		F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAccountOldVC.swift; path = Semestralka/NewAccountOldVC.swift; sourceTree = "<group>"; };
 		F11E1F881CA0A36B00440277 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Semestralka/ContactsVC.swift; sourceTree = "<group>"; };
 		F11FAF211C903A86008E6ABD /* Semestralka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Semestralka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11FAF241C903A86008E6ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,8 +84,10 @@
 		F11FAF441C903A87008E6ABD /* SemestralkaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestralkaUITests.swift; sourceTree = "<group>"; };
 		F11FAF461C903A87008E6ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11FAF561C9058D6008E6ABD /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Semestralka/LoginVC.swift; sourceTree = "<group>"; };
-		F12A3C881CA2C5CF0060D426 /* FormsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsVC.swift; path = Semestralka/FormsVC.swift; sourceTree = "<group>"; };
 		F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAccountVC.swift; path = Semestralka/NewAccountVC.swift; sourceTree = "<group>"; };
+		F1401E8E1CCEA67A00BC25CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F1401ED31CCFBEF400BC25CD /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		F1401ED51CCFBFDC00BC25CD /* Semestralka-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semestralka-Bridging-Header.h"; sourceTree = "<group>"; };
 		F16D5E7F1CA688C600D928B6 /* menu20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu20x20.png; sourceTree = "<group>"; };
 		F16D5E831CA6896800D928B6 /* menu32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu32x32.png; sourceTree = "<group>"; };
 		F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsVC.swift; sourceTree = "<group>"; };
@@ -102,7 +97,6 @@
 		F18E4FB51CA6D02200B0A766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactVC.swift; sourceTree = "<group>"; };
 		F18E4FB91CA7061D00B0A766 /* EditLeadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLeadVC.swift; sourceTree = "<group>"; };
-		F18E4FBB1CA7093500B0A766 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		F1A844691CA49F58006BB447 /* NewContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewContactVC.swift; path = Semestralka/NewContactVC.swift; sourceTree = "<group>"; };
 		F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailVC.swift; path = Semestralka/ContactsDetailVC.swift; sourceTree = "<group>"; };
@@ -111,9 +105,7 @@
 		F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCellTVC.swift; sourceTree = "<group>"; };
 		F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCellTVC.swift; sourceTree = "<group>"; };
 		F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailOldVC.swift; path = Semestralka/ContactsDetailOldVC.swift; sourceTree = "<group>"; };
 		F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomHeaderCell.swift; path = Semestralka/CustomHeaderCell.swift; sourceTree = "<group>"; };
-		F1F497DB1CB438F3004FE86D /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,10 +154,9 @@
 		F11FAF181C903A86008E6ABD = {
 			isa = PBXGroup;
 			children = (
+				F1401ED51CCFBFDC00BC25CD /* Semestralka-Bridging-Header.h */,
 				F16D5E7F1CA688C600D928B6 /* menu20x20.png */,
-				F18E4FBB1CA7093500B0A766 /* Logo.png */,
 				F16D5E831CA6896800D928B6 /* menu32x32.png */,
-				F1A844711CA566B0006BB447 /* Old */,
 				F11FAF231C903A86008E6ABD /* Semestralka */,
 				F11FAF381C903A87008E6ABD /* SemestralkaTests */,
 				F11FAF431C903A87008E6ABD /* SemestralkaUITests */,
@@ -190,13 +181,14 @@
 			children = (
 				F1DCF5FE1CBB7D9100ECF287 /* Controllers */,
 				F1DCF5FD1CBB7D7700ECF287 /* Model */,
-				F1F497DB1CB438F3004FE86D /* Testing.playground */,
 				F11FAF241C903A86008E6ABD /* AppDelegate.swift */,
 				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
 				F11FAF2D1C903A86008E6ABD /* LaunchScreen.storyboard */,
 				F11FAF301C903A86008E6ABD /* Info.plist */,
 				F11E1F6E1C95968C00440277 /* MenuVC.swift */,
 				F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */,
+				F1401E8D1CCEA67A00BC25CD /* Model.xcdatamodeld */,
+				F1401ED31CCFBEF400BC25CD /* Media.xcassets */,
 			);
 			path = Semestralka;
 			sourceTree = "<group>";
@@ -217,18 +209,6 @@
 				F11FAF461C903A87008E6ABD /* Info.plist */,
 			);
 			path = SemestralkaUITests;
-			sourceTree = "<group>";
-		};
-		F1A844711CA566B0006BB447 /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				F11E1F7C1C99400100440277 /* TasksVC.swift */,
-				F11E1F721C98842300440277 /* DashboardOldVC.swift */,
-				F1F0C9D91CA12EFC000727A9 /* ContactsDetailOldVC.swift */,
-				F11E1F861CA09C6200440277 /* NewAccountOldVC.swift */,
-				F12A3C881CA2C5CF0060D426 /* FormsVC.swift */,
-			);
-			name = Old;
 			sourceTree = "<group>";
 		};
 		F1A844721CA56748006BB447 /* Accounts */ = {
@@ -412,8 +392,8 @@
 			files = (
 				F11FAF2F1C903A86008E6ABD /* LaunchScreen.storyboard in Resources */,
 				F16D5E801CA688C600D928B6 /* menu20x20.png in Resources */,
-				F18E4FBC1CA7093500B0A766 /* Logo.png in Resources */,
 				F16D5E841CA6896800D928B6 /* menu32x32.png in Resources */,
+				F1401ED41CCFBEF400BC25CD /* Media.xcassets in Resources */,
 				F18E4FB61CA6D02200B0A766 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,7 +474,6 @@
 				F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */,
 				F11E1F771C9893C400440277 /* ENSideMenuNavigationController.swift in Sources */,
 				F18E4FB81CA7022D00B0A766 /* EditContactVC.swift in Sources */,
-				F12A3C891CA2C5CF0060D426 /* FormsVC.swift in Sources */,
 				F11FAF271C903A86008E6ABD /* EnterURLController.swift in Sources */,
 				F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */,
 				F11E1F7F1C994C7A00440277 /* AccountsVC.swift in Sources */,
@@ -507,15 +486,12 @@
 				F1D480B51CC53AC90091CB52 /* Accounts.swift in Sources */,
 				F18E4FBE1CA741FB00B0A766 /* AboutVC.swift in Sources */,
 				F11E1F761C9893C400440277 /* ENSideMenu.swift in Sources */,
-				F11E1F731C98842300440277 /* DashboardOldVC.swift in Sources */,
 				F16D5E861CA68F5E00D928B6 /* LeadsVC.swift in Sources */,
 				F11FAF571C9058D6008E6ABD /* LoginVC.swift in Sources */,
 				F11FAF251C903A86008E6ABD /* AppDelegate.swift in Sources */,
 				F11E1F7B1C993A8D00440277 /* MenuTableVC.swift in Sources */,
 				F18E4FAF1CA6B92200B0A766 /* LeadDetailVC.swift in Sources */,
-				F11E1F7D1C99400100440277 /* TasksVC.swift in Sources */,
-				F1F0C9DA1CA12EFC000727A9 /* ContactsDetailOldVC.swift in Sources */,
-				F11E1F871CA09C6200440277 /* NewAccountOldVC.swift in Sources */,
+				F1401E8F1CCEA67A00BC25CD /* Model.xcdatamodeld in Sources */,
 				F11E1F891CA0A36B00440277 /* ContactsVC.swift in Sources */,
 				F1A8446A1CA49F58006BB447 /* NewContactVC.swift in Sources */,
 			);
@@ -664,6 +640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cyril.dev.Semestralka;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Semestralka-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -677,6 +654,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cyril.dev.Semestralka;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Semestralka-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -769,6 +747,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F1401E8D1CCEA67A00BC25CD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F1401E8E1CCEA67A00BC25CD /* Model.xcdatamodel */,
+			);
+			currentVersion = F1401E8E1CCEA67A00BC25CD /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F11FAF191C903A86008E6ABD /* Project object */;
 }

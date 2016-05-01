@@ -23,6 +23,11 @@ UISearchResultsUpdating {
     var filtered = [Contact]()
     let defaults = NSUserDefaults.standardUserDefaults()
     
+    override func viewWillAppear(animated: Bool) {
+        print("reloading data \(contacts)")
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -54,6 +59,12 @@ UISearchResultsUpdating {
         refreshControl.backgroundColor = UIColor.whiteColor()
         refreshControl.addTarget(self, action: #selector(ContactsVC.refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(self.refreshControl) // not required when using UITableViewController
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ContactsVC.reloadContacts),name:"reloadContacts", object: nil)
+    }
+    
+    
+    func reloadContacts(notification: NSNotification) {
+        refreshTable()
     }
     
     
@@ -165,6 +176,7 @@ UISearchResultsUpdating {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if self.searchController.active && filtered.count != 0 {
                     contactsVC.contact = filtered[indexPath.row]
+                    contactsVC.contactsVC = self
                     searchController.dismissViewControllerAnimated(true, completion: {
                     })
                 } else {
@@ -175,7 +187,7 @@ UISearchResultsUpdating {
     }
     
     func refreshTable() {
-        let base64 = defaults.stringForKey("base64")!
+        let base64 = appDelegate.keyChain.get("base64")! as String
         let headers = ["Authorization": base64 ]
         let url = defaults.stringForKey("url")!
         var dictionary = [String:[Contact]]()
@@ -189,7 +201,7 @@ UISearchResultsUpdating {
                     print(key)
                     print(contactDetails)
                     for(_,details):(String, JSON) in contactDetails {
-                        let id = Int.init(details["user_id"].int!)
+                        let id = Int.init(details["id"].int!)
                         let assignTo = details["assigned_to"].int
                         let first_name = details["first_name"].string
                         let last_name = details["last_name"].string
@@ -206,7 +218,7 @@ UISearchResultsUpdating {
                 self.contacts = dictionary
                 self.sections = Array(dictionary.keys).sort()
                 self.appDelegate.currentContacts = dictionary
-                self.tableView.reloadData()
+                self.tableView?.reloadData()
                 self.refreshControl.endRefreshing()
                 
             case .Failure( _):
@@ -236,7 +248,5 @@ UISearchResultsUpdating {
         return dict
         
     }
-    
-    
     
 }

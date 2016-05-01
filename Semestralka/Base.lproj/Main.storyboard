@@ -208,7 +208,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="Oox-QB-OvK">
                             <connections>
-                                <segue destination="jn6-aL-Jw8" kind="show" id="hmE-MO-tZP"/>
+                                <segue destination="jn6-aL-Jw8" kind="show" identifier="newAccountSegue" id="hmE-MO-tZP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -709,7 +709,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     <navigationItem key="navigationItem" title="Detail" id="ViR-48-UbG">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="suF-HY-gZr">
                             <connections>
-                                <segue destination="MNy-9z-5dA" kind="showDetail" id="DfG-EW-ZB7"/>
+                                <segue destination="MNy-9z-5dA" kind="showDetail" identifier="EditContactSegue" id="DfG-EW-ZB7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -12,7 +12,9 @@ import PKHUD
 
 class AccountDetailVC: FormViewController {
     
-    var selectedAccount = Account()
+    var selectedAccount: AnyObject?
+    var accountsVC: AnyObject?
+    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,33 +40,34 @@ class AccountDetailVC: FormViewController {
             let navController = segue.destinationViewController as! UINavigationController
             let editAccountVC = navController.topViewController as! EditAccountVC
             print(selectedAccount)
-            editAccountVC.selectedAccount = self.selectedAccount
+            editAccountVC.selectedAccount = self.selectedAccount as! Account
+            editAccountVC.accountDetailVC = self 
         }
     }
     
-    
     private func addCategories(toForm form: Form){
+        var account = selectedAccount as! Account
         
         var name: String {
-            if let name = selectedAccount.name {
+            if let name = account.name {
                 return name
             }
             return ""
         }
         var phone: String {
-            if let phone = selectedAccount.phone {
+            if let phone = account.phone {
                 return phone
             }
             return ""
         }
         var email: String {
-            if let email = selectedAccount.email {
+            if let email = account.email {
                 return email
             }
             return ""
         }
         var assignTo: String {
-            if let aT = selectedAccount.assignTo {
+            if let aT = account.assignTo {
                 return aT
             }
             return ""
@@ -100,21 +103,23 @@ class AccountDetailVC: FormViewController {
                     cell.tintColor = UIColor.redColor()
                 })
                 }.onCellSelection({ (cell, row) in
-                    let accountModel = Accounts()
-                    accountModel.removeAccount(self.selectedAccount)
                     let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { alert in
                         self.navigationController?.popViewControllerAnimated(true)
-                        HUD.flash(.Label("Deleting Account..."), delay: 4.0, completion: nil)
+                        let accountModel = Accounts()
+                        print("removing account \(self.selectedAccount)")
+                        accountModel.removeAccount(self.selectedAccount as! Account)
+                        HUD.flash(.Label("Deleting Account..."), delay: 7.0, completion: { completed in
+                            let aVC = self.accountsVC as! AccountsVC
+                            aVC.refreshTable()
+                        })
                     }))
                     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil ))
                     self.presentViewController(alert, animated: true, completion: nil)
                 })
     }
     
-    
     func getStars() -> String {
-//        let i = selectedAccount.rating
         let i = 1
         var x = 1
         var stars = ""

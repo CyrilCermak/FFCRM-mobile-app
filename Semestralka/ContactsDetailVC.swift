@@ -8,15 +8,17 @@
 
 import UIKit
 import Eureka
+import PKHUD
 
 class ContactsDetailVC: FormViewController {
     
     var contact = Contact()
+    var contactsVC:ContactsVC = ContactsVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addContact(toForm: form)
-     //   addAddress(toForm: form)
+        addAddress(toForm: form)
         self.tableView?.backgroundColor = UIColor.whiteColor()
     }
     
@@ -83,24 +85,51 @@ class ContactsDetailVC: FormViewController {
 
     }
     
-//    private func addAddress(toForm form: Form){
-//        form +++ Section("Address Details")
-//            <<< TextRow { $0.value = "Street"; $0.tag = "street" }.cellSetup({ (cell, row) in
-//                cell.userInteractionEnabled = false
-//            })
-//
-//            <<< TextRow { $0.value = "City"; $0.tag = "city" }.cellSetup({ (cell, row) in
-//                cell.userInteractionEnabled = false
-//            })
-//
-//            <<< TextRow { $0.value = "State"; $0.tag = "state" }.cellSetup({ (cell, row) in
-//                cell.userInteractionEnabled = false
-//            })
-//
-//            <<< TextRow { $0.value = "Zip Code"; $0.tag = "zip" }.cellSetup({ (cell, row) in
-//                cell.userInteractionEnabled = false
-//            })
-//        
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditContactSegue" {
+            print("Edit Contact Segue")
+            let navController = segue.destinationViewController as! UINavigationController
+            let editVC = navController.topViewController as! EditContactVC
+            editVC.contact = self.contact
+            editVC.contactsDetailVC = self
+            editVC.contactsVC = self.contactsVC
+        }
+    }
+    
+    private func addAddress(toForm form: Form){
+        form +++ Section("Address Details")
+            <<< TextRow { $0.value = "Street"; $0.tag = "street" }.cellSetup({ (cell, row) in
+                cell.userInteractionEnabled = false
+            })
+
+            <<< TextRow { $0.value = "City"; $0.tag = "city" }.cellSetup({ (cell, row) in
+                cell.userInteractionEnabled = false
+            })
+
+            <<< TextRow { $0.value = "State"; $0.tag = "state" }.cellSetup({ (cell, row) in
+                cell.userInteractionEnabled = false
+            })
+
+            <<< TextRow { $0.value = "Zip Code"; $0.tag = "zip" }.cellSetup({ (cell, row) in
+                cell.userInteractionEnabled = false
+            })
+            <<< ButtonRow() {
+                $0.title = "Delete Account"
+                $0.cellSetup({ (cell, row) in
+                    cell.tintColor = UIColor.redColor()
+                })
+                }.onCellSelection({ (cell, row) in
+                    let contactModel = Contacts()
+                    print("Deleting contact \(self.contact)")
+                    contactModel.removeContact(self.contact)
+                    let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { alert in
+                        self.navigationController?.popViewControllerAnimated(true)
+                        HUD.flash(.Label("Deleting Account..."), delay: 4.0, completion: nil)
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil ))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                })
+    }
     
 }

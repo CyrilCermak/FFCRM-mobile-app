@@ -10,8 +10,10 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import MagicalRecord
+import PKHUD
 
-class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -25,6 +27,10 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     var refreshControl: UIRefreshControl!
     let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let defaults = NSUserDefaults.standardUserDefaults()
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +47,8 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
         //loading data
         accounts = appDelegate.getAccounts()
         sections = Array(accounts.keys).sort()
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountsVC.refreshTable),
+                                                         name: "refreshAccounts",object: nil)
         // set style to navigation controller
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
@@ -52,7 +59,6 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
         refreshControl.addTarget(self, action: #selector(AccountsVC.refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.backgroundColor = UIColor.whiteColor()
         tableView.addSubview(self.refreshControl)
-        
         
     }
     
@@ -70,6 +76,9 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    @IBAction func buttonAddClicked(sender: AnyObject) {
     }
     
     @IBAction func buttonMenuClicked(sender: AnyObject) {
@@ -104,12 +113,16 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! 
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
         if(searchController.active){
-            cell.textLabel?.text = filtered[indexPath.row].name
-            //            cell.detailTextLabel?.text = filtered[indexPath.row].name
+            let account = filtered[indexPath.row]
+            
+            cell.textLabel?.text = account.name!
         } else {
-            cell.textLabel?.text = accounts[sections[indexPath.section]]![indexPath.row].name
+            let account = accounts[sections[indexPath.section]]![indexPath.row]
+            print(account)
+            let name = account.name
+            cell.textLabel?.text = name
         }
         cell.detailTextLabel?.font = UIFont(name: "Avenir-Light" , size: 20)
         return cell
@@ -120,16 +133,10 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AccountDetailVC") as! AccountDetailVC
         if (searchController.active) {
             print(filtered[indexPath.row])
-            //self.showViewController(vc, sender: vc)
             searchController.dismissViewControllerAnimated(true, completion: {
-                //                self.navigationController?.pushViewController(vc, animated: true)
             })
-        }else {
-            //            print(accountsArray[sections[section]][indexPath.row])
-            //            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -141,18 +148,22 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAccountSegue" {
             print("AccountDetailSEGUEEEE")
-//            let navController = segue.destinationViewController as! UINavigationController
             let accountDetailVC = segue.destinationViewController as! AccountDetailVC
-//            let accountDetailVC = navController.topViewController as! AccountDetailVC
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if self.searchController.active && filtered.count != 0 {
                     accountDetailVC.selectedAccount = filtered[indexPath.row]
                     searchController.dismissViewControllerAnimated(true, completion: {
                     })
                 } else {
-                    accountDetailVC.selectedAccount = accounts[sections[indexPath.section]]![indexPath.row]
+                    let account = accounts[sections[indexPath.section]]![indexPath.row]
+                    print(account)
+                    accountDetailVC.selectedAccount = account
                 }
+                accountDetailVC.accountsVC = self
             }
+        }else if segue.identifier == "newAccountSegue" {
+            let newAccountVC = segue.destinationViewController as! NewAccountVC
+            newAccountVC.accountsVC = self
         }
     }
     
@@ -177,8 +188,10 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
         return stars
     }
     
+    //
     func refreshTable() {
-        let base64 = defaults.stringForKey("base64")!
+        print("refreshing table")
+        let base64 = appDelegate.keyChain.get("base64")!
         let headers = ["Authorization": base64 ]
         let url = defaults.stringForKey("url")!
         var accountsA = [Account]()
@@ -186,44 +199,109 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
         Alamofire.request(.GET, "\(url)/accounts.json", headers: headers, encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success(let data):
-                let response = JSON(data)
-                for (key, contactDetails):(String, JSON) in response {
-                    print(key)
-                    print(contactDetails)
-                    for(_,details):(String, JSON) in contactDetails {
-                        let id = Int.init(details["id"].int!)
-                        let name = details["name"].string
-                        let phone = details["phone"].string
-                        let email = details["email"].string
-                        let rating = Int.init(details["rating"].int!)
-                        let assignTo = details["asssignTo"].string
-                        let category = details["category"].string
-                        let account = Account(id: id,name: name,phone: phone, email: email, rating: rating, category: category, assignTo: assignTo)
-                        accountsA.append(account)
+                self.syncWithDatabase() { completed in
+                    if completed {
+                        Alamofire.request(.GET, "\(url)/accounts.json", headers: headers, encoding:.JSON)
+                            .responseJSON { response in switch response.result{
+                            case .Success(let data):
+                                print("Downloading data")
+                                let response = JSON(data)
+                                MagicalRecord.saveWithBlock({ (c) in
+                                    Account.MR_truncateAllInContext(c)
+                                    for ( _, accountDetails):(String, JSON) in response {
+                                        for(_,details):(String, JSON) in accountDetails {
+                                            let id = Int32.init(details["id"].int!)
+                                            let name = details["name"].string
+                                            let phone = details["phone"].string
+                                            let email = details["email"].string
+                                            let rating = Int32.init(details["rating"].int!)
+                                            let assignTo = details["asssignTo"].string
+                                            let category = details["category"].string
+                                            let account:Account = Account.MR_createEntityInContext(c)!
+                                            account.id = id
+                                            account.name = name
+                                            account.phone = phone
+                                            account.email = email
+                                            account.rating = rating
+                                            account.category = category
+                                            account.assignTo = assignTo
+                                            account.onServer = true
+                                        }
+                                    }
+                                    }, completion: { (success:Bool, error:NSError?) in
+                                        accountsA = Account.MR_findAll() as! [Account]
+                                        dictionary = self.accountsToDict(accountsA)
+                                        self.appDelegate.persistContext()
+                                        self.accounts = dictionary
+                                        self.sections = Array(dictionary.keys).sort()
+                                        self.appDelegate.currentAccounts = dictionary
+                                        self.tableView.reloadData()
+                                        self.refreshControl.endRefreshing()
+                                })
+                            case .Failure( _): break
+                                }
+                                self.refreshControl.endRefreshing()
+                        }
                     }
                 }
-                dictionary = self.contactsToDict(accountsA)
-                self.accounts = dictionary
-                self.sections = Array(dictionary.keys).sort()
-                self.appDelegate.currentAccounts = dictionary
+            case .Failure( _):
+                accountsA = Account.MR_findAll() as! [Account]
+                print(accountsA)
+                self.accounts = self.accountsToDict(accountsA)
+                self.sections = Array(self.accounts.keys).sort()
+                self.appDelegate.currentAccounts = self.accounts
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
-            case .Failure( _):
-                self.refreshControl.endRefreshing()
-                let alertController = UIAlertController(title: "Faild to fetch data.", message: "Please check you network connection.", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: "Faild to fetch data from Internet.", message: "Please check you network connection.", preferredStyle: .Alert)
                 let OKAction = UIAlertAction(title: "OK", style: .Destructive) { (action) in
                 }
                 alertController.addAction(OKAction)
                 self.presentViewController(alertController, animated: true){}
                 }
         }
-        
     }
     
-    func contactsToDict(accounts: [Account]) -> [String:[Account]] {
+    func syncWithDatabase(completion: (result: Bool) -> Void ) {
+        self.refreshControl.endRefreshing()
+        completion(result: false)
+        let accountModel = Accounts()
+        var posting = false
+        let accountsAll = Account.MR_findAll() as! [Account]
+        for account in accountsAll {
+            if !account.onServer {
+                switch account.updateMethod! {
+                case "PATCH" :
+                    print("patching \(account)")
+                    accountModel.updateAccount(account, accountsVC: self, oldAccountParams: nil, withUserNotification: false)
+                case "POST" :
+                    print("posting \(account)")
+                    accountModel.createAccount(account, accountsVC: self)
+                default :
+                    print("No matching method")
+                }
+                posting = true
+                account.onServer = true
+            }
+        }
+        if posting {
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show()
+            print("waiting for completion")
+            PKHUD.sharedHUD.hide(afterDelay: 7.0) { success in
+                if success {
+                    print("completed")
+                    completion(result: true)
+                }
+            }
+        }else {
+            completion(result: true)
+        }
+    }
+    
+    func accountsToDict(accounts: [Account]) -> [String:[Account]] {
         var dict = [String:[Account]]()
         for account in accounts {
-            let name: String = account.name!
+            let name = account.name!
             let letter = String(Array(name.capitalizedString.characters)[0])
             if dict[letter] != nil {
                 dict[letter]?.append(account)
@@ -234,5 +312,4 @@ class AccountsVC: UIViewController,UITableViewDataSource, UITableViewDelegate, U
         }
         return dict
     }
-    
 }

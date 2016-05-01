@@ -14,9 +14,10 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     var leads = [Lead(name: "Adam", status: "Customer"),Lead(name: "Adam", status: "Customer"),Lead(name: "Adam", status: "Customer")]
     
 //    var accounts = [Account(name: "Bory", category: "Vendor"),Account(name: "Bory", category: "Vendor"),Account(name: "XXX", category: "Vendor")]
-    var accounts = [Account( id: 1,name: "Cyril", phone: "012345", email: "", rating: 1,category: "", assignTo: ""),
-                    Account( id: 2,name: "Jakub" , phone: "012345", email: "", rating: 1,category: "",assignTo: ""),
-                     Account( id: 2,name: "Jakub" , phone: "012345", email: "", rating: 1,category: "",assignTo: "")]
+//    var accounts = [Account( id: 1,name: "Cyril", phone: "012345", email: "", rating: 1,category: "", assignTo: ""),
+//                    Account( id: 2,name: "Jakub" , phone: "012345", email: "", rating: 1,category: "",assignTo: ""),
+//                     Account( id: 2,name: "Jakub" , phone: "012345", email: "", rating: 1,category: "",assignTo: "")]
+    var accounts = [Account]()
     var contacts = [Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1),
                     Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1),
                     Contact(id: 1,first_name: "Cyril",last_name: "Ceramk",department: "Department", phone: "123456789", mobile: "012345566",email: "cyril@gmail.com", assignTo: 1)]
@@ -28,6 +29,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
@@ -36,8 +38,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         //COMENT LINE TO ENABLE USER LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         appDelegate.isLoggedIn = true
-        
-        
         
         if (appDelegate.isLoggedIn == false){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -77,8 +77,8 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIColor.blackColor()
         cell.textLabel?.center
         if (indexPath.section == 1){
-            cell.textLabel!.text = accounts[indexPath.row].email
-            cell.detailTextLabel?.text = accounts[indexPath.row].name
+//            cell.textLabel!.text = accounts[indexPath.row].email
+//            cell.detailTextLabel?.text = accounts[indexPath.row].name
         }else if (indexPath.section == 2) {
             cell.textLabel?.text  = contacts[indexPath.row].department
             cell.detailTextLabel?.text = contacts[indexPath.row].first_name

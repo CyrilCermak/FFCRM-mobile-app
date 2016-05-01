@@ -9,34 +9,48 @@
 import UIKit
 import Eureka
 import PKHUD
+import MagicalRecord
 
 class EditAccountVC: FormViewController {
     
     var rowName : TextRow!
-    var selectedAccount:Account = Account()
+    var selectedAccount: AnyObject?
+    var accountDetailVC: AccountDetailVC?
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PKHUD.sharedHUD.dimsBackground = true
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        addName(toForm: form)
-        addCategories(toForm:form)
+        let account = selectedAccount as! Account
+        addName(toForm: form, selectedAccount: account)
+        addCategories(toForm:form, selectedAccount: account)
         self.tableView?.backgroundColor = UIColor.whiteColor()
     }
     
     @IBAction func buttonSaveClicked(sender: AnyObject) {
-        print(form.values())
-        selectedAccount.assignTo = form.values()["assignTo"] as? String
-        selectedAccount.email = form.values()["email"] as? String
-        selectedAccount.phone = form.values()["phone"] as? String
-        selectedAccount.rating = form.values()["rating"] as? Int
-        selectedAccount.name = form.values()["name"] as? String
+        var rating:Int32 {
+            if let rating = form.values()["rating"] {
+                return rating as! Int32
+            }
+            return 0
+        }
+        let account = selectedAccount as! Account
+        let oldAccountParams: [String: AnyObject?]
+        oldAccountParams = ["email": account.email,"phone":account.phone , "name":account.name, "assignTo":account.assignTo]
+        account.assignTo = form.values()["assignTo"] as? String
+        account.email = form.values()["email"] as? String
+        account.phone = form.values()["phone"] as? String
+        account.rating = rating
+        account.name = form.values()["name"] as? String
+        appDelegate.persistContext()
         let accountModel = Accounts()
-        accountModel.updateAccount(selectedAccount)
-        PKHUD.sharedHUD.dimsBackground = true
-        HUD.flash(.Label("Saving account..."), delay: 4.0)
-        dismissViewControllerAnimated(true, completion: nil)
+        accountModel.updateAccount(account, accountsVC: (accountDetailVC?.accountsVC) as? AccountsVC, oldAccountParams: oldAccountParams)
+        navigationController!.dismissViewControllerAnimated(true, completion: {
+            self.accountDetailVC!.navigationController?.popViewControllerAnimated(true)
+        })
     }
     
     @IBAction func buttonCancelClicked(sender: AnyObject) {
@@ -53,7 +67,7 @@ class EditAccountVC: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func addName(toForm form: Form){
+    private func addName(toForm form: Form, selectedAccount: Account){
         var name: String
         if  selectedAccount.name == nil {
             name = ""
@@ -65,7 +79,7 @@ class EditAccountVC: FormViewController {
             <<< rowName
     }
     
-    private func addCategories(toForm form: Form){
+    private func addCategories(toForm form: Form, selectedAccount: Account){
         var name: String {
             if let name = selectedAccount.name {
                 return name
@@ -122,7 +136,8 @@ class EditAccountVC: FormViewController {
     }
     
     func getStars() -> String {
-        let i: Int? = selectedAccount.rating
+        let account = selectedAccount as! Account
+        let i: Int? = Int(account.rating)
         var x = 1
         var stars = ""
         if i != nil {
