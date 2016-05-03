@@ -46,27 +46,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setAppearance()
-//        keyChain.set("a",forKey: "password")
-//        keyChain.set("cyril",forKey: "userName")
-//        defaults.setValue("http://localhost:3000", forKey: "url")
+        //        keyChain.set("a",forKey: "password")
+        //        keyChain.set("cyril",forKey: "userName")
+        //        defaults.setValue("http://localhost:3000", forKey: "url")
         setupMagicalRecord()
         return true
     }
     
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
+    }
+    
     func setAppearance() -> Void {
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-//        UINavigationBar.appearance().translucent = false
-        UINavigationBar.appearance().backgroundColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
-        UINavigationBar.appearance().opaque = false
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
-        var navigationBarAppearace = UINavigationBar.appearance()
+        let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.whiteColor()
         navigationBarAppearace.barTintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
-        UIApplication.sharedApplication()
-
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 24)!, NSForegroundColorAttributeName: UIColor.blackColor()]
-        
+        navigationBarAppearace.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 24)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+//        self.window!.tintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
     }
     
     func persistContext() {

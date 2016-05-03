@@ -50,11 +50,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         sections = Array(accounts.keys).sort()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountsVC.refreshTable),
                                                          name: "refreshAccounts",object: nil)
-        // set style to navigation controller
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        
         //UIRefreshControl
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(AccountsVC.refreshTable), forControlEvents: UIControlEvents.ValueChanged)
