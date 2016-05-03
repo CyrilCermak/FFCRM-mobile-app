@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Eureka
 import KeychainSwift
+import PKHUD
 
 class LoginVC : FormViewController {
     
@@ -44,31 +45,31 @@ class LoginVC : FormViewController {
             delegate.keyChain.set(password!, forKey: "password")
             Account.MR_truncateAll()
             delegate.createCredentials()
-            checkConnection()
+            checkConnection() { completed in
+                PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 7.0) { success in
+                    if completed {
+                        HUD.flash(.Success, delay: 2.0) { comp in
+                            if comp {
+                               self.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
-    func checkConnection(){
+    func checkConnection(completion: (completed: Bool) -> Void){
         print(defaults.stringForKey("userName"))
         print(defaults.stringForKey("password"))
         let url = defaults.stringForKey("url")!
-        print(url)
         let base64: String = delegate.keyChain.get("base64")!
         Alamofire.request(.GET, "\(url)/contacts.json", headers: ["Authorization": base64], encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success( _): response
-            
-            let alertController = UIAlertController(title: "Successfully connected!", message: "", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-            alertController.addAction(OKAction)
-            self.presentViewController(alertController, animated: true){}
-            //                self.dismissViewControllerAnimated(true, completion: nil)
-            let vc: DashboardVC = self.storyboard?.instantiateViewControllerWithIdentifier("DashboardVC") as! DashboardVC
-            self.presentViewController(vc, animated: true, completion: nil)
-            self.delegate.isLoggedIn = true
-                
+                completion(completed: true)
             case .Failure(let Error):
                 let alertController = UIAlertController(title: "Could not connect to server!", message: "Please check your URL and credentials.", preferredStyle: .Alert)
                 let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
@@ -78,8 +79,6 @@ class LoginVC : FormViewController {
                 }
         }
     }
-    
-    
     
     private func addForms(toForm form: Form) {
         nameRow = TextRow() {

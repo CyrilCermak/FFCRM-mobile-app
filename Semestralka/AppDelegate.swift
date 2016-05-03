@@ -45,11 +45,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        setAppearance()
 //        keyChain.set("a",forKey: "password")
 //        keyChain.set("cyril",forKey: "userName")
 //        defaults.setValue("http://localhost:3000", forKey: "url")
         setupMagicalRecord()
         return true
+    }
+    
+    func setAppearance() -> Void {
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+//        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().backgroundColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
+        UINavigationBar.appearance().opaque = false
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor.whiteColor()
+        navigationBarAppearace.barTintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
+        UIApplication.sharedApplication()
+
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 24)!, NSForegroundColorAttributeName: UIColor.blackColor()]
+        
     }
     
     func persistContext() {

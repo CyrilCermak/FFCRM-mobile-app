@@ -292,7 +292,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                     print("completed")
                     HUD.flash(.Success, delay: 2.0)
                     completion(result: true)
-                    
                 }
             }
         }else {

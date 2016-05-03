@@ -69,9 +69,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         //COMENT LINE TO ENABLE USER LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //        appDelegate.isLoggedIn = true
         if (appDelegate.isLoggedIn == false){

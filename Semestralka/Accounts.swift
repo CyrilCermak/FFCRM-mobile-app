@@ -157,14 +157,14 @@ class Accounts {
         let headers = ["Authorization": base64, "accept":"application/json"]
         let url = defaults.stringForKey("url")!
         let id = account.id
-        print("patching->\(account)")
         var params = self.getParams(account, token: "")
+        print("updating \(account.name) to \(url) with \(params)")
         //Getting token first
         getToken { (token) in
             print("Token -> \(token)")
             if token != nil {
                 params["authenticity_token"] = token!
-                Alamofire.request(.PATCH, "\(url)/accounts/\(id).json", headers: headers, parameters: params)
+                Alamofire.request(.PATCH, "\(url)/accounts/\(id)", headers: headers, parameters: params)
                     .responseString { response in switch response.result {
                     case .Success(let data):
                         if withUserNotification {
