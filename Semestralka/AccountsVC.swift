@@ -63,10 +63,10 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             return nil
         }
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        cell.backgroundColor = UIColor.lightGrayColor()
+        cell.backgroundColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
         cell.textLabel?.text = self.sections[section]
         cell.detailTextLabel?.textColor = self.view.tintColor
-        cell.textLabel?.textColor = self.view.tintColor
+        cell.textLabel?.textColor = UIColor.whiteColor()
         return cell
     }
     

@@ -16,10 +16,6 @@ class EditLeadVC: FormViewController {
         super.viewDidLoad()
         self.tableView!.backgroundColor = UIColor.whiteColor()
         addSections(toForm: form)
-        // set style to navigation controller
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
     }
     
     override func viewDidAppear(animated: Bool) {

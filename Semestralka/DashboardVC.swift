@@ -11,39 +11,44 @@ import Eureka
 
 class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
-    var leads: [Lead]?
+    var leads = [Lead(name: "Adam", status: "Customer"),
+                         Lead(name: "Adam", status: "Customer"),
+                         Lead(name: "Adam", status: "Customer")]
+
     var accounts: [Account]?
     var contacts: [Contact]?
     var sections = ["Accounts", "Contacts","Leads"]
     let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
+
     @IBOutlet var tableView: UITableView!
     
     
     override func viewWillAppear(animated: Bool) {
-        if appDelegate.isLoggedIn {
+        var loggedIn = appDelegate.defaults.valueForKey("LoggedIn") as? String
+        if loggedIn == "yes" {
             createAccounts()
             createContacts()
             leads = [Lead(name: "Adam", status: "Customer"),
                      Lead(name: "Adam", status: "Customer"),
                      Lead(name: "Adam", status: "Customer")]
-            
         }
         self.tableView.reloadData()
-        print(accounts)
+        print(contacts)
     }
     
-    
     private func createContacts(){
-        contacts = [Contact]()
         let contactsArrays = appDelegate.getContacts().values
-        var i = 0
-        for contactsArray in contactsArrays {
-            for contact in contactsArray {
-                if i == 3 {
-                 break
+        if contactsArrays.count > 0 {
+            contacts = [Contact]()
+            var i = 0
+            for contactsArray in contactsArrays {
+                for contact in contactsArray {
+                    if i == 3 {
+                     break
+                    }
+                    i = i + 1
+                    contacts?.append(contact)
                 }
-                i = i + 1
-                contacts?.append(contact)
             }
         }
     }
@@ -66,18 +71,24 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
-        //COMENT LINE TO ENABLE USER LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //        appDelegate.isLoggedIn = true
-        if (appDelegate.isLoggedIn == false){
-            appearLogin() { (completed) in
-            }
+        let loggedIn = appDelegate.defaults.valueForKey("LoggedIn") as? String
+        if (loggedIn == nil || loggedIn != "yes"){
+            appearLogin()
+        } else {
+            let c = Contacts()
+            c.loadContacts({ (completed) in
+                if completed {
+                    print("completed")
+                    self.createContacts()
+                }
+            })
         }
+        self.tableView.reloadData()
     }
     
-    func appearLogin(completion: (completed: Bool) -> Void) {
+    func appearLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let login = storyboard.instantiateViewControllerWithIdentifier("loginNavigationController")
         login.modalTransitionStyle = .CoverVertical
@@ -112,7 +123,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
         cell.backgroundColor = UIColor.blackColor()
@@ -134,8 +144,8 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
             cell.textLabel!.text = contacts?[indexPath.row].email!
             cell.detailTextLabel?.text = "\(firstName) \(lastName)"
         }else if (indexPath.section == 2) {
-            cell.textLabel?.text  = leads?[indexPath.row].status
-            cell.detailTextLabel?.text = leads?[indexPath.row].name
+            cell.textLabel?.text  = leads[indexPath.row].status
+            cell.detailTextLabel?.text = leads[indexPath.row].name
         }else {
             cell.textLabel?.text = accounts?[indexPath.row].category
             cell.detailTextLabel?.text = accounts?[indexPath.row].name
@@ -150,7 +160,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
-    
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
@@ -167,7 +176,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCellWithIdentifier("FooterCell") as! FooterCellTVC
-        cell.buttonShow.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+//        cell.buttonShow.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         cell.buttonShow.titleLabel!.font = UIFont(name: "Avenir-Light" , size: 20)
         if (section == 1){
             cell.buttonShow.setTitle("Show Contacts", forState: UIControlState.Normal)

@@ -40,12 +40,7 @@ UISearchResultsUpdating {
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
-//
-        // set style to navigation controller
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        
+
         //Load Data
         contacts = appDelegate.getContacts()
         sections = Array(contacts.keys).sort()
@@ -61,7 +56,6 @@ UISearchResultsUpdating {
         tableView.addSubview(self.refreshControl) // not required when using UITableViewController
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ContactsVC.reloadContacts),name:"reloadContacts", object: nil)
     }
-    
     
     func reloadContacts(notification: NSNotification) {
         refreshTable()
@@ -95,10 +89,11 @@ UISearchResultsUpdating {
             return nil
         }
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        cell.backgroundColor = UIColor.lightGrayColor()
+        cell.backgroundColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
         cell.textLabel?.text = self.sections[section]
+        cell.detailTextLabel?.textColor = nil
         cell.detailTextLabel?.text = nil
-        cell.textLabel?.textColor = self.view.tintColor
+        cell.textLabel?.textColor = UIColor.whiteColor()
         return cell
     }
     

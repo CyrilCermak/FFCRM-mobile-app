@@ -67,11 +67,15 @@ class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIS
             return nil
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        cell.backgroundColor = UIColor.lightGrayColor()
+
+        cell.backgroundColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
         cell.textLabel?.text = self.sections[section]
         cell.detailTextLabel?.text = nil
         cell.textLabel?.textAlignment = .Left
         cell.textLabel?.font = UIFont(name: "Avenir-Light" , size: 15)
+        cell.detailTextLabel?.textColor = self.view.tintColor
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        
         return cell
     }
     

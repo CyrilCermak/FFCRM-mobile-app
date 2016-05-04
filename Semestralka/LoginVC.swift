@@ -32,6 +32,7 @@ class LoginVC : FormViewController {
     }
     
     @IBAction func buttonConnectClicked(sender: AnyObject) {
+        self.view.endEditing(true)
         let name: String? = form.values()["name"] as? String
         let password: String? = form.values()["password"] as? String
         if (name == nil) || (password == nil) {
@@ -41,10 +42,11 @@ class LoginVC : FormViewController {
             alertController.addAction(OKAction)
             self.presentViewController(alertController, animated: true){}
         } else {
-            delegate.keyChain.set(name!, forKey: "userName")
-            delegate.keyChain.set(password!, forKey: "password")
             Account.MR_truncateAll()
-            delegate.createCredentials()
+            self.delegate.keyChain.set(name!, forKey: "userName")
+            self.delegate.keyChain.set(password!, forKey: "password")
+            self.delegate.defaults.setValue("yes", forKey: "LoggedIn")
+            self.delegate.createCredentials()
             checkConnection() { completed in
                 PKHUD.sharedHUD.contentView = PKHUDProgressView()
                 PKHUD.sharedHUD.show()

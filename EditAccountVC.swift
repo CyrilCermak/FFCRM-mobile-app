@@ -21,9 +21,6 @@ class EditAccountVC: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         PKHUD.sharedHUD.dimsBackground = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         let account = selectedAccount as! Account
         addName(toForm: form, selectedAccount: account)
         addCategories(toForm:form, selectedAccount: account)

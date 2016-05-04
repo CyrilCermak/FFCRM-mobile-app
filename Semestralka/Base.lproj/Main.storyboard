@@ -397,9 +397,13 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yR4-FN-aIN">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.18039215689999999" green="0.7725490196" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="yR4-FN-aIN" firstAttribute="leading" secondItem="CtA-1L-aCW" secondAttribute="leading" id="LfY-dc-npO"/>
                                                 <constraint firstItem="yR4-FN-aIN" firstAttribute="top" secondItem="CtA-1L-aCW" secondAttribute="top" id="QsN-6a-Aso"/>
@@ -445,7 +449,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Dashboard" id="jIP-FA-Qqn">
                         <barButtonItem key="leftBarButtonItem" image="menu32x32.png" id="ECd-q4-JL5">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="buttonMenuClicked:" destination="rVX-Y6-eNb" id="IWi-pX-JYL"/>
                             </connections>
@@ -758,7 +761,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                     <view key="view" contentMode="scaleToFill" id="lss-bD-mCv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="BoR-a5-pIv">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="UjT-me-Oie">

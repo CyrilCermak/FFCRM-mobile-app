@@ -14,8 +14,12 @@ class MenuVC : ENSideMenuNavigationController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tvc = storyboard.instantiateViewControllerWithIdentifier("MenuTableVC") as! MenuTableVC
             sideMenu = ENSideMenu(sourceView: self.view, menuViewController: tvc, menuPosition:.Left)
-            sideMenu?.menuWidth = 220
+            sideMenu?.menuWidth = 200
             // show the navigation bar over the side menu view
             view.bringSubviewToFront(navigationBar)
+        
     }
+    
+    
+    
   }

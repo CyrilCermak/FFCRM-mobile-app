@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         keyChain.set(pass, forKey: "base64")
         isLoggedIn = true
         Accounts().loadAccounts()
-        Contacts().loadContacts()
+        Contacts().loadContacts() { completed in
+        }
     }
     
     func setupMagicalRecord() -> Void {
@@ -46,19 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setAppearance()
-        //        keyChain.set("a",forKey: "password")
-        //        keyChain.set("cyril",forKey: "userName")
-        //        defaults.setValue("http://localhost:3000", forKey: "url")
         setupMagicalRecord()
         return true
-    }
-    
-    func uicolorFromHex(rgbValue:UInt32)->UIColor{
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
-        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
-        let blue = CGFloat(rgbValue & 0xFF)/256.0
-        
-        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
     func setAppearance() -> Void {
@@ -67,6 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.barTintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
         navigationBarAppearace.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 24)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        UISearchBar.appearance().barTintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
+        UISearchBar.appearance().tintColor = UIColor.whiteColor()
+
 //        self.window!.tintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
     }
     

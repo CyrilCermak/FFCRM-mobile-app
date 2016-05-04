@@ -22,10 +22,6 @@ class EditContactVC: FormViewController {
         addContact(toForm: form)
         addAddress(toForm: form)
         self.tableView?.backgroundColor = UIColor.whiteColor()
-        // set style to navigation controller
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:  UIFont(name: "Avenir-Light" , size: 20)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
     }
     
     override func viewDidAppear(animated: Bool) {

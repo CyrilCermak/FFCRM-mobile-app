@@ -228,9 +228,9 @@
 			isa = PBXGroup;
 			children = (
 				F1A844691CA49F58006BB447 /* NewContactVC.swift */,
-				F11E1F881CA0A36B00440277 /* ContactsVC.swift */,
 				F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */,
 				F18E4FB71CA7022D00B0A766 /* EditContactVC.swift */,
+				F11E1F881CA0A36B00440277 /* ContactsVC.swift */,
 			);
 			name = Contacts;
 			path = ..;

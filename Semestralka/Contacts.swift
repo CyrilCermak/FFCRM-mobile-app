@@ -36,9 +36,9 @@ class Contacts {
         url = defaults.stringForKey("url")!
     }
     
-    func loadContacts() -> [String:[Contact]] {
+    func loadContacts(completion: (completed: Bool) -> Void) -> [String:[Contact]] {
+        completion(completed: false)
         let url = defaults.stringForKey("url")!
-        
         Alamofire.request(.GET, "\(url)/contacts.json", headers: headers, encoding:.JSON)
             .responseJSON { response in switch response.result{
             case .Success(let data):
@@ -61,6 +61,7 @@ class Contacts {
                 self.dictionary = self.contactsToDict(self.contacts)
                 let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.currentContacts = self.dictionary
+                completion(completed: true)
             case .Failure(let Error):
                 print("Request faild with error \(Error)")
                 }

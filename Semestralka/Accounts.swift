@@ -87,13 +87,15 @@ class Accounts {
     func accountsToDict(accounts: [Account]) -> [String:[Account]] {
         var dict = [String:[Account]]()
         for account in accounts {
-            let name: String = account.name!
-            let letter = String(Array(name.capitalizedString.characters)[0])
-            if dict[letter] != nil {
-                dict[letter]?.append(account)
-            } else {
-                dict[letter] = [Account]()
-                dict[letter]?.append(account)
+            let name: String? = account.name
+            if name != nil {
+                let letter = String(Array(name!.capitalizedString.characters)[0])
+                if dict[letter] != nil {
+                    dict[letter]?.append(account)
+                } else {
+                    dict[letter] = [Account]()
+                    dict[letter]?.append(account)
+                }
             }
         }
         return dict

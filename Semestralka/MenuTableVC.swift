@@ -15,6 +15,7 @@ class MenuTableVC: FormViewController {
     
     let cellColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
     let textColor = UIColor.whiteColor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView?.backgroundColor = UIColor.whiteColor()
@@ -28,12 +29,11 @@ class MenuTableVC: FormViewController {
         form +++ Section("")
         form  +++ Section("")
             <<< ButtonRow {
-                $0.title = "Dashoard"
+                $0.title = "Dashboard"
                 }.cellSetup({ (cell, row) in
                     cell.tintColor = self.textColor
                     cell.backgroundColor = self.cellColor
                 }).onCellSelection({ (cell, row) in
-                    cell.backgroundColor = UIColor.whiteColor()
                     let vc = self.storyboard!.instantiateViewControllerWithIdentifier("DashboardVC")
                     as! DashboardVC
                    self.sideMenuController()?.setContentViewController(vc)
@@ -97,6 +97,7 @@ class MenuTableVC: FormViewController {
                         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MenuVC") as! MenuVC
                         let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
                         appDelegate.isLoggedIn = false
+                        appDelegate.defaults.setValue("no", forKey: "LoggedIn")
                         appDelegate.keyChain.delete("password")
                         appDelegate.keyChain.delete("userName")
                         appDelegate.keyChain.delete("base64")
