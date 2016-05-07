@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentAccounts = [String:[Account]]()
     var currentLeads = [String:[Lead]]()
     var contactsRefreshed = false
+    let sideMenuSize = CGFloat(200)
     let defaults = NSUserDefaults.standardUserDefaults()
     var keyChain = KeychainSwift()
     
@@ -38,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Accounts().loadAccounts()
         Contacts().loadContacts() { completed in
         }
+    }
+    
+    func getDefaultColor() -> UIColor {
+        let color = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
+        return color
     }
     
     func setupMagicalRecord() -> Void {
@@ -59,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         UISearchBar.appearance().barTintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
-
 //        self.window!.tintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
     }
     
@@ -75,6 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getContacts() -> [String:[Contact]] {
         return currentContacts
+    }
+    
+    func getSideMenuSize() -> CGFloat {
+        return sideMenuSize
     }
     
     func applicationWillResignActive(application: UIApplication) {

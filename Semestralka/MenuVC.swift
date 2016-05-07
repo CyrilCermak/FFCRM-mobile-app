@@ -17,9 +17,6 @@ class MenuVC : ENSideMenuNavigationController {
             sideMenu?.menuWidth = 200
             // show the navigation bar over the side menu view
             view.bringSubviewToFront(navigationBar)
-        
     }
-    
-    
     
   }

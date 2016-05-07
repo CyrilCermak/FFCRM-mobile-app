@@ -22,7 +22,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
     
-    
     override func viewWillAppear(animated: Bool) {
         var loggedIn = appDelegate.defaults.valueForKey("LoggedIn") as? String
         if loggedIn == "yes" {
@@ -69,8 +68,11 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         let loggedIn = appDelegate.defaults.valueForKey("LoggedIn") as? String

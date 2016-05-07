@@ -70,7 +70,6 @@ UISearchResultsUpdating {
         self.tableView?.reloadData()
     }
     
-    
     @IBAction func buttonMenuClicked(sender: AnyObject) {
         toggleSideMenuView()
     }

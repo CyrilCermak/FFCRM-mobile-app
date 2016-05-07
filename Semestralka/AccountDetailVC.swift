@@ -24,6 +24,14 @@ class AccountDetailVC: FormViewController {
         appDel.menuShowed = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+    }
+    
+    func turnOnMenu(){
+        self.navigationController?.sideMenuController()?.sideMenu?.menuWidth = appDelegate.getSideMenuSize()
+        self.navigationController?.sideMenuController()?.sideMenu?.allowLeftSwipe = true
+        self.navigationController?.sideMenuController()?.sideMenu?.allowRightSwipe = true
+    }
     
     @IBAction func buttonCreateClicked(sender: AnyObject) {
         print(form.values(includeHidden: true))
@@ -37,6 +45,9 @@ class AccountDetailVC: FormViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editAccountSegue" {
+            self.navigationController?.sideMenuController()?.sideMenu?.menuWidth = 0
+            self.navigationController?.sideMenuController()?.sideMenu?.allowLeftSwipe = false
+            self.navigationController?.sideMenuController()?.sideMenu?.allowRightSwipe = false
             let navController = segue.destinationViewController as! UINavigationController
             let editAccountVC = navController.topViewController as! EditAccountVC
             print(selectedAccount)

@@ -14,6 +14,7 @@ class ContactsDetailVC: FormViewController {
     
     var contact = Contact()
     var contactsVC:ContactsVC = ContactsVC()
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +86,17 @@ class ContactsDetailVC: FormViewController {
 
     }
     
+    func turnMenuOn(){
+        self.navigationController?.sideMenuController()?.sideMenu?.menuWidth = appDelegate.getSideMenuSize()
+        print(appDelegate.getSideMenuSize())
+        self.navigationController?.sideMenuController()?.sideMenu?.allowLeftSwipe = true
+        self.navigationController?.sideMenuController()?.sideMenu?.allowRightSwipe = true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.navigationController?.sideMenuController()?.sideMenu?.menuWidth = 0
+        self.navigationController?.sideMenuController()?.sideMenu?.allowLeftSwipe = false
+        self.navigationController?.sideMenuController()?.sideMenu?.allowRightSwipe = false
         if segue.identifier == "EditContactSegue" {
             print("Edit Contact Segue")
             let navController = segue.destinationViewController as! UINavigationController

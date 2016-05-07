@@ -65,19 +65,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TO3-8Y-wXK">
-                                <rect key="frame" x="20" y="83" width="171" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="171" id="E37-bD-tHb"/>
-                                    <constraint firstAttribute="height" constant="30" id="ozQ-9Z-FmL"/>
-                                </constraints>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-iX-s0N">
-                                <rect key="frame" x="20" y="133" width="560" height="205"/>
+                                <rect key="frame" x="87" y="152" width="427" height="205"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="8SK-ev-Pr2"/>
-                                    <constraint firstAttribute="width" constant="560" id="UaH-BK-vpd"/>
+                                    <constraint firstAttribute="width" constant="427" id="UaH-BK-vpd"/>
                                 </constraints>
                                 <string key="text">Fat Free CRM 
 A ruby on rails based CRM system
@@ -98,20 +91,27 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TO3-8Y-wXK">
+                                <rect key="frame" x="215" y="114" width="171" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="171" id="E37-bD-tHb"/>
+                                    <constraint firstAttribute="height" constant="30" id="ozQ-9Z-FmL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0DW-iX-s0N" firstAttribute="leading" secondItem="TO3-8Y-wXK" secondAttribute="trailing" constant="-171" id="57t-o0-ltz"/>
-                            <constraint firstItem="0DW-iX-s0N" firstAttribute="leading" secondItem="Aew-jJ-8qc" secondAttribute="leadingMargin" id="HjT-oE-p02"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0DW-iX-s0N" secondAttribute="trailing" id="LKJ-py-uJF"/>
-                            <constraint firstItem="AHl-lN-rNL" firstAttribute="top" secondItem="0DW-iX-s0N" secondAttribute="bottom" constant="221" id="PKd-v9-SIE"/>
-                            <constraint firstItem="0DW-iX-s0N" firstAttribute="top" secondItem="TO3-8Y-wXK" secondAttribute="bottom" constant="20" id="QLI-Fp-MMU"/>
-                            <constraint firstItem="VaR-4M-uSA" firstAttribute="top" secondItem="0DW-iX-s0N" secondAttribute="bottom" constant="262" id="Qtc-xn-OsC"/>
+                            <constraint firstItem="0DW-iX-s0N" firstAttribute="leading" secondItem="TO3-8Y-wXK" secondAttribute="trailing" constant="-299" id="57t-o0-ltz"/>
+                            <constraint firstItem="0DW-iX-s0N" firstAttribute="leading" secondItem="Aew-jJ-8qc" secondAttribute="leadingMargin" constant="67" id="HjT-oE-p02"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0DW-iX-s0N" secondAttribute="trailing" constant="66" id="LKJ-py-uJF"/>
+                            <constraint firstItem="AHl-lN-rNL" firstAttribute="top" secondItem="0DW-iX-s0N" secondAttribute="bottom" constant="202" id="PKd-v9-SIE"/>
+                            <constraint firstItem="0DW-iX-s0N" firstAttribute="top" secondItem="TO3-8Y-wXK" secondAttribute="bottom" constant="8" id="QLI-Fp-MMU"/>
+                            <constraint firstItem="VaR-4M-uSA" firstAttribute="top" secondItem="0DW-iX-s0N" secondAttribute="bottom" constant="243" id="Qtc-xn-OsC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AHl-lN-rNL" secondAttribute="trailing" constant="346" id="WsE-0o-LBn"/>
-                            <constraint firstItem="TO3-8Y-wXK" firstAttribute="leading" secondItem="Aew-jJ-8qc" secondAttribute="leadingMargin" id="bHo-GA-4wa"/>
-                            <constraint firstItem="TO3-8Y-wXK" firstAttribute="top" secondItem="B2j-6I-76V" secondAttribute="bottom" constant="63" id="bQo-RS-uJW"/>
+                            <constraint firstItem="TO3-8Y-wXK" firstAttribute="leading" secondItem="Aew-jJ-8qc" secondAttribute="leadingMargin" constant="195" id="bHo-GA-4wa"/>
+                            <constraint firstItem="TO3-8Y-wXK" firstAttribute="top" secondItem="B2j-6I-76V" secondAttribute="bottom" constant="94" id="bQo-RS-uJW"/>
                             <constraint firstItem="AHl-lN-rNL" firstAttribute="leading" secondItem="Aew-jJ-8qc" secondAttribute="leadingMargin" id="cBH-xC-2Bd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TO3-8Y-wXK" secondAttribute="trailing" constant="389" id="wu4-gM-dwN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TO3-8Y-wXK" secondAttribute="trailing" constant="194" id="wu4-gM-dwN"/>
                             <constraint firstItem="VaR-4M-uSA" firstAttribute="top" secondItem="AHl-lN-rNL" secondAttribute="bottom" constant="20" id="zNO-pb-WSC"/>
                         </constraints>
                     </view>
@@ -460,7 +460,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alo-HK-nPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="2056"/>
+            <point key="canvasLocation" x="58" y="1958"/>
         </scene>
         <!--New-->
         <scene sceneID="bzp-Sx-l2v">
@@ -812,7 +812,7 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 <viewController storyboardIdentifier="MenuTableVC" id="rzl-V5-iuZ" customClass="MenuTableVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLb-rJ-Dbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="1227"/>
+            <point key="canvasLocation" x="437" y="1243"/>
         </scene>
         <!--MenuVC-->
         <scene sceneID="6Qi-ur-Xdl">
@@ -894,25 +894,6 @@ A ruby on rails based CRM systemA ruby on rails based CRM systemA ruby on rails 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W6-yV-2vs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6545" y="1779"/>
-        </scene>
-        <!--MenuVC-->
-        <scene sceneID="Y7m-hz-Stq">
-            <objects>
-                <navigationController storyboardIdentifier="AccountNavController" automaticallyAdjustsScrollViewInsets="NO" id="qn9-YG-pSe" customClass="MenuVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="vRW-wE-dQc"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pHD-q4-0d1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="e9z-iF-LAa" kind="relationship" relationship="rootViewController" id="T4P-vw-eJk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TTy-2C-Ds9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1608" y="3598"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CWA-Jt-cSh">

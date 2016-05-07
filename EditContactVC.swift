@@ -14,7 +14,7 @@ class EditContactVC: FormViewController {
     
     var titleRow: TextRow!
     var contact = Contact()
-    var contactsDetailVC:ContactsDetailVC = ContactsDetailVC()
+    var contactsDetailVC = ContactsDetailVC()
     var contactsVC:ContactsVC = ContactsVC()
     
     override func viewDidLoad() {
@@ -39,6 +39,7 @@ class EditContactVC: FormViewController {
         contactsModel.updateContact(contact)
         navigationController!.dismissViewControllerAnimated(true, completion: {
             self.contactsDetailVC.navigationController?.popViewControllerAnimated(true)
+                self.contactsDetailVC.turnMenuOn()
             HUD.flash(.Label("Saving Account..."), delay: 8.0, completion: { completed in
                 NSNotificationCenter.defaultCenter().postNotificationName("reloadContacts",object: nil)
             })
@@ -51,7 +52,9 @@ class EditContactVC: FormViewController {
     }
     
     @IBAction func buttonCancelClicked(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {
+            self.contactsDetailVC.turnMenuOn()
+        })
     }
     
     private func addContact(toForm form: Form){

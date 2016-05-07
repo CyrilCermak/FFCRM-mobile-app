@@ -29,6 +29,7 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewWillAppear(animated: Bool) {
+        
         self.tableView.reloadData()
     }
     
@@ -43,7 +44,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
-        
         //loading data
         accounts = appDelegate.getAccounts()
         print(accounts)

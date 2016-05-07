@@ -10,11 +10,14 @@ import UIKit
 
 class AboutVC: UIViewController {
 
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBAction func buttonMenuClicked(sender: AnyObject) {
         toggleSideMenuView()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = appDelegate.getDefaultColor()
 
         // Do any additional setup after loading the view.
     }
