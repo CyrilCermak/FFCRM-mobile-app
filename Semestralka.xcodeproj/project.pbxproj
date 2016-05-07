@@ -24,8 +24,6 @@
 		F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */; };
 		F1401E8F1CCEA67A00BC25CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1401E8D1CCEA67A00BC25CD /* Model.xcdatamodeld */; };
 		F1401ED41CCFBEF400BC25CD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1401ED31CCFBEF400BC25CD /* Media.xcassets */; };
-		F16D5E801CA688C600D928B6 /* menu20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = F16D5E7F1CA688C600D928B6 /* menu20x20.png */; };
-		F16D5E841CA6896800D928B6 /* menu32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = F16D5E831CA6896800D928B6 /* menu32x32.png */; };
 		F16D5E861CA68F5E00D928B6 /* LeadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */; };
 		F18E4FAD1CA6AB5800B0A766 /* NewLeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */; };
 		F18E4FAF1CA6B92200B0A766 /* LeadDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FAE1CA6B92200B0A766 /* LeadDetailVC.swift */; };
@@ -37,6 +35,7 @@
 		F1A8446A1CA49F58006BB447 /* NewContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A844691CA49F58006BB447 /* NewContactVC.swift */; };
 		F1A8446C1CA4A3D5006BB447 /* ContactsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */; };
 		F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */; };
+		F1B692641CDE2F190090506C /* AccountsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B692631CDE2F190090506C /* AccountsHelper.swift */; };
 		F1D480B51CC53AC90091CB52 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D480B41CC53AC90091CB52 /* Accounts.swift */; };
 		F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */; };
 		F1D963B11CAD43F6008B4414 /* FooterCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */; };
@@ -88,8 +87,6 @@
 		F1401E8E1CCEA67A00BC25CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F1401ED31CCFBEF400BC25CD /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		F1401ED51CCFBFDC00BC25CD /* Semestralka-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semestralka-Bridging-Header.h"; sourceTree = "<group>"; };
-		F16D5E7F1CA688C600D928B6 /* menu20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu20x20.png; sourceTree = "<group>"; };
-		F16D5E831CA6896800D928B6 /* menu32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu32x32.png; sourceTree = "<group>"; };
 		F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsVC.swift; sourceTree = "<group>"; };
 		F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLeadVC.swift; sourceTree = "<group>"; };
 		F18E4FAE1CA6B92200B0A766 /* LeadDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadDetailVC.swift; sourceTree = "<group>"; };
@@ -101,6 +98,7 @@
 		F1A844691CA49F58006BB447 /* NewContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewContactVC.swift; path = Semestralka/NewContactVC.swift; sourceTree = "<group>"; };
 		F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailVC.swift; path = Semestralka/ContactsDetailVC.swift; sourceTree = "<group>"; };
 		F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		F1B692631CDE2F190090506C /* AccountsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsHelper.swift; sourceTree = "<group>"; };
 		F1D480B41CC53AC90091CB52 /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCellTVC.swift; sourceTree = "<group>"; };
 		F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCellTVC.swift; sourceTree = "<group>"; };
@@ -155,8 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				F1401ED51CCFBFDC00BC25CD /* Semestralka-Bridging-Header.h */,
-				F16D5E7F1CA688C600D928B6 /* menu20x20.png */,
-				F16D5E831CA6896800D928B6 /* menu32x32.png */,
 				F11FAF231C903A86008E6ABD /* Semestralka */,
 				F11FAF381C903A87008E6ABD /* SemestralkaTests */,
 				F11FAF431C903A87008E6ABD /* SemestralkaUITests */,
@@ -262,6 +258,7 @@
 			children = (
 				F1DCF5FF1CBB7F4000ECF287 /* Contacts.swift */,
 				F1D480B41CC53AC90091CB52 /* Accounts.swift */,
+				F1B692631CDE2F190090506C /* AccountsHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -391,8 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11FAF2F1C903A86008E6ABD /* LaunchScreen.storyboard in Resources */,
-				F16D5E801CA688C600D928B6 /* menu20x20.png in Resources */,
-				F16D5E841CA6896800D928B6 /* menu32x32.png in Resources */,
 				F1401ED41CCFBEF400BC25CD /* Media.xcassets in Resources */,
 				F18E4FB61CA6D02200B0A766 /* Main.storyboard in Resources */,
 			);
@@ -490,6 +485,7 @@
 				F11FAF571C9058D6008E6ABD /* LoginVC.swift in Sources */,
 				F11FAF251C903A86008E6ABD /* AppDelegate.swift in Sources */,
 				F11E1F7B1C993A8D00440277 /* MenuTableVC.swift in Sources */,
+				F1B692641CDE2F190090506C /* AccountsHelper.swift in Sources */,
 				F18E4FAF1CA6B92200B0A766 /* LeadDetailVC.swift in Sources */,
 				F1401E8F1CCEA67A00BC25CD /* Model.xcdatamodeld in Sources */,
 				F11E1F891CA0A36B00440277 /* ContactsVC.swift in Sources */,

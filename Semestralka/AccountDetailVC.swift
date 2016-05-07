@@ -24,13 +24,13 @@ class AccountDetailVC: FormViewController {
         appDel.menuShowed = false
     }
     
-    override func viewWillAppear(animated: Bool) {
-    }
     
-    func turnOnMenu(){
-        self.navigationController?.sideMenuController()?.sideMenu?.menuWidth = appDelegate.getSideMenuSize()
-        self.navigationController?.sideMenuController()?.sideMenu?.allowLeftSwipe = true
-        self.navigationController?.sideMenuController()?.sideMenu?.allowRightSwipe = true
+    func turnMenuOn(){
+        print("turining menu on!")
+        self.navigationController!.sideMenuController()!.sideMenu!.menuWidth = appDelegate.getSideMenuSize()
+        print(appDelegate.getSideMenuSize())
+        self.navigationController!.sideMenuController()!.sideMenu!.allowLeftSwipe = true
+        self.navigationController!.sideMenuController()!.sideMenu!.allowRightSwipe = true
     }
     
     @IBAction func buttonCreateClicked(sender: AnyObject) {
@@ -115,17 +115,12 @@ class AccountDetailVC: FormViewController {
                 })
                 }.onCellSelection({ (cell, row) in
                     let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil ))
                     alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { alert in
                         self.navigationController?.popViewControllerAnimated(true)
                         let accountModel = Accounts()
-                        print("removing account \(self.selectedAccount)")
-                        accountModel.removeAccount(self.selectedAccount as! Account)
-                        HUD.flash(.Label("Deleting Account..."), delay: 7.0, completion: { completed in
-                            let aVC = self.accountsVC as! AccountsVC
-                            aVC.refreshTable()
-                        })
+                        accountModel.removeAccount(self.selectedAccount as! Account, accountsVC: self.accountsVC as! AccountsVC)
                     }))
-                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil ))
                     self.presentViewController(alert, animated: true, completion: nil)
                 })
     }

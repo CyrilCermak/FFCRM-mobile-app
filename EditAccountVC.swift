@@ -25,9 +25,6 @@ class EditAccountVC: FormViewController {
         addName(toForm: form, selectedAccount: account)
         addCategories(toForm:form, selectedAccount: account)
         self.tableView?.backgroundColor = UIColor.whiteColor()
-        self.navigationController?.sideMenuController()?.sideMenu?.menuWidth = 0
-        self.navigationController?.sideMenuController()?.sideMenu?.allowLeftSwipe = false
-        self.navigationController?.sideMenuController()?.sideMenu?.allowRightSwipe = false
     }
     
     @IBAction func buttonSaveClicked(sender: AnyObject) {
@@ -47,17 +44,16 @@ class EditAccountVC: FormViewController {
         account.name = form.values()["name"] as? String
         appDelegate.persistContext()
         let accountModel = Accounts()
-        accountModel.updateAccount(account, accountsVC: (accountDetailVC?.accountsVC) as? AccountsVC, oldAccountParams: oldAccountParams)
-        navigationController!.dismissViewControllerAnimated(true, completion: {
-            self.accountDetailVC?.turnOnMenu()
+        navigationController!.dismissViewControllerAnimated(true, completion: { completed in
             self.accountDetailVC!.navigationController?.popViewControllerAnimated(true)
+            self.accountDetailVC!.turnMenuOn()
+            accountModel.updateAccount(account, accountsVC: (self.accountDetailVC?.accountsVC) as? AccountsVC, oldAccountParams: oldAccountParams)
         })
     }
     
     @IBAction func buttonCancelClicked(sender: AnyObject) {
-
         self.dismissViewControllerAnimated(true, completion: {
-            self.accountDetailVC?.turnOnMenu()
+            self.accountDetailVC?.turnMenuOn()
         })
     }
     

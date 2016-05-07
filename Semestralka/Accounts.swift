@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import MagicalRecord
 import PKHUD
+import Async
 
 @objc(Account)
 class Account: NSManagedObject {
@@ -29,15 +30,20 @@ class Accounts {
     
     var accounts = [Account]()
     var dictionary = [String:[Account]]()
-    let defaults = NSUserDefaults.standardUserDefaults()
     var headers: [String:String]
-    var url: String = ""
-    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var url: String!
+    var base64:String!
+    let password:String!
+    let userName:String!
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     init() {
-        let base64Credentials = appDelegate.keyChain.get("base64")!
-        headers = ["Authorization": base64Credentials, "Accept": "application/json"]
+        let base64 = appDelegate.keyChain.get("base64")!
+        headers = ["Authorization": base64, "Accept": "application/json"]
         url = defaults.stringForKey("url")!
+        password = appDelegate.keyChain.get("password")!
+        userName = appDelegate.keyChain.get("userName")!
     }
     
     func loadAccounts() -> [String:[Account]] {
@@ -51,28 +57,20 @@ class Accounts {
                     let response = JSON(data)
                     for ( _, contactDetails):(String, JSON) in response {
                         for(_,details):(String, JSON) in contactDetails {
-                            let id = Int32.init(details["id"].int!)
-                            let name = details["name"].string
-                            let phone = details["phone"].string
-                            let email = details["email"].string
-                            let rating = Int32.init(details["rating"].int!)
-                            let assignTo = details["asssignTo"].string
-                            let category = details["category"].string
                             let account = Account.MR_createEntityInContext(c)!
-                            account.id = id
-                            account.name = name
-                            account.phone = phone
-                            account.email = email
-                            account.rating = rating
-                            account.category = category
-                            account.assignTo = assignTo
+                            account.id = Int32.init(details["id"].int!)
+                            account.name = details["name"].string
+                            account.phone = details["phone"].string
+                            account.email = details["email"].string
+                            account.rating = Int32.init(details["rating"].int!)
+                            account.category = details["category"].string
+                            account.assignTo = details["asssignTo"].string
                             account.onServer = true
                         }
                     }
                     }, completion: { (success:Bool, error:NSError?) in
                         let accounts = Account.MR_findAll() as! [Account]
                         let dictionary = self.accountsToDict(accounts)
-                        print("dict \(dictionary)")
                         self.appDelegate.currentAccounts = dictionary
                 })
             case .Failure(let Error):
@@ -84,53 +82,27 @@ class Accounts {
         return dictionary
     }
     
-    func accountsToDict(accounts: [Account]) -> [String:[Account]] {
-        var dict = [String:[Account]]()
-        for account in accounts {
-            let name: String? = account.name
-            if name != nil {
-                let letter = String(Array(name!.capitalizedString.characters)[0])
-                if dict[letter] != nil {
-                    dict[letter]?.append(account)
-                } else {
-                    dict[letter] = [Account]()
-                    dict[letter]?.append(account)
-                }
-            }
-        }
-        return dict
-    }
-    
     func createAccount(account: Account, accountsVC: AccountsVC?, newAccountVC: NewAccountVC? = nil) {
-        let base64 = appDelegate.keyChain.get("base64")!
-        let headers = ["Authorization": base64, "accept":"application/json"]
-        let url = defaults.stringForKey("url")!
-        let password = appDelegate.keyChain.get("password")!
-        let userName = appDelegate.keyChain.get("userName")!
         print("createing account \(account)")
         var params = getParams(account, token: "")
-        //Getting token first
+        //Getting token
         getToken { (token) in
             print("getting token: \(token)")
             if token != nil {
-                HUD.flash(.Label("Creating Account..."), delay: 8.0, completion: { completed in
-                    if completed {
-                        HUD.flash(.Success, delay: 2.0)
-                        accountsVC!.refreshTable()
-                    }
-                })
                 params["authenticity_token"] = token
-                Alamofire.request(.POST, "\(url)/accounts", headers: headers, parameters: params).authenticate(user:
-                    userName, password: password)
+                Alamofire.request(.POST, "\(self.url)/accounts", headers: self.headers, parameters: params).authenticate(user:
+                    self.userName, password: self.password)
                     .responseString { response in switch response.result{
                     case .Success( _):
-                        print("success")
+                        HUD.flash(.Success, delay: 2.0)
+                        accountsVC!.refreshTable()
                         self.appDelegate.persistContext()
-                    case .Failure( _): break
+                    case .Failure( _):
+                        HUD.flash(.Error, delay: 2.0)
                         }
                 }
             } else {
-                print("coud not upload to server!")
+                HUD.hide(afterDelay: 0.0)
                 let alert = UIAlertController(title: "No internet connection!", message: "Do you want to post the account when you will be online?", preferredStyle: .Alert)
                 let cancelButton = UIAlertAction(title: "No", style: .Default, handler: { action in
                     MagicalRecord.saveWithBlock({ (c) in
@@ -154,10 +126,7 @@ class Accounts {
         
     }
     
-    func updateAccount(account: Account, accountsVC: AccountsVC?, oldAccountParams: [String:AnyObject?]?, withUserNotification: Bool = true) {
-        let base64 = appDelegate.keyChain.get("base64")!
-        let headers = ["Authorization": base64, "accept":"application/json"]
-        let url = defaults.stringForKey("url")!
+    func updateAccount(account: Account, accountsVC: AccountsVC?, oldAccountParams: [String:AnyObject?]?) {
         let id = account.id
         var params = self.getParams(account, token: "")
         print("updating \(account.name) to \(url) with \(params)")
@@ -166,70 +135,84 @@ class Accounts {
             print("Token -> \(token)")
             if token != nil {
                 params["authenticity_token"] = token!
-                Alamofire.request(.PATCH, "\(url)/accounts/\(id)", headers: headers, parameters: params)
+                Alamofire.request(.PATCH, "\(self.url)/accounts/\(id)", headers: self.headers, parameters: params)
                     .responseString { response in switch response.result {
                     case .Success(let data):
-                        if withUserNotification {
-                            HUD.flash(.Label("Updating Account..."), delay: 5.0, completion: { completed in
-                                accountsVC?.tableView?.reloadData()
-                            })
-                        }
+                        HUD.flash(.Success,delay: 2.0)
+                        accountsVC?.tableView?.reloadData()
                         print("Successfully connected: \(data)")
-                    case .Failure( _): break
+                    case .Failure( _):
+                        HUD.flash(.Error, delay: 2.0)
                         }
                 }
             } else {
-                let alert = UIAlertController.init(title: "Server is not reachable!", message: "Do you want to update account when you will be online?", preferredStyle: .Alert)
-                let yesButton = UIAlertAction.init(title: "Yes", style: .Default, handler: { (action) in
-                    print("saving account for later update")
-                    account.onServer = false
-                    account.updateMethod = "PATCH"
-                    self.appDelegate.persistContext()
-                    accountsVC!.refreshTable()
-                })
-                let noButton = UIAlertAction.init(title: "No", style: .Default, handler: { (action) in
-                    account.onServer = true
-                    account.assignTo = oldAccountParams!["assignTo"] as? String
-                    account.email = oldAccountParams!["email"] as? String
-                    account.phone = oldAccountParams!["phone"] as? String
-                    account.name = oldAccountParams!["name"] as? String
-                    self.appDelegate.persistContext()
-                    accountsVC?.refreshTable()
-                })
-                alert.addAction(yesButton)
-                alert.addAction(noButton)
-                accountsVC?.presentViewController(alert, animated: true, completion: nil)
-            }
-        }
-    }
-
-    func removeAccount(account: Account) {
-        let base64 = appDelegate.keyChain.get("base64")!
-        let headers = ["Authorization": base64, "accept":"application/json"]
-        let url = defaults.stringForKey("url")!
-        print("removing \(account)")
-        //Getting token first
-        getToken() { token in
-            if token != nil {
-            let id = String(account.id)
-            let params = ["authenticity_token":token!, "id":id]
-            Alamofire.request(.DELETE, "\(url)/accounts/\(account.id)", headers: headers, parameters: params)
-                .responseString { response in switch response.result {
-                case .Success(let data):
-                    print("successfull, messsage: \(data)")
-                    account.MR_deleteEntity()
-                    self.appDelegate.persistContext()
-                case .Failure(let error):
-                    print(error)
+                HUD.flash(.Error, delay: 1.0, completion: { completed in
+                    if completed {
+                        let alert = UIAlertController.init(title: "Server is not reachable!", message: "Do you want to update account when you will be online?", preferredStyle: .Alert)
+                        let yesButton = UIAlertAction.init(title: "Yes", style: .Default, handler: { (action) in
+                            print("saving account for later update")
+                            account.onServer = false
+                            account.updateMethod = "PATCH"
+                            self.appDelegate.persistContext()
+                            accountsVC!.refreshTable()
+                        })
+                        let noButton = UIAlertAction.init(title: "No", style: .Default, handler: { (action) in
+                            account.onServer = true
+                            account.assignTo = oldAccountParams!["assignTo"] as? String
+                            account.email = oldAccountParams!["email"] as? String
+                            account.phone = oldAccountParams!["phone"] as? String
+                            account.name = oldAccountParams!["name"] as? String
+                            self.appDelegate.persistContext()
+                            accountsVC?.refreshTable()
+                        })
+                        alert.addAction(yesButton)
+                        alert.addAction(noButton)
+                        accountsVC?.presentViewController(alert, animated: true, completion: nil)
                     }
-            }
-            } else {
-             HUD.flash(.LabeledError(title: "Could not connect to internet.", subtitle: ""), delay: 3.0)
+                    
+                })
             }
         }
     }
     
-    func getToken(completion: (token: String?) -> Void) -> Void {
+    func removeAccount(account: Account, accountsVC: AccountsVC?) {
+        getToken() { token in
+            if token != nil {
+                let id = String(account.id)
+                let params = ["authenticity_token":token!, "id":id]
+                Alamofire.request(.DELETE, "\(self.url)/accounts/\(account.id)", headers: self.headers, parameters: params)
+                    .responseString { response in switch response.result {
+                    case .Success( _):
+                        HUD.flash(.Success,delay: 2.0,completion: { completed in
+                            self.appDelegate.persistContext()
+                            account.MR_deleteEntity()
+                            NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion({ (completed, e) in
+                                if completed {
+                                    print("refreshing table")
+                                    accountsVC!.refreshTable()
+                                }
+                            })
+                            
+                        })
+                    case .Failure( _):
+                        HUD.flash(.LabeledError(title: "Server Error", subtitle: ""))
+                        }
+                }
+            } else {
+                HUD.flash(.LabeledError(title: "Server Error", subtitle: ""), delay: 2.0)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    func getToken(animated: Bool = true, completion: (token: String?) -> Void) -> Void {
+        //Starting user notification about progress.
+        if animated {
+            HUD.show(.LabeledProgress(title: "Updating Server", subtitle: ""))
+        }
         Alamofire.request(.GET, "\(url)/accounts.html", headers: headers)
             .responseString { response in switch response.result {
             case .Success(let data):
@@ -247,6 +230,7 @@ class Accounts {
                 }
         }
     }
+    
     
     private func getParams(account: Account, token: String) -> [String: String] {
         var name: String {
@@ -275,5 +259,125 @@ class Accounts {
         }
         return ["account[name]": name,"account[assigned_to]":assignedTo ,"account[phone]": phone,"account[rating]": "\(account.rating)" ,"account[email]": email, "authenticity_token": token]
     }
+    
+    func accountsToDict(accounts: [Account]) -> [String:[Account]] {
+        var dict = [String:[Account]]()
+        for account in accounts {
+            let name: String? = account.name
+            if name != nil {
+                let letter = String(Array(name!.capitalizedString.characters)[0])
+                if dict[letter] != nil {
+                    dict[letter]?.append(account)
+                } else {
+                    dict[letter] = [Account]()
+                    dict[letter]?.append(account)
+                }
+            }
+        }
+        return dict
+    }
+    
+    //MARK: UPDATE ON Server
+    
+    //    func updateOnServer(account: Account, completion: (completed: Bool) -> Void) {
+    //        let id = account.id
+    //        var params = self.getParams(account, token: "")
+    //        getToken(false) { (token) in
+    //            if token != nil {
+    //                params["authenticity_token"] = token!
+    //                Alamofire.request(.PATCH, "\(self.url)/accounts/\(id)", headers: self.headers, parameters: params)
+    //                    .responseString { response in switch response.result {
+    //                    case .Success( _):
+    //                        completion(completed: true)
+    //                    case .Failure( _):
+    //                        completion(completed: false)
+    //                        }
+    //                }
+    //            } else {
+    //                completion(completed: false)
+    //            }
+    //        }
+    //    }
+    //
+    //    func postOnServer(account: Account) {
+    //        var params = getParams(account, token: "")
+    //        //Getting token
+    //        getToken { (token) in
+    //            print("getting token: \(token)")
+    //            if token != nil {
+    //                params["authenticity_token"] = token
+    //                Alamofire.request(.POST, "\(self.url)/accounts", headers: self.headers, parameters: params).authenticate(user:
+    //                    self.userName, password: self.password)
+    //                    .responseString { response in switch response.result{
+    //                    case .Success( _):break
+    //                        print("success")
+    ////                        completion(completed: true)
+    //                    case .Failure( _):break
+    ////                        completion(completed: false)
+    //                        }
+    //                }
+    //            } else {
+    ////                completion(completed: false)
+    //            }
+    //
+    //        }
+    //    }
+    
+    
+    func updateServer(accountsForUpdate: [Account], completion:(completed: Int) -> Void ) {
+        var i = 0
+        getToken() { token in
+            if token != nil {
+                for account in accountsForUpdate {
+                    let params = self.getParams(account, token: token!)
+                    switch account.updateMethod! {
+                    case "POST":
+                        print("posting account")
+                        Alamofire.request(.POST, "\(self.url)/accounts", headers: self.headers, parameters: params).authenticate(user:
+                            self.userName, password: self.password)
+                            .responseString { response in switch response.result{
+                            case .Success( _):
+                                print("posted \(i)")
+                                i += 1
+                                completion(completed: i)
+                            case .Failure( _):
+                                i += 1
+                                completion(completed: i)
+                                }
+                        }
+                    case "PATCH":
+                        print("patching")
+                        //TODO
+                        Alamofire.request(.PATCH, "\(self.url)/accounts/\(account.id)", headers: self.headers, parameters: params)
+                            .responseString { response in switch response.result {
+                            case .Success( _):
+                                print("patched \(i)")
+                                i += 1
+                                completion(completed: i)
+                            case .Failure( _):
+                                i += 1
+                                completion(completed: i)
+                                }
+                        }
+                    default: break
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

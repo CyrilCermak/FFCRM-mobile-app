@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import MagicalRecord
 import PKHUD
+import Async
 
 class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
@@ -247,45 +248,34 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 self.appDelegate.currentAccounts = self.accounts
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
+                
                 let alertController = UIAlertController(title: "Faild to fetch data from Internet.", message: "Please check you network connection.", preferredStyle: .Alert)
                 let OKAction = UIAlertAction(title: "OK", style: .Destructive) { (action) in
                 }
                 alertController.addAction(OKAction)
                 self.presentViewController(alertController, animated: true){}
+                
                 }
         }
+        
     }
-    
     func syncWithDatabase(completion: (result: Bool) -> Void ) {
         self.refreshControl.endRefreshing()
         completion(result: false)
         let accountModel = Accounts()
-        var posting = false
         let accountsAll = Account.MR_findAll() as! [Account]
+        var accountsForUpdate = [Account]()
         for account in accountsAll {
-            if !account.onServer {
-                switch account.updateMethod! {
-                case "PATCH" :
-                    print("patching \(account)")
-                    accountModel.updateAccount(account, accountsVC: self, oldAccountParams: nil, withUserNotification: false)
-                case "POST" :
-                    print("posting \(account)")
-                    accountModel.createAccount(account, accountsVC: self)
-                default :
-                    print("No matching method")
-                }
-                posting = true
-                account.onServer = true
+            if account.onServer == false {
+                accountsForUpdate.append(account)
             }
         }
-        if posting {
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            PKHUD.sharedHUD.show()
-            print("waiting for completion")
-            PKHUD.sharedHUD.hide(afterDelay: 7.0) { success in
-                if success {
-                    print("completed")
-                    HUD.flash(.Success, delay: 2.0)
+        if accountsForUpdate.count != 0 {
+            HUD.show(.Progress)
+            accountModel.updateServer(accountsForUpdate) { completed in
+                if completed == accountsForUpdate.count {
+                    HUD.hide()
+                    HUD.flash(.Success,delay: 1.0)
                     completion(result: true)
                 }
             }
@@ -293,6 +283,48 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             completion(result: true)
         }
     }
+
+    
+    
+    private func getParams(account: Account, token: String) -> [String: String] {
+        var name: String {
+            if let name = account.name {
+                return name
+            }
+            return ""
+        }
+        var phone: String {
+            if let phone = account.phone {
+                return phone
+            }
+            return ""
+        }
+        var email: String {
+            if let email = account.email {
+                return email
+            }
+            return ""
+        }
+        var assignedTo: String {
+            if let aT = account.assignTo {
+                return aT
+            }
+            return ""
+        }
+        return ["account[name]": name,"account[assigned_to]":assignedTo ,"account[phone]": phone,"account[rating]": "\(account.rating)" ,"account[email]": email, "authenticity_token": token]
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func accountsToDict(accounts: [Account]) -> [String:[Account]] {
         var dict = [String:[Account]]()

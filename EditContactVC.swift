@@ -39,7 +39,7 @@ class EditContactVC: FormViewController {
         contactsModel.updateContact(contact)
         navigationController!.dismissViewControllerAnimated(true, completion: {
             self.contactsDetailVC.navigationController?.popViewControllerAnimated(true)
-                self.contactsDetailVC.turnMenuOn()
+            self.contactsDetailVC.turnMenuOn()
             HUD.flash(.Label("Saving Account..."), delay: 8.0, completion: { completed in
                 NSNotificationCenter.defaultCenter().postNotificationName("reloadContacts",object: nil)
             })
