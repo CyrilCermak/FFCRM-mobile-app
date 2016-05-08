@@ -36,6 +36,7 @@
 		F1A8446C1CA4A3D5006BB447 /* ContactsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */; };
 		F1A8446E1CA4A86B006BB447 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */; };
 		F1B692641CDE2F190090506C /* AccountsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B692631CDE2F190090506C /* AccountsHelper.swift */; };
+		F1B692681CDEA1230090506C /* ContactMeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B692671CDEA1230090506C /* ContactMeVC.swift */; };
 		F1D480B51CC53AC90091CB52 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D480B41CC53AC90091CB52 /* Accounts.swift */; };
 		F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */; };
 		F1D963B11CAD43F6008B4414 /* FooterCellTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */; };
@@ -99,6 +100,7 @@
 		F1A8446B1CA4A3D5006BB447 /* ContactsDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailVC.swift; path = Semestralka/ContactsDetailVC.swift; sourceTree = "<group>"; };
 		F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		F1B692631CDE2F190090506C /* AccountsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsHelper.swift; sourceTree = "<group>"; };
+		F1B692671CDEA1230090506C /* ContactMeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactMeVC.swift; sourceTree = "<group>"; };
 		F1D480B41CC53AC90091CB52 /* Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCellTVC.swift; sourceTree = "<group>"; };
 		F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCellTVC.swift; sourceTree = "<group>"; };
@@ -181,8 +183,6 @@
 				F18E4FB41CA6D02200B0A766 /* Main.storyboard */,
 				F11FAF2D1C903A86008E6ABD /* LaunchScreen.storyboard */,
 				F11FAF301C903A86008E6ABD /* Info.plist */,
-				F11E1F6E1C95968C00440277 /* MenuVC.swift */,
-				F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */,
 				F1401E8D1CCEA67A00BC25CD /* Model.xcdatamodeld */,
 				F1401ED31CCFBEF400BC25CD /* Media.xcassets */,
 			);
@@ -253,6 +253,43 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		F1CFE6131CDF4F6A00A193C4 /* ContactMe */ = {
+			isa = PBXGroup;
+			children = (
+				F1B692671CDEA1230090506C /* ContactMeVC.swift */,
+			);
+			name = ContactMe;
+			sourceTree = "<group>";
+		};
+		F1CFE6141CDF4F7A00A193C4 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */,
+				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
+				F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */,
+				F11E1F6E1C95968C00440277 /* MenuVC.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		F1CFE6151CDF4FCB00A193C4 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		F1CFE6161CDF4FEF00A193C4 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */,
+				F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */,
+				F1A8446D1CA4A86B006BB447 /* DashboardVC.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
 		F1DCF5FD1CBB7D7700ECF287 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,16 +303,14 @@
 		F1DCF5FE1CBB7D9100ECF287 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F11E1F751C9893C400440277 /* ENSideMenuNavigationController.swift */,
-				F1D963AE1CAC79BE008B4414 /* HeaderCellTVC.swift */,
-				F11E1F7A1C993A8D00440277 /* MenuTableVC.swift */,
-				F1D963B01CAD43F6008B4414 /* FooterCellTVC.swift */,
-				F18E4FBD1CA741FB00B0A766 /* AboutVC.swift */,
-				F11E1F741C9893C400440277 /* ENSideMenu.swift */,
+				F1CFE6161CDF4FEF00A193C4 /* Dashboard */,
+				F1CFE6151CDF4FCB00A193C4 /* About */,
 				F1A844721CA56748006BB447 /* Accounts */,
+				F1A844731CA5677C006BB447 /* Contacts */,
+				F1CFE6131CDF4F6A00A193C4 /* ContactMe */,
+				F1CFE6141CDF4F7A00A193C4 /* Menu */,
 				F1A844751CA568FC006BB447 /* Login */,
 				F1A844741CA5679E006BB447 /* Leads */,
-				F1A844731CA5677C006BB447 /* Contacts */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -462,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1B692681CDEA1230090506C /* ContactMeVC.swift in Sources */,
 				F1F0C9DC1CA278BF000727A9 /* CustomHeaderCell.swift in Sources */,
 				F18E4FAD1CA6AB5800B0A766 /* NewLeadVC.swift in Sources */,
 				F1D963B11CAD43F6008B4414 /* FooterCellTVC.swift in Sources */,

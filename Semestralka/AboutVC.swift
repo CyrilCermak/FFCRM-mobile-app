@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class AboutVC: UIViewController {
 
@@ -15,10 +16,29 @@ class AboutVC: UIViewController {
     @IBAction func buttonMenuClicked(sender: AnyObject) {
         toggleSideMenuView()
     }
+    
+    
+    @IBAction func fbClicked(sender: AnyObject) {
+        
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+            let controller = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            self.presentViewController(controller, animated:true, completion:nil)
+        }
+        else {
+            let alert = UIAlertController(title: "Facebook is not initialized.", message: "", preferredStyle: .Alert)
+            print("no Facebook account found on device")
+            let ok = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alert.addAction(ok)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = appDelegate.getDefaultColor()
-
+      
         // Do any additional setup after loading the view.
     }
 

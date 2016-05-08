@@ -58,29 +58,86 @@
             <objects>
                 <viewController storyboardIdentifier="AboutVC" id="aUB-UY-Kbi" customClass="AboutVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="B2j-6I-76V"/>
-                        <viewControllerLayoutGuide type="bottom" id="VaR-4M-uSA"/>
+                        <viewControllerLayoutGuide type="top" id="nYg-We-W2z"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rgt-RC-MbE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Aew-jJ-8qc">
+                    <view key="view" contentMode="scaleToFill" id="7Kn-Bc-gCF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS App Developed by Cyril." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHl-lN-rNL">
-                                <rect key="frame" x="20" y="559" width="214" height="21"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jrt-4c-SjM">
+                                <rect key="frame" x="20" y="115" width="560" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="214" id="HCI-YH-t7q"/>
-                                    <constraint firstAttribute="height" constant="21" id="TEm-03-pXt"/>
+                                    <constraint firstAttribute="height" constant="340" id="vct-rf-DX8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Fat Free CRM ">
+                                        <attributes>
+                                            <font key="NSFont" size="19" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">is an open source
+Ruby on Rails-based customer relationship management platform. Out of the box it features group collaboration, campaign and lead management, contact lists, and opportunity tracking. 
+This app allows user to deal with stuff on server locally on iPhone.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPd-OW-q42">
+                                <rect key="frame" x="20" y="72" width="560" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="2BG-60-45c"/>
+                                    <constraint firstAttribute="height" constant="35" id="cvb-XD-5LY"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Logo"/>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkH-rx-ish">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="Pfd-Qe-w0y"/>
+                                    <constraint firstAttribute="height" constant="44" id="pTE-iJ-DGL"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Njp-lN-AHC"/>
+                                    <barButtonItem image="fb" id="DBK-wS-2hp">
+                                        <connections>
+                                            <action selector="fbClicked:" destination="aUB-UY-Kbi" id="bpq-Za-UTu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cST-WD-zAa"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please comment on facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16M-NL-cdV">
+                                <rect key="frame" x="20" y="463" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="HaE-H7-cjU"/>
+                                    <constraint firstAttribute="width" constant="560" id="II8-0w-QMl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="AHl-lN-rNL" secondAttribute="trailing" constant="346" id="WsE-0o-LBn"/>
-                            <constraint firstItem="AHl-lN-rNL" firstAttribute="leading" secondItem="Aew-jJ-8qc" secondAttribute="leadingMargin" id="cBH-xC-2Bd"/>
-                            <constraint firstItem="VaR-4M-uSA" firstAttribute="top" secondItem="AHl-lN-rNL" secondAttribute="bottom" constant="20" id="zNO-pb-WSC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kkH-rx-ish" secondAttribute="trailing" constant="-20" id="8hA-By-sMl"/>
+                            <constraint firstItem="Jrt-4c-SjM" firstAttribute="leading" secondItem="7Kn-Bc-gCF" secondAttribute="leadingMargin" id="AVq-Fs-VPU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jrt-4c-SjM" secondAttribute="trailing" id="N4u-Tr-SyK"/>
+                            <constraint firstItem="Jrt-4c-SjM" firstAttribute="top" secondItem="gPd-OW-q42" secondAttribute="bottom" constant="8" id="YpW-4V-ral"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gPd-OW-q42" secondAttribute="leading" id="ZrM-Z4-8Sv"/>
+                            <constraint firstItem="16M-NL-cdV" firstAttribute="leading" secondItem="7Kn-Bc-gCF" secondAttribute="leadingMargin" id="dfX-IK-dex"/>
+                            <constraint firstItem="Rgt-RC-MbE" firstAttribute="top" secondItem="kkH-rx-ish" secondAttribute="bottom" id="egj-p2-dKk"/>
+                            <constraint firstItem="gPd-OW-q42" firstAttribute="top" secondItem="nYg-We-W2z" secondAttribute="bottom" constant="8" id="fgR-MP-3Ml"/>
+                            <constraint firstItem="kkH-rx-ish" firstAttribute="top" secondItem="16M-NL-cdV" secondAttribute="bottom" constant="72" id="gLU-uM-dbU"/>
+                            <constraint firstItem="16M-NL-cdV" firstAttribute="top" secondItem="Jrt-4c-SjM" secondAttribute="bottom" constant="8" id="i0M-Fr-4sc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="16M-NL-cdV" secondAttribute="trailing" id="r6e-6L-QpV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gPd-OW-q42" secondAttribute="trailing" id="upf-Q5-1aU"/>
+                            <constraint firstItem="kkH-rx-ish" firstAttribute="leading" secondItem="7Kn-Bc-gCF" secondAttribute="leadingMargin" constant="-20" id="vaL-hF-bzX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="eDG-TG-MqW">
@@ -96,10 +153,10 @@
             </objects>
             <point key="canvasLocation" x="2111" y="1348"/>
         </scene>
-        <!--View Controller-->
+        <!--Contact Me-->
         <scene sceneID="fxx-Pk-sA4">
             <objects>
-                <viewController id="u3Z-rg-J6P" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactMeVC" id="u3Z-rg-J6P" customClass="ContactMeVC" customModule="Semestralka" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Elf-LM-jjm"/>
                         <viewControllerLayoutGuide type="bottom" id="cYi-rS-rr4"/>
@@ -108,23 +165,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5UA-je-Ipi">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HOl-3x-kSE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sX-hV-H30">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Contact Me" id="FCd-Wp-uVG">
-                                        <barButtonItem key="leftBarButtonItem" image="menu" id="mrP-aF-ZQ8"/>
-                                    </navigationItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UYa-Q2-ezU"/>
+                                    <barButtonItem title="Item" image="fb" id="MMg-IP-K5v">
+                                        <connections>
+                                            <action selector="fbClicked:" destination="u3Z-rg-J6P" id="wMW-GR-coO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Axj-WI-5qU"/>
+                                    <barButtonItem image="phone" id="63G-FP-UDU">
+                                        <connections>
+                                            <action selector="phoneClicked:" destination="u3Z-rg-J6P" id="VrG-iJ-3VP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cRp-Id-SWb"/>
+                                    <barButtonItem image="email" id="Ah9-Uv-GT5">
+                                        <connections>
+                                            <action selector="emailClicked:" destination="u3Z-rg-J6P" id="quy-BK-EvK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cPb-Ao-Fxz"/>
                                 </items>
-                            </navigationBar>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5sX-hV-H30" firstAttribute="top" secondItem="HOl-3x-kSE" secondAttribute="bottom" id="36Z-q7-NGp"/>
+                            <constraint firstItem="5sX-hV-H30" firstAttribute="trailing" secondItem="HOl-3x-kSE" secondAttribute="trailing" id="Hml-8M-Q1L"/>
+                            <constraint firstAttribute="trailing" secondItem="5sX-hV-H30" secondAttribute="trailing" id="HoP-KE-6nE"/>
+                            <constraint firstItem="5sX-hV-H30" firstAttribute="bottom" secondItem="cYi-rS-rr4" secondAttribute="top" id="PXu-JK-0rt"/>
+                            <constraint firstItem="HOl-3x-kSE" firstAttribute="top" secondItem="Elf-LM-jjm" secondAttribute="bottom" constant="-64" id="kJE-ND-zOE"/>
+                            <constraint firstItem="5sX-hV-H30" firstAttribute="leading" secondItem="PY3-QH-m0w" secondAttribute="leading" id="sqH-93-GlB"/>
+                            <constraint firstItem="5sX-hV-H30" firstAttribute="leading" secondItem="HOl-3x-kSE" secondAttribute="leading" id="v31-7e-nIc"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Contact Me" id="FCd-Wp-uVG">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="mrP-aF-ZQ8">
+                            <connections>
+                                <action selector="buttonMenuClicked:" destination="u3Z-rg-J6P" id="uov-P0-h49"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="HOl-3x-kSE" id="aux-FN-68B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vP-di-A9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2866" y="1273"/>
+            <point key="canvasLocation" x="2868" y="1455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4qa-Gz-Vku">
@@ -912,8 +1008,25 @@
             </objects>
             <point key="canvasLocation" x="2329" y="2207"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="6nr-Nq-mjr">
+            <objects>
+                <viewController id="fZN-6j-QJ4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7il-WC-AMK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RUT-Oo-OJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="322" height="54"/>
+        <image name="email" width="55" height="55"/>
+        <image name="fb" width="40" height="40"/>
         <image name="menu" width="32" height="32"/>
+        <image name="phone" width="32" height="32"/>
     </resources>
 </document>

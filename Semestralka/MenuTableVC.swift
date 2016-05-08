@@ -74,7 +74,6 @@ class MenuTableVC: FormViewController {
         form  +++ Section("")
         form  +++ Section("")
         form  +++ Section("")
-        form  +++ Section("")
             <<< ButtonRow {
                 $0.title = "About"
                 }.cellSetup({ (cell, row) in
@@ -85,7 +84,17 @@ class MenuTableVC: FormViewController {
                         as! AboutVC
                     self.sideMenuController()?.setContentViewController(vc)
                 })
-            
+            <<< ButtonRow {
+                $0.title = "Contact Me"
+                }.cellSetup({ (cell, row) in
+                    cell.tintColor = self.textColor
+                    cell.backgroundColor = self.cellColor
+                }).onCellSelection({ (cell, row) in
+                    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ContactMeVC")
+                        as! ContactMeVC
+                    self.sideMenuController()?.setContentViewController(vc)
+                })
+
             <<< ButtonRow {
                 $0.title = "Log Out"
                 }.cellSetup({ (cell, row) in
