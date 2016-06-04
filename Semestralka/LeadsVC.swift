@@ -25,11 +25,11 @@ class LeadsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIS
     
     var filtered = [Lead]()
     var sections = ["A","B","C","D","E"]
-    var leadsArray = [[Lead(name: "Adam", status: "Customer")],
-                      [Lead(name: "Bory", status: "Vendor"),Lead(name: "Borek", status: "Reseller")],
-                      [Lead(name: "Cyril", status: "Competitor"),Lead(name: "Cecil",status: "Competitor")],
+    var leadsArray = [[Lead(name: "Adam Novotny", status: "Customer")],
+                      [Lead(name: "Bory Pavel", status: "Vendor"),Lead(name: "Borek", status: "Reseller")],
+                      [Lead(name: "Cyril Cermak", status: "Competitor"),Lead(name: "Cecil Jakamoto",status: "Competitor")],
                       [Lead(name: "David",status: "Competitor"),Lead(name: "Daniel", status: "Competitor")],
-                      [Lead(name: "Eva", status: "Competitor")]]
+                      [Lead(name: "Eva Votavova", status: "Competitor")]]
     
     
     override func viewDidLoad() {

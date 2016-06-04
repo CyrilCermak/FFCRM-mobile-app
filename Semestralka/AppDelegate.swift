@@ -65,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         UISearchBar.appearance().barTintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
-//        self.window!.tintColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
     }
     
     func persistContext() {

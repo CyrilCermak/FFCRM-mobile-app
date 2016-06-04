@@ -283,7 +283,7 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             completion(result: true)
         }
     }
-
+    
     
     
     private func getParams(account: Account, token: String) -> [String: String] {
@@ -313,18 +313,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         }
         return ["account[name]": name,"account[assigned_to]":assignedTo ,"account[phone]": phone,"account[rating]": "\(account.rating)" ,"account[email]": email, "authenticity_token": token]
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     func accountsToDict(accounts: [Account]) -> [String:[Account]] {
         var dict = [String:[Account]]()

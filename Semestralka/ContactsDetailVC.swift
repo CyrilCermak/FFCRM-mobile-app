@@ -75,7 +75,7 @@ class ContactsDetailVC: FormViewController {
             <<< TextRow { $0.value = "Phone: \(phone)"; $0.tag = "phone" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
-
+            
             <<< TextRow { $0.value = "Email: \(email)"; $0.tag = "email" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
@@ -83,7 +83,7 @@ class ContactsDetailVC: FormViewController {
             <<< TextRow { $0.value = "Department: \(department)"; $0.tag = "department" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
-
+        
     }
     
     func turnMenuOn(){
@@ -112,15 +112,15 @@ class ContactsDetailVC: FormViewController {
             <<< TextRow { $0.value = "Street"; $0.tag = "street" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
-
+            
             <<< TextRow { $0.value = "City"; $0.tag = "city" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
-
+            
             <<< TextRow { $0.value = "State"; $0.tag = "state" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })
-
+            
             <<< TextRow { $0.value = "Zip Code"; $0.tag = "zip" }.cellSetup({ (cell, row) in
                 cell.userInteractionEnabled = false
             })

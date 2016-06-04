@@ -12,6 +12,7 @@ import SwiftyJSON
 import MagicalRecord
 import PKHUD
 import Async
+import AEXML
 
 @objc(Account)
 class Account: NSManagedObject {
@@ -278,51 +279,7 @@ class Accounts {
     }
     
     //MARK: UPDATE ON Server
-    
-    //    func updateOnServer(account: Account, completion: (completed: Bool) -> Void) {
-    //        let id = account.id
-    //        var params = self.getParams(account, token: "")
-    //        getToken(false) { (token) in
-    //            if token != nil {
-    //                params["authenticity_token"] = token!
-    //                Alamofire.request(.PATCH, "\(self.url)/accounts/\(id)", headers: self.headers, parameters: params)
-    //                    .responseString { response in switch response.result {
-    //                    case .Success( _):
-    //                        completion(completed: true)
-    //                    case .Failure( _):
-    //                        completion(completed: false)
-    //                        }
-    //                }
-    //            } else {
-    //                completion(completed: false)
-    //            }
-    //        }
-    //    }
-    //
-    //    func postOnServer(account: Account) {
-    //        var params = getParams(account, token: "")
-    //        //Getting token
-    //        getToken { (token) in
-    //            print("getting token: \(token)")
-    //            if token != nil {
-    //                params["authenticity_token"] = token
-    //                Alamofire.request(.POST, "\(self.url)/accounts", headers: self.headers, parameters: params).authenticate(user:
-    //                    self.userName, password: self.password)
-    //                    .responseString { response in switch response.result{
-    //                    case .Success( _):break
-    //                        print("success")
-    ////                        completion(completed: true)
-    //                    case .Failure( _):break
-    ////                        completion(completed: false)
-    //                        }
-    //                }
-    //            } else {
-    ////                completion(completed: false)
-    //            }
-    //
-    //        }
-    //    }
-    
+
     
     func updateServer(accountsForUpdate: [Account], completion:(completed: Int) -> Void ) {
         var i = 0
@@ -366,18 +323,5 @@ class Accounts {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

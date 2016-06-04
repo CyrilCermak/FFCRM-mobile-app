@@ -11,15 +11,15 @@ import Eureka
 
 class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
-    var leads = [Lead(name: "Adam", status: "Customer"),
-                         Lead(name: "Adam", status: "Customer"),
-                         Lead(name: "Adam", status: "Customer")]
-
+    var leads = [Lead(name: "Tomas Jukin", status: "Customer"),
+                 Lead(name: "Jana Moudra", status: "Customer"),
+                 Lead(name: "Ondrej Kucera", status: "Customer")]
+    
     var accounts: [Account]?
     var contacts: [Contact]?
     var sections = ["Accounts", "Contacts","Leads"]
     let appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
-
+    
     @IBOutlet var tableView: UITableView!
     
     override func viewWillAppear(animated: Bool) {
@@ -27,9 +27,9 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
         if loggedIn == "yes" {
             createAccounts()
             createContacts()
-            leads = [Lead(name: "Adam", status: "Customer"),
-                     Lead(name: "Adam", status: "Customer"),
-                     Lead(name: "Adam", status: "Customer")]
+            leads = [Lead(name: "Tomas Jukin", status: "Contacted"),
+             Lead(name: "Jana Moudra", status: "New"),
+             Lead(name: "Ondrej Kucera", status: "Contacted")]
         }
         self.tableView.reloadData()
         print(contacts)
@@ -43,7 +43,7 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
             for contactsArray in contactsArrays {
                 for contact in contactsArray {
                     if i == 3 {
-                     break
+                        break
                     }
                     i = i + 1
                     contacts?.append(contact)
@@ -65,9 +65,8 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
                 i = i + 1
             }
         }
-
+        
     }
-    
     
     
     override func viewDidLoad() {
@@ -178,7 +177,6 @@ class DashboardVC: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCellWithIdentifier("FooterCell") as! FooterCellTVC
-//        cell.buttonShow.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         cell.buttonShow.titleLabel!.font = UIFont(name: "Avenir-Light" , size: 20)
         if (section == 1){
             cell.buttonShow.setTitle("Show Contacts", forState: UIControlState.Normal)
