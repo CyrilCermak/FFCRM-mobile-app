@@ -30,7 +30,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewWillAppear(animated: Bool) {
-        
         self.tableView.reloadData()
     }
     
@@ -38,44 +37,46 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.contentOffset = CGPoint.init(x: 0, y: 20)
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
+        
+        searchControllerInit()
         tableView.tableHeaderView = searchController.searchBar
         //loading data
         accounts = appDelegate.getAccounts()
-        print(accounts)
         sections = Array(accounts.keys).sort()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountsVC.refreshTable),
-                                                         name: "refreshAccounts",object: nil)
-        //UIRefreshControl
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountsVC.refreshTable),name: "refreshAccounts",object: nil)
+        refreshControllInit()
+    }
+    
+    func refreshControllInit() {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(AccountsVC.refreshTable), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.backgroundColor = UIColor.whiteColor()
         tableView.addSubview(self.refreshControl)
-        
+    }
+    
+    func searchControllerInit() {
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if (searchController.active) {
             return nil
         }
-        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell")! as! CustomCell
         cell.backgroundColor = UIColor.init(red:0.037, green:0.777, blue:0.118, alpha:1.00)
-        cell.textLabel?.text = self.sections[section]
-        cell.detailTextLabel?.textColor = self.view.tintColor
-        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.title.text = self.sections[section]
+        cell.title.textColor = self.view.tintColor
+        cell.title.textColor = UIColor.whiteColor()
+        cell.imageView!.image = nil
         return cell
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-    }
-    
-    @IBAction func buttonAddClicked(sender: AnyObject) {
     }
     
     @IBAction func buttonMenuClicked(sender: AnyObject) {
@@ -110,16 +111,20 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as! CustomCell
         if(searchController.active){
             let account = filtered[indexPath.row]
-            
-            cell.textLabel?.text = account.name!
+            cell.title.text = account.name!
         } else {
             let account = accounts[sections[indexPath.section]]![indexPath.row]
-            print(account)
-            let name = account.name
-            cell.textLabel?.text = name
+            cell.title.text = account.name
+            if (!account.onServer) {
+                cell.cloudImage.image = UIImage(named: "cloudUpload")
+                cell.cloudImage.image = cell.cloudImage.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                cell.cloudImage.tintColor = self.view.tintColor
+            } else {
+                cell.cloudImage.image = nil
+            }
         }
         cell.detailTextLabel?.font = UIFont(name: "Avenir-Light" , size: 20)
         return cell
@@ -232,7 +237,9 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                                         self.sections = Array(dictionary.keys).sort()
                                         self.appDelegate.currentAccounts = dictionary
                                         self.tableView.reloadData()
+                                        HUD.hide()
                                         self.refreshControl.endRefreshing()
+                                        
                                 })
                             case .Failure( _): break
                                 }
@@ -257,8 +264,8 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 
                 }
         }
-        
     }
+    
     func syncWithDatabase(completion: (result: Bool) -> Void ) {
         self.refreshControl.endRefreshing()
         completion(result: false)
@@ -271,11 +278,8 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             }
         }
         if accountsForUpdate.count != 0 {
-            HUD.show(.Progress)
             accountModel.updateServer(accountsForUpdate) { completed in
                 if completed == accountsForUpdate.count {
-                    HUD.hide()
-                    HUD.flash(.Success,delay: 1.0)
                     completion(result: true)
                 }
             }
@@ -283,8 +287,6 @@ class AccountsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             completion(result: true)
         }
     }
-    
-    
     
     private func getParams(account: Account, token: String) -> [String: String] {
         var name: String {

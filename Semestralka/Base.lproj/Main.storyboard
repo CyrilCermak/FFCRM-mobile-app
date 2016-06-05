@@ -259,24 +259,48 @@ This app allows user to deal with stuff on server locally on iPhone.</string>
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="YxZ-0c-Y3X" rowHeight="60" style="IBUITableViewCellStyleDefault" id="0tf-Ht-Kbl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="cUv-Vg-AIQ" customClass="CustomCell" customModule="Semestralka" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tf-Ht-Kbl" id="BqI-RN-lcb">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cUv-Vg-AIQ" id="WE9-kk-79u">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YxZ-0c-Y3X">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="59"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dos-bR-Hpg">
+                                                    <rect key="frame" x="8" y="8" width="473" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="473" id="kOI-me-YOu"/>
+                                                        <constraint firstAttribute="height" constant="43" id="thl-lv-hbD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F5E-xa-Jhh">
+                                                    <rect key="frame" x="538" y="9" width="30" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="JJ8-DO-4HT"/>
+                                                        <constraint firstAttribute="width" constant="30" id="ymL-ed-YVm"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="F5E-xa-Jhh" secondAttribute="bottom" constant="1" id="09Z-oU-1YY"/>
+                                                <constraint firstItem="Dos-bR-Hpg" firstAttribute="leading" secondItem="WE9-kk-79u" secondAttribute="leadingMargin" id="0bi-9C-HVO"/>
+                                                <constraint firstItem="F5E-xa-Jhh" firstAttribute="leading" secondItem="Dos-bR-Hpg" secondAttribute="trailing" constant="57" id="4Cp-8a-BPG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="F5E-xa-Jhh" secondAttribute="trailing" constant="24" id="EHz-il-5w4"/>
+                                                <constraint firstItem="F5E-xa-Jhh" firstAttribute="top" secondItem="WE9-kk-79u" secondAttribute="topMargin" constant="1" id="NPg-3F-Gpe"/>
+                                                <constraint firstItem="Dos-bR-Hpg" firstAttribute="top" secondItem="WE9-kk-79u" secondAttribute="topMargin" id="fWF-kO-68x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="F5E-xa-Jhh" secondAttribute="trailing" constant="24" id="lwT-JQ-tGi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Dos-bR-Hpg" secondAttribute="bottom" id="m4g-iW-Meh"/>
+                                                <constraint firstItem="F5E-xa-Jhh" firstAttribute="top" secondItem="WE9-kk-79u" secondAttribute="topMargin" constant="1" id="rI7-ZS-ZyL"/>
+                                                <constraint firstItem="F5E-xa-Jhh" firstAttribute="centerY" secondItem="Dos-bR-Hpg" secondAttribute="centerY" constant="0.5" id="saR-NO-anV"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DHU-3M-9Cy" kind="show" identifier="showAccountSegue" id="tXB-Vt-ljY"/>
+                                            <outlet property="cloudImage" destination="F5E-xa-Jhh" id="Yb3-sD-Evx"/>
+                                            <outlet property="title" destination="Dos-bR-Hpg" id="pHW-Jb-x2c"/>
+                                            <segue destination="DHU-3M-9Cy" kind="showDetail" identifier="showAccountSegue" action="showViewController:sender:" id="fUZ-RL-iRE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -309,7 +333,7 @@ This app allows user to deal with stuff on server locally on iPhone.</string>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="tableView" destination="fbb-TY-5ed" id="qTZ-T2-lH6"/>
+                        <outlet property="tableView" destination="fbb-TY-5ed" id="yOB-yW-1wB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0K-Rr-keW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -868,7 +892,7 @@ This app allows user to deal with stuff on server locally on iPhone.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZd-lJ-vWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2729" y="4646"/>
+            <point key="canvasLocation" x="2631" y="4364"/>
         </scene>
         <!--Edit Account-->
         <scene sceneID="9Gc-H4-cM6">

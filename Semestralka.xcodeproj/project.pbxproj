@@ -24,6 +24,7 @@
 		F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A3C8A1CA3C17B0060D426 /* NewAccountVC.swift */; };
 		F1401E8F1CCEA67A00BC25CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1401E8D1CCEA67A00BC25CD /* Model.xcdatamodeld */; };
 		F1401ED41CCFBEF400BC25CD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1401ED31CCFBEF400BC25CD /* Media.xcassets */; };
+		F16949A81D037979006C1FA3 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16949A71D037979006C1FA3 /* CustomCell.swift */; };
 		F16D5E861CA68F5E00D928B6 /* LeadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */; };
 		F18E4FAD1CA6AB5800B0A766 /* NewLeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */; };
 		F18E4FAF1CA6B92200B0A766 /* LeadDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E4FAE1CA6B92200B0A766 /* LeadDetailVC.swift */; };
@@ -87,6 +88,7 @@
 		F1401E8E1CCEA67A00BC25CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F1401ED31CCFBEF400BC25CD /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		F1401ED51CCFBFDC00BC25CD /* Semestralka-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semestralka-Bridging-Header.h"; sourceTree = "<group>"; };
+		F16949A71D037979006C1FA3 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = Semestralka/CustomCell.swift; sourceTree = "<group>"; };
 		F16D5E851CA68F5E00D928B6 /* LeadsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadsVC.swift; sourceTree = "<group>"; };
 		F17BC51A1CDFB38100258410 /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; };
 		F18E4FAC1CA6AB5800B0A766 /* NewLeadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLeadVC.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				F11E1F841C9CA46400440277 /* AccountDetailVC.swift */,
 				F18E4FB01CA6CB9800B0A766 /* EditAccountVC.swift */,
 				F1F0C9DB1CA278BF000727A9 /* CustomHeaderCell.swift */,
+				F16949A71D037979006C1FA3 /* CustomCell.swift */,
 			);
 			name = Accounts;
 			path = ..;
@@ -507,6 +510,7 @@
 				F11FAF271C903A86008E6ABD /* EnterURLController.swift in Sources */,
 				F1D963AF1CAC79BE008B4414 /* HeaderCellTVC.swift in Sources */,
 				F11E1F7F1C994C7A00440277 /* AccountsVC.swift in Sources */,
+				F16949A81D037979006C1FA3 /* CustomCell.swift in Sources */,
 				F12A3C8B1CA3C17B0060D426 /* NewAccountVC.swift in Sources */,
 				F1DCF6001CBB7F4000ECF287 /* Contacts.swift in Sources */,
 				F18E4FBA1CA7061D00B0A766 /* EditLeadVC.swift in Sources */,

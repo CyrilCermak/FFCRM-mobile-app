@@ -1,17 +1,17 @@
 //
-//  CustomHeaderCell.swift
+//  CustomCell.swift
 //  Semestralka
 //
-//  Created by Cyril on 23/03/16.
+//  Created by Cyril on 04.06.16.
 //  Copyright © 2016 cyril. All rights reserved.
 //
 
 import UIKit
 
-class CustomHeaderCell: UITableViewCell {
-
-    @IBOutlet var labelTwo: UILabel!
-    @IBOutlet var labelOne: UILabel!
+class CustomCell: UITableViewCell {
+    
+    @IBOutlet var title: UILabel!
+    @IBOutlet var cloudImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

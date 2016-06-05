@@ -84,7 +84,6 @@ class Accounts {
     }
     
     func createAccount(account: Account, accountsVC: AccountsVC?, newAccountVC: NewAccountVC? = nil) {
-        print("createing account \(account)")
         var params = getParams(account, token: "")
         //Getting token
         getToken { (token) in
@@ -99,29 +98,17 @@ class Accounts {
                         accountsVC!.refreshTable()
                         self.appDelegate.persistContext()
                     case .Failure( _):
-                        HUD.flash(.Error, delay: 2.0)
+                        HUD.flash(.Error, delay: 1.0)
                         }
                 }
             } else {
-                HUD.hide(afterDelay: 0.0)
-                let alert = UIAlertController(title: "No internet connection!", message: "Do you want to post the account when you will be online?", preferredStyle: .Alert)
-                let cancelButton = UIAlertAction(title: "No", style: .Default, handler: { action in
-                    MagicalRecord.saveWithBlock({ (c) in
-                        account.MR_deleteEntityInContext(c)
-                        self.appDelegate.persistContext()
-                    })
-                })
-                let yesButton = UIAlertAction(title: "Yes", style: .Default, handler: { action in
-                    account.onServer = false
-                    self.appDelegate.persistContext()
-                    let dictionary = (accountsVC?.accountsToDict(Account.MR_findAll() as! [Account]))!
-                    accountsVC?.accounts = dictionary
-                    accountsVC?.sections = Array(dictionary.keys).sort()
-                    accountsVC?.tableView.reloadData()
-                })
-                alert.addAction(yesButton)
-                alert.addAction(cancelButton)
-                newAccountVC!.showViewController(alert, sender: nil)
+                HUD.flash(.Error, delay: 1.0)
+                account.onServer = false
+                self.appDelegate.persistContext()
+                let dictionary = (accountsVC?.accountsToDict(Account.MR_findAll() as! [Account]))!
+                accountsVC?.accounts = dictionary
+                accountsVC?.sections = Array(dictionary.keys).sort()
+                accountsVC?.tableView.reloadData()
             }
         }
         
@@ -143,41 +130,24 @@ class Accounts {
                         accountsVC?.tableView?.reloadData()
                         print("Successfully connected: \(data)")
                     case .Failure( _):
-                        HUD.flash(.Error, delay: 2.0)
+                        HUD.flash(.Error, delay: 1.0)
                         }
                 }
             } else {
-                HUD.flash(.Error, delay: 1.0, completion: { completed in
-                    if completed {
-                        let alert = UIAlertController.init(title: "Server is not reachable!", message: "Do you want to update account when you will be online?", preferredStyle: .Alert)
-                        let yesButton = UIAlertAction.init(title: "Yes", style: .Default, handler: { (action) in
-                            print("saving account for later update")
-                            account.onServer = false
-                            account.updateMethod = "PATCH"
-                            self.appDelegate.persistContext()
-                            accountsVC!.refreshTable()
-                        })
-                        let noButton = UIAlertAction.init(title: "No", style: .Default, handler: { (action) in
-                            account.onServer = true
-                            account.assignTo = oldAccountParams!["assignTo"] as? String
-                            account.email = oldAccountParams!["email"] as? String
-                            account.phone = oldAccountParams!["phone"] as? String
-                            account.name = oldAccountParams!["name"] as? String
-                            self.appDelegate.persistContext()
-                            accountsVC?.refreshTable()
-                        })
-                        alert.addAction(yesButton)
-                        alert.addAction(noButton)
-                        accountsVC?.presentViewController(alert, animated: true, completion: nil)
-                    }
-                    
-                })
+                HUD.flash(.Error, delay:  1.0)
+                account.updateMethod = "PATCH"
+                account.onServer = false
+                self.appDelegate.persistContext()
+                let dictionary = (accountsVC?.accountsToDict(Account.MR_findAll() as! [Account]))!
+                accountsVC?.accounts = dictionary
+                accountsVC?.sections = Array(dictionary.keys).sort()
+                accountsVC?.tableView.reloadData()
             }
         }
     }
     
     func removeAccount(account: Account, accountsVC: AccountsVC?) {
-        getToken() { token in
+        getToken(false) { token in
             if token != nil {
                 let id = String(account.id)
                 let params = ["authenticity_token":token!, "id":id]
@@ -189,46 +159,21 @@ class Accounts {
                             account.MR_deleteEntity()
                             NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion({ (completed, e) in
                                 if completed {
-                                    print("refreshing table")
                                     accountsVC!.refreshTable()
                                 }
                             })
                             
                         })
                     case .Failure( _):
-                        HUD.flash(.LabeledError(title: "Server Error", subtitle: ""))
+                        HUD.flash(.LabeledError(title: "Server Error", subtitle: ""), delay: 2.0)
                         }
                 }
             } else {
-                HUD.flash(.LabeledError(title: "Server Error", subtitle: ""), delay: 2.0)
+                account.onServer = false
+                account.updateMethod = "DELETE"
+                self.appDelegate.persistContext()
+                accountsVC?.tableView.reloadData()
             }
-        }
-    }
-    
-    
-    
-    
-    
-    func getToken(animated: Bool = true, completion: (token: String?) -> Void) -> Void {
-        //Starting user notification about progress.
-        if animated {
-            HUD.show(.LabeledProgress(title: "Updating Server", subtitle: ""))
-        }
-        Alamofire.request(.GET, "\(url)/accounts.html", headers: headers)
-            .responseString { response in switch response.result {
-            case .Success(let data):
-                let splitData = data.componentsSeparatedByString("\n")
-                var token = ""
-                for line in splitData {
-                    if line.containsString("csrf-token"){
-                        token = line.substringWithRange(Range<String.Index>(start: line.startIndex.advancedBy(37), end: line.endIndex.advancedBy(-4)))
-                    }
-                }
-                completion(token: token)
-            case .Failure( _):
-                print("could not greb token")
-                completion(token: nil)
-                }
         }
     }
     
@@ -278,8 +223,33 @@ class Accounts {
         return dict
     }
     
+    func getToken(animated: Bool = true, completion: (token: String?) -> Void) -> Void {
+        //Starting user notification about progress.
+        if animated {
+            HUD.show(.LabeledProgress(title: "Updating Server", subtitle: ""))
+        }
+        Alamofire.request(.GET, "\(url)/profile.html", headers: headers)
+            .responseString { response in switch response.result {
+            case .Success(let data):
+                let splitData = data.componentsSeparatedByString("\n")
+                var token = ""
+                for line in splitData {
+                    if line.containsString("csrf-token"){
+                        token = line.substringWithRange(Range<String.Index>(start: line.startIndex.advancedBy(37), end: line.endIndex.advancedBy(-4)))
+                    }
+                }
+                completion(token: token)
+            case .Failure( _):
+                print("could not greb token")
+                completion(token: nil)
+                }
+        }
+    }
+    
+    
+    
     //MARK: UPDATE ON Server
-
+    
     
     func updateServer(accountsForUpdate: [Account], completion:(completed: Int) -> Void ) {
         var i = 0
@@ -287,7 +257,9 @@ class Accounts {
             if token != nil {
                 for account in accountsForUpdate {
                     let params = self.getParams(account, token: token!)
+                    print(account)
                     switch account.updateMethod! {
+                    //creating new account on server
                     case "POST":
                         print("posting account")
                         Alamofire.request(.POST, "\(self.url)/accounts", headers: self.headers, parameters: params).authenticate(user:
@@ -302,13 +274,24 @@ class Accounts {
                                 completion(completed: i)
                                 }
                         }
+                    //patching old account on server
                     case "PATCH":
-                        print("patching")
-                        //TODO
                         Alamofire.request(.PATCH, "\(self.url)/accounts/\(account.id)", headers: self.headers, parameters: params)
                             .responseString { response in switch response.result {
                             case .Success( _):
                                 print("patched \(i)")
+                                i += 1
+                                completion(completed: i)
+                            case .Failure( _):
+                                i += 1
+                                completion(completed: i)
+                                }
+                        }
+                    //deleting account from server
+                    case "DELETE":
+                        Alamofire.request(.DELETE, "\(self.url)/accounts/\(account.id)", headers: self.headers, parameters: params)
+                            .responseString { response in switch response.result {
+                            case .Success( _):
                                 i += 1
                                 completion(completed: i)
                             case .Failure( _):
